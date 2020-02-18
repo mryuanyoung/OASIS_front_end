@@ -1,12 +1,14 @@
-const { override, fixBabelImports, addLessLoader,addBabelPlugins, useBabelRc } = require('customize-cra');
+const { override, fixBabelImports, addLessLoader,addBabelPlugin } = require('customize-cra');
 module.exports = override(
     fixBabelImports('import', {
         libraryName: 'antd',
         libraryDirectory: 'es',
-        style: true,
+        // style: 'css'
+        style: true,  //自定义主题
     }),
-    ...addBabelPlugins('@babel/plugin-transform-async-to-generator', "@babel/plugin-transform-runtime"),
-    useBabelRc(),
+    addBabelPlugin('@babel/plugin-transform-async-to-generator'),
+    
+    //自定义主题
     addLessLoader({
         javascriptEnabled: true,
         modifyVars: { '@primary-color': '#1DA57A' },
