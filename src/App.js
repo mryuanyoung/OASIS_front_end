@@ -1,14 +1,17 @@
 import React from 'react';
-import {Button} from 'antd';
-import '@babel/plugin-transform-async-to-generator';
-
+import {BrowserRouter as Router, Route, NavLink, Switch} from 'react-router-dom';
+import HomePage from './HomePage/index';
+import PaperSearchPage from './PaperSearchPage/index';
 
 
 function App() {
   return (
-    <div>
-      <Button type='primary'>antd</Button>
-    </div>
+    <Router>
+      <Switch>
+          <Route exact path='/' component={HomePage}></Route>
+          <Route exact path='/paper' component={PaperSearchPage}></Route>
+      </Switch>
+    </Router>
   );
 }
 
