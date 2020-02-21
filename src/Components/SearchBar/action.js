@@ -23,10 +23,10 @@ export const changeRes = (res) => {
     }
 }
 
-export const sortRes = (field) => {
+export const sortRes = (field, order) => {
     return (dispatch, getState) => {
         let {res} = getState();
-        res = [...res].sort((a, b) => a[field]- b[field]);
+        res = [...res].sort(order ? (a, b) => a[field]- b[field] : (a, b) => b[field] - a[field]);
         dispatch(changeRes(res));
     }
 }
