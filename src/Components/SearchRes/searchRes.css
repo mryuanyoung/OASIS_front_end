@@ -1,0 +1,21 @@
+.dataList {
+    width: 50vw;
+}
+
+.upDown {
+    margin-left: 5px;
+    display: inline-flex;
+    flex-direction: column;
+}
+
+.field {
+    vertical-align: sub;
+}
+
+.headers {
+    margin-top: 20px;
+}
+
+.header {
+    margin-right: 2vw;
+}

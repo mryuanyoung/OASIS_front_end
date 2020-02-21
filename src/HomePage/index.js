@@ -1,7 +1,7 @@
 import React from 'react';
 import SearchBar from '../Components/SearchBar/index.js';
 import Theme from '../Components/Theme/index.js';
-import './index.css';
+import './homePage.css';
 
 export const HistoryContext = React.createContext();
 
