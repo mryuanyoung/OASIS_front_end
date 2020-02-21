@@ -1,17 +1,18 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { sortRes } from '../SearchBar/action';
-import { List, Icon, Button } from 'antd';
+import { List, Icon, Button, Layout, Menu} from 'antd';
 import './searchRes.css';
 
 const fields = ['title', 'year', 'cited'];
 
-const Header = () => {
+
+const CataHeader = () => {
     return (
-        <div className='headers'>
+        <div className='cataheaders'>
             {
                 fields.map(item => (
-                    <Button className='header' type='dashed' key={item}>
+                    <Button className='cataheader' type='dashed' key={item}>
                         <span className='field'>{item}</span>
                         <div className='upDown'>
                             <Icon type='up' />
@@ -29,7 +30,7 @@ const SearchRes = (props) => {
     return (
         <div className='dataList'>
             <List
-                header={<Header></Header>}
+                cataheader={<CataHeader></CataHeader>}
                 itemLayout="vertical"
                 size="middle"
                 pagination={{

@@ -22,12 +22,12 @@ const SearchBar = function (props) {
 
     return (
         <div className='searCont'>
-            <Select defaultValue='title' className='select' onChange={setMethod}>
+            <Select defaultValue='title' className='select' size='large' onChange={setMethod}>
                 <Option value='title'>title</Option>
                 <Option value='author'>author</Option>
                 <Option value='conference'>conference</Option>
             </Select>
-            <Search enterButton className='search' onSearch={toSearch}/>
+            <Search enterButton className='search' size='large' onSearch={toSearch}/>
         </div>
     )
 }
