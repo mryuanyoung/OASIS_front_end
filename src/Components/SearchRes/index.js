@@ -8,6 +8,7 @@ const fields = ['title', 'year', 'cited'];
 
 const Header = (props) => {
     
+    //管理keyword排序次序：顺序/反序
     const [orders, setOrders] = useState(fields.reduce((prev, curr) => {
         prev[curr] = false;
         return prev;
@@ -18,7 +19,8 @@ const Header = (props) => {
             {
                 fields.map(item => (
                     <Button className='header' type='dashed' key={item} onClick={() => {
-                        props.sortData(item, orders[item]);
+                        //点击事件 1. 调用action方法排序 2. 改变该keyword的排序次序
+                        props.sortData(item, orders[item]);            
                         setOrders({...orders, [item]: !orders[item]});
                     }}>
                         <span className='field'>{item}</span>
