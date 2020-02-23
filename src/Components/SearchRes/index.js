@@ -1,10 +1,11 @@
 import React, {useState} from 'react';
 import { connect } from 'react-redux';
 import { sortRes } from '../SearchBar/action';
-import { List, Icon, Button } from 'antd';
+import { List, Icon, Button, Layout, Menu} from 'antd';
 import './searchRes.css';
 
 const fields = ['title', 'year', 'cited'];
+
 
 const Header = (props) => {
     
@@ -14,10 +15,12 @@ const Header = (props) => {
         return prev;
     }, {}));
 
+
     return (
-        <div className='headers'>
+        <div className='cataheaders'>
             {
                 fields.map(item => (
+
                     <Button className='header' type='dashed' key={item} onClick={() => {
                         //点击事件 1. 调用action方法排序 2. 改变该keyword的排序次序
                         props.sortData(item, orders[item]);            
@@ -40,6 +43,7 @@ const SearchRes = (props) => {
     return (
         <div className='dataList'>
             <List
+
                 header={<Header sortData={props.sortData}></Header>}
                 itemLayout="vertical"
                 size="middle"
