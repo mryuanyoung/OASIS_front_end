@@ -32,7 +32,7 @@ export default function (props) {
                 </div>
 
             </Content>
-            <Footer style={{ textAlign: 'center' }}>Ant Design ©2020 Proudly Presented by IDIOS</Footer>
+            <Footer style={{ textAlign: 'center' }}>Ant Design ©2020 Proudly Presented by IDIOTS</Footer>
         </Layout>
     )
 }

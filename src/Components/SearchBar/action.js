@@ -1,11 +1,14 @@
 import * as TYPE from './actionTypes';
 import {getRequest} from '../../utils/ajax.js';
 
-export const search = function(method, keyword) {
+export const search = function(pattern, keyword) {
     return async function(dispatch, getState) {
-        // const url = `/paper/simple?keywords=${keyword}&method=${method}`;
-        // const response = await getRequest(url);
-        // dispatch(addResult(response));
+        const url = `/paper/simple`;
+        const response = await getRequest(url, {}, JSON.stringify({
+            pattern,
+            keyword
+        }));
+        dispatch(addResult(response));
     }
 }
 

@@ -11,7 +11,7 @@ const {Option} = Select;
 const SearchBar = function (props) {
 
     const directTo = useContext(HistoryContext)
-    const [method, setMethod] = useState('title');
+    const [method, setMethod] = useState('Paper');
 
     function toSearch(keyword) {
         if(keyword){
@@ -22,10 +22,13 @@ const SearchBar = function (props) {
 
     return (
         <div className='searCont'>
-            <Select defaultValue='title' className='select' size='large' onChange={setMethod}>
-                <Option value='title'>title</Option>
-                <Option value='author'>author</Option>
-                <Option value='conference'>conference</Option>
+            <Select defaultValue='Paper' className='select' size='large' onChange={setMethod}>
+                <Option value='Paper'>Paper</Option>
+                <Option value='Author'>Author</Option>
+                <Option value='Conference'>Conference</Option>
+                <Option value='Interest'>Interest</Option>
+                <Option value='Institution'>Institution</Option>
+                <Option value='Mix'>Mix</Option>
             </Select>
             <Search enterButton className='search' size='large' onSearch={toSearch}/>
         </div>
@@ -34,8 +37,8 @@ const SearchBar = function (props) {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        searchPaper: (keyword) => {
-            dispatch(search(keyword));
+        searchPaper: (method, keyword) => {
+            dispatch(search(method, keyword));
         }
     }
 }
