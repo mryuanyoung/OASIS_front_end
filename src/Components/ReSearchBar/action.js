@@ -1,14 +1,15 @@
 import * as TYPE from './actionTypes';
 import {postRequest} from '../../utils/ajax.js';
 
-export const search = function(pattern, keyword) {
+export const search = function(pattern, keywords) {
     return async function(dispatch, getState) {
         const url = `/paper/simple`;
-        const response = await postRequest(url, {'content-type':'application/x-www-form-urlencoded'}, JSON.stringify({
+        let response = await postRequest(url, {'content-type': 'application/json'},JSON.stringify({
             pattern,
-            keyword
+            keywords
         }));
-        dispatch(addResult(response));
+        response = JSON.parse(response);
+        if(response.success) dispatch(addResult(response.content));
     }
 }
 

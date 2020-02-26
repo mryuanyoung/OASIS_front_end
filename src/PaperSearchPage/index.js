@@ -26,7 +26,7 @@ export default function (props) {
                 <div style={{ background: '#fff', padding: 24, minHeight: 280 }}>
                     <ReSearchBar></ReSearchBar>
                     <div className="container" id="container">
-                        <PprSearchRes></PprSearchRes>{/*SearchRes的内容应该是空的，等待查询结果返回之后渲染*/}
+                        <PprSearchRes oldKeyword={props.oldKeyword}></PprSearchRes>{/*SearchRes的内容应该是空的，等待查询结果返回之后渲染*/}
                     </div>
 
                 </div>
