@@ -4,7 +4,6 @@
     <list default="true" id="a2dabe68-4226-4be0-af37-c381c2a550df" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Components/ReSearchBar/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/ReSearchBar/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PaperSearchPage/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/PaperSearchPage/index.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -34,10 +33,22 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/PaperSearchPage/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="551">
-              <caret line="29" column="24" selection-start-line="29" selection-start-column="24" selection-end-line="29" selection-end-column="24" />
+            <state relative-caret-position="665">
+              <caret line="35" column="17" lean-forward="true" selection-start-line="10" selection-start-column="8" selection-end-line="35" selection-end-column="17" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Components/SearchBar/index.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="380">
+              <caret line="20" column="28" selection-start-line="20" selection-start-column="28" selection-end-line="20" selection-end-column="28" />
+              <folding>
+                <element signature="e#0#52#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -58,10 +69,22 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Components/ReSearchBar/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="418">
-              <caret line="22" column="39" lean-forward="true" selection-start-line="22" selection-start-column="39" selection-end-line="22" selection-end-column="39" />
+            <state relative-caret-position="171">
+              <caret line="15" column="56" selection-start-line="15" selection-start-column="56" selection-end-line="15" selection-end-column="56" />
               <folding>
                 <element signature="e#0#52#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/AuthorSearchPage/index.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="133">
+              <caret line="10" selection-start-line="10" selection-end-line="10" />
+              <folding>
+                <element signature="e#0#26#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -94,12 +117,12 @@
         <option value="$PROJECT_DIR$/src/Components/SearchRes/searchRes.css" />
         <option value="$PROJECT_DIR$/src/PaperSearchPage/paperSearchPage.css" />
         <option value="$PROJECT_DIR$/src/AuthorSearchPage/AuthorSearchPage.css" />
-        <option value="$PROJECT_DIR$/src/Components/SearchRes/index.js" />
-        <option value="$PROJECT_DIR$/src/AuthorSearchPage/index.js" />
         <option value="$PROJECT_DIR$/src/App.js" />
-        <option value="$PROJECT_DIR$/src/Components/SearchBar/index.js" />
-        <option value="$PROJECT_DIR$/src/Components/ReSearchBar/index.js" />
+        <option value="$PROJECT_DIR$/src/Components/SearchRes/index.js" />
         <option value="$PROJECT_DIR$/src/PaperSearchPage/index.js" />
+        <option value="$PROJECT_DIR$/src/Components/SearchBar/index.js" />
+        <option value="$PROJECT_DIR$/src/AuthorSearchPage/index.js" />
+        <option value="$PROJECT_DIR$/src/Components/ReSearchBar/index.js" />
       </list>
     </option>
   </component>
@@ -132,6 +155,12 @@
               <item name="frontend-oasis" type="b2602c69:ProjectViewProjectNode" />
               <item name="frontend-oasis" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="AuthorSearchPage" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="frontend-oasis" type="b2602c69:ProjectViewProjectNode" />
+              <item name="frontend-oasis" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="Components" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -147,6 +176,13 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="Components" type="462c0819:PsiDirectoryNode" />
               <item name="SearchBar" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="frontend-oasis" type="b2602c69:ProjectViewProjectNode" />
+              <item name="frontend-oasis" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Components" type="462c0819:PsiDirectoryNode" />
+              <item name="SearchRes" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="frontend-oasis" type="b2602c69:ProjectViewProjectNode" />
@@ -209,12 +245,12 @@
       <workItem from="1582545120911" duration="1293000" />
       <workItem from="1582635681265" duration="1629000" />
       <workItem from="1582639572958" duration="591000" />
-      <workItem from="1582677633795" duration="10615000" />
+      <workItem from="1582677633795" duration="12452000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="30336000" />
+    <option name="totallyTimeSpent" value="32173000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -357,16 +393,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Components/SearchRes/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="46" column="68" selection-start-line="46" selection-start-column="68" selection-end-line="46" selection-end-column="68" />
-          <folding>
-            <element signature="e#0#38#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/serviceWorker.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="893">
@@ -414,16 +440,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AuthorSearchPage/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="513">
-          <caret line="27" column="47" lean-forward="true" selection-start-line="27" selection-start-column="47" selection-end-line="27" selection-end-column="47" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Components/Theme/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -445,12 +461,12 @@
     <entry file="file://$PROJECT_DIR$/src/Components/ReSearchBar/action.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Components/SearchBar/index.js">
+    <entry file="file://$PROJECT_DIR$/src/Components/SearchRes/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="361">
-          <caret line="19" column="31" lean-forward="true" selection-start-line="19" selection-start-column="31" selection-end-line="19" selection-end-column="31" />
+        <state relative-caret-position="228">
+          <caret line="12" column="40" selection-start-line="12" selection-start-column="32" selection-end-line="12" selection-end-column="40" />
           <folding>
-            <element signature="e#0#52#0" expanded="true" />
+            <element signature="e#0#38#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -465,10 +481,30 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Components/SearchBar/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="380">
+          <caret line="20" column="28" selection-start-line="20" selection-start-column="28" selection-end-line="20" selection-end-column="28" />
+          <folding>
+            <element signature="e#0#52#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/PaperSearchPage/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="551">
-          <caret line="29" column="24" selection-start-line="29" selection-start-column="24" selection-end-line="29" selection-end-column="24" />
+        <state relative-caret-position="665">
+          <caret line="35" column="17" lean-forward="true" selection-start-line="10" selection-start-column="8" selection-end-line="35" selection-end-column="17" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AuthorSearchPage/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="10" selection-start-line="10" selection-end-line="10" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>
@@ -477,8 +513,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Components/ReSearchBar/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="22" column="39" lean-forward="true" selection-start-line="22" selection-start-column="39" selection-end-line="22" selection-end-column="39" />
+        <state relative-caret-position="171">
+          <caret line="15" column="56" selection-start-line="15" selection-start-column="56" selection-end-line="15" selection-end-column="56" />
           <folding>
             <element signature="e#0#52#0" expanded="true" />
           </folding>

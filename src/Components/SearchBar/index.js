@@ -15,11 +15,10 @@ const SearchBar = function (props) {
 
     function toSearch(keyword) {
         if(keyword){
-            /*根据用户选择的搜索类型选择调用的方法，下面一行代码需要增加判断*/
             props.searchPaper(method, keyword);
 
-            /*跳转到相应类型的搜索结果界面*/
-            let methodUrl = '/'+method;
+            /*不同类型的搜索结果跳转同一个展示页面，选择不同的展示组件*/
+            let methodUrl = '/Paper';
             directTo(methodUrl)
         }
     }

@@ -13,11 +13,11 @@ const {Option} = Select;
 const ReSearchBar = function (props) {
 
     const directTo = useContext(HistoryContext);
-    const [method, setMethod] = useState('Paper');
+    const [method, setMethod] = useState('Paper');/*创建一个初始值为 Paper 的状态变量 method */
 
     function toSearch(keyword) {
         if(keyword){
-            /*若搜索类型不变，重新渲染搜索结果界面；否则跳转其他类型的搜索结果界面*/
+            /*若搜索类型改变，应该修改SearchRes用来展示信息的小组件，重新渲染SearchRes，不发生跳转*/
             props.searchPaper(method, keyword);
 
             const element = (
