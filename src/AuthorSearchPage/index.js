@@ -1,11 +1,12 @@
 import React from 'react';
 import './authorSearchPage.css';
-import SearchRes from '../Components/SearchRes/index.js';
+import SearchRes from '../Components/PprSearchRes/index.js';
 import SearchBar from '../Components/SearchBar/index.js';
 import {Layout, Menu} from "antd";
 import ReSearchBar from "../Components/ReSearchBar";
 const { Header, Content, Footer } = Layout;
 
+/*暂时用不到这个页面，因为可能用一个页面来完成搜索结果展示*/
 export default function (props) {
     return (
 

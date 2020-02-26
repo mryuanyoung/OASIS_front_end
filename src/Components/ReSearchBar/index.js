@@ -5,7 +5,7 @@ import { search } from './action';
 import { connect } from 'react-redux';
 import { HistoryContext } from '../../HomePage/index';
 import './reSearchBar.css';
-import SearchRes from '../SearchRes/index.js';
+import PprSearchRes from '../PprSearchRes/index.js';
 
 const {Search} = Input;
 const {Option} = Select;
@@ -17,7 +17,7 @@ const ReSearchBar = function (props) {
 
     function toSearch(keyword) {
         if(keyword){
-            /*若搜索类型改变，应该修改SearchRes用来展示信息的小组件，重新渲染SearchRes，不发生跳转*/
+            /*若搜索类型改变，选择不同的展示组件重新渲染*/
             props.searchPaper(method, keyword);
 
             const element = (

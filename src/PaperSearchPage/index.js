@@ -1,6 +1,6 @@
 import React from 'react';
 import './paperSearchPage.css';
-import SearchRes from '../Components/SearchRes/index.js';
+import PprSearchRes from '../Components/PprSearchRes/index.js';
 import ReSearchBar from '../Components/ReSearchBar/index.js';
 import {Layout, Menu} from "antd";
 const { Header, Content, Footer } = Layout;
@@ -26,7 +26,7 @@ export default function (props) {
                 <div style={{ background: '#fff', padding: 24, minHeight: 280 }}>
                     <ReSearchBar></ReSearchBar>
                     <div className="container" id="container">
-                        <SearchRes></SearchRes>
+                        <PprSearchRes></PprSearchRes>{/*SearchRes的内容应该是空的，等待查询结果返回之后渲染*/}
                     </div>
 
                 </div>

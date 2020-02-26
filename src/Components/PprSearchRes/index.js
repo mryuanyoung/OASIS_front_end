@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import { connect } from 'react-redux';
 import { sortRes } from '../SearchBar/action';
 import { List, Icon, Button, Layout, Menu} from 'antd';
-import './searchRes.css';
+import './pprSearchRes.css';
 
 const fields = ['title', 'year', 'cited'];
 
@@ -39,7 +39,7 @@ const Header = (props) => {
 }
 
 
-const SearchRes = (props) => {
+const PprSearchRes = (props) => {
     return (
         <div className='dataList'>
             <List
@@ -80,4 +80,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default (connect(mapStateToProps, mapDispatchToProps)(SearchRes));
+export default (connect(mapStateToProps, mapDispatchToProps)(PprSearchRes));
