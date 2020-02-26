@@ -43,5 +43,5 @@
         "less-loader": "^5.0.0",
         "react-app-rewired": "^2.1.5"
     },
-    "proxy": "http://139.196.79.125/"
+    "proxy": "http://139.196.79.125:80"
 }

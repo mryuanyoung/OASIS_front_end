@@ -4,7 +4,6 @@ import { search } from './action';
 import { connect } from 'react-redux';
 import { HistoryContext } from '../../HomePage/index';
 import './searchBar.css';
-import ReactDOM from "react-dom";
 
 const {Search} = Input;
 const {Option} = Select;

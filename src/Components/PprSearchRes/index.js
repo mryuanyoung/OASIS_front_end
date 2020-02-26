@@ -40,6 +40,8 @@ const Header = (props) => {
 
 
 const PprSearchRes = (props) => {
+
+    console.log(props);
     return (
         <div className='dataList'>
             <List
@@ -52,13 +54,13 @@ const PprSearchRes = (props) => {
                 dataSource={props.data}
                 renderItem={item => (
                     <List.Item 
-                        key={item.title}
+                        key={item.doi}
                     >
                         <List.Item.Meta
                             title={<a href={item.href}>{item.title}</a>}
                             description={item.description}
                         />
-                        {item.content}
+                        {(item.content)}
                     </List.Item>
                 )}
             />

@@ -9,9 +9,9 @@ const Request = (method, url, headers={}, data={},timeout=2000) => {
             else reject(e.target.status);
         }
         xhr.onerror = (err) => reject(err);
-        method === 'post'? xhr.send(data) : xhr.send();
+        method === 'POST'? xhr.send(data) : xhr.send();
     }).then(res => res);
 }
 
-export const getRequest = Request.bind(Object.create(null), 'get');
-export const postRequest = Request.bind(Object.create(null), 'post');
+export const getRequest = Request.bind(Object.create(null), 'GET');
+export const postRequest = Request.bind(Object.create(null), 'POST');
