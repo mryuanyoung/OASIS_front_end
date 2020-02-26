@@ -26,7 +26,7 @@ export default function (props) {
                 <div style={{ background: '#fff', padding: 24, minHeight: 280 }}>
                     <ReSearchBar></ReSearchBar>
                     <div className="container" id="container">
-                        <SearchRes id="srhRes"></SearchRes>
+                        <SearchRes></SearchRes>
                     </div>
 
                 </div>

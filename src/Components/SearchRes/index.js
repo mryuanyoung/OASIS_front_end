@@ -43,7 +43,6 @@ const SearchRes = (props) => {
     return (
         <div className='dataList'>
             <List
-
                 header={<Header sortData={props.sortData}></Header>}
                 itemLayout="vertical"
                 size="middle"

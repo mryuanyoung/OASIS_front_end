@@ -3,6 +3,7 @@ import './authorSearchPage.css';
 import SearchRes from '../Components/SearchRes/index.js';
 import SearchBar from '../Components/SearchBar/index.js';
 import {Layout, Menu} from "antd";
+import ReSearchBar from "../Components/ReSearchBar";
 const { Header, Content, Footer } = Layout;
 
 export default function (props) {
@@ -17,15 +18,15 @@ export default function (props) {
                     defaultSelectedKeys={['2']}
                     style={{ lineHeight: '64px' }}
                 >
-                    <Menu.Item key="1">nav 1</Menu.Item>
-                    <Menu.Item key="2">nav 2</Menu.Item>
-                    <Menu.Item key="3">nav 3</Menu.Item>
+                    <Menu.Item key="1">首页</Menu.Item>
+                    <Menu.Item key="2">推荐</Menu.Item>
+                    <Menu.Item key="3">关于我们</Menu.Item>
                 </Menu>
             </Header>
             <Content style={{ padding: '0 50px' }}>
                 <div style={{ background: '#fff', padding: 24, minHeight: 280 }}>
-                    <SearchBar></SearchBar>
-                    <div className='container'>
+                    <ReSearchBar></ReSearchBar>
+                    <div className="container" id="container">
                         <SearchRes></SearchRes>
                     </div>
 
