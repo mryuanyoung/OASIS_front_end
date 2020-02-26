@@ -1,14 +1,15 @@
 import React, { useContext, useState } from 'react';
+import ReactDOM from 'react-dom'
 import { Input, Select } from 'antd';
 import { search } from './action';
 import { connect } from 'react-redux';
 import { HistoryContext } from '../../HomePage/index';
-import './searchBar.css';
+import './reSearchBar.css';
 
 const {Search} = Input;
 const {Option} = Select;
 
-const SearchBar = function (props) {
+const ReSearchBar = function (props) {
 
     const directTo = useContext(HistoryContext);
     const [method, setMethod] = useState('Paper');
@@ -16,8 +17,13 @@ const SearchBar = function (props) {
     function toSearch(keyword) {
         if(keyword){
             props.searchPaper(method, keyword);
-            let methodUrl = '/'+method;
-            directTo(methodUrl)
+            const element = (
+                <div>
+                    <h1>Hello, world!</h1>
+                    <h2>It is {new Date().toLocaleTimeString()}.</h2>
+                </div>
+            );
+            ReactDOM.render(element, document.getElementById('container'));
         }
     }
 
@@ -44,4 +50,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default (connect(null, mapDispatchToProps)(SearchBar));
+export default (connect(null, mapDispatchToProps)(ReSearchBar));
