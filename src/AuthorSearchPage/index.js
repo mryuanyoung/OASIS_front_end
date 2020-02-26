@@ -1,5 +1,5 @@
 import React from 'react';
-import './paperSearchPage.css';
+import './authorSearchPage.css';
 import SearchRes from '../Components/SearchRes/index.js';
 import SearchBar from '../Components/SearchBar/index.js';
 import {Layout, Menu} from "antd";

@@ -10,13 +10,14 @@ const {Option} = Select;
 
 const SearchBar = function (props) {
 
-    const directTo = useContext(HistoryContext)
+    const directTo = useContext(HistoryContext);
     const [method, setMethod] = useState('Paper');
 
     function toSearch(keyword) {
         if(keyword){
             props.searchPaper(method, keyword);
-            directTo('/paper')
+            let methodUrl = '/'+method;
+            directTo(methodUrl)
         }
     }
 
