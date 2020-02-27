@@ -15,10 +15,7 @@ const ReSearchBar = function (props) {
 
     function toSearch(keyword) {
         if(keyword){
-            /*若搜索类型改变，选择不同的展示组件重新渲染*/
             props.searchPaper(method, keyword);
-            
-
 
         }
     }
@@ -33,7 +30,7 @@ const ReSearchBar = function (props) {
                 <Option value='Institution'>Institution</Option>
                 <Option value='Mix'>Mix</Option>
             </Select>
-            <Search Value={props.oldKeyword} enterButton className='search' size='large' onSearch={toSearch}/>
+            <Search enterButton className='search' size='large' onSearch={toSearch}/>
         </div>
     )
 }
