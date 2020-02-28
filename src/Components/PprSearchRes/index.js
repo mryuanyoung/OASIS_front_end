@@ -52,20 +52,43 @@ const PprSearchRes = (props) => {
                     pageSize: 5,
                 }}
                 dataSource={props.data}
-                renderItem={item => (
-                    <List.Item 
-                        key={item.doi}
-                    >
-                        <List.Item.Meta
-                            title={<a href={item.href}>{item.title}</a>}
-                            description={item.description}
-                        />
-                        {(item.content)}
-                    </List.Item>
-                )}
+                renderItem={renderList}/*跟数据类型动态改变list的内容*/
             />
         </div>
     )
+}
+
+function renderList(item) {
+    if(item.doi==undefined){
+        /*作者查询信息*/
+        return(
+            <List.Item
+                key={item.authorID}
+            >
+                <List.Item.Meta
+                    title={<a>{item.authorName}</a>}
+                    description={item.description}
+                    /*institutionName={<a href="#">{item.institutionName}</a>}*/
+                    /*keywords={item.keywords}*/
+                />
+                {(item.content)}
+            </List.Item>
+        )
+    }
+    else{
+        /*论文查询信息*/
+        return(
+            <List.Item
+                key={item.doi}
+            >
+                <List.Item.Meta
+                    title={<a href={item.href}>{item.title}</a>}
+                    description={item.description}
+                />
+                {(item.content)}
+            </List.Item>
+        )
+    }
 }
 
 const mapStateToProps = (state) => {

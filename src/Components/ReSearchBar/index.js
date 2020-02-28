@@ -1,11 +1,9 @@
 import React, { useContext, useState } from 'react';
-import ReactDOM from 'react-dom'
 import { Input, Select } from 'antd';
 import { search } from './action';
 import { connect } from 'react-redux';
 import { HistoryContext } from '../../HomePage/index';
 import './reSearchBar.css';
-import PprSearchRes from '../PprSearchRes/index.js';
 
 const {Search} = Input;
 const {Option} = Select;
@@ -17,16 +15,8 @@ const ReSearchBar = function (props) {
 
     function toSearch(keyword) {
         if(keyword){
-            /*若搜索类型改变，选择不同的展示组件重新渲染*/
             props.searchPaper(method, keyword);
 
-            const element = (
-                <div>
-                    <h1>Hello, world!</h1>
-                    <h2>It is {new Date().toLocaleTimeString()}.</h2>
-                </div>
-            );
-            ReactDOM.render(element, document.getElementById('container'));
         }
     }
 
@@ -44,6 +34,7 @@ const ReSearchBar = function (props) {
         </div>
     )
 }
+
 
 const mapDispatchToProps = (dispatch) => {
     return {

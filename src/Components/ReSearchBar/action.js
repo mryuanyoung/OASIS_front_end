@@ -1,16 +1,32 @@
 import * as TYPE from './actionTypes';
 import {postRequest} from '../../utils/ajax.js';
+import {getRequest} from '../../utils/ajax.js';
 
-export const search = function(pattern, keyword) {
-    return async function(dispatch, getState) {
-        const url = `/paper/simple`;
-        const response = await postRequest(url, {'content-type':'application/x-www-form-urlencoded'}, JSON.stringify({
-            pattern,
-            keyword
-        }));
-        dispatch(addResult(response));
+export const search = function(pattern, keywords) {
+    switch (pattern) {
+        case "Paper":
+            return async function(dispatch, getState) {
+                let url = '/paper/simple';
+                let response = await postRequest(url, {'content-type': 'application/json'},JSON.stringify({
+                    pattern,
+                    keywords
+                }));
+                response = JSON.parse(response);
+                if(response.success) dispatch(addResult(response.content));
+            }
+        case "Author":
+            return async function(dispatch, getState) {
+                let url = '/author/simple/';
+                url += keywords;
+                let response = await getRequest(url, {'content-type': 'application/json'});
+                response = JSON.parse(response);
+                if(response.success) dispatch(addResult(response.content));
+            }
     }
+
 }
+
+
 
 export const addResult = (res={}) => {
     return {
