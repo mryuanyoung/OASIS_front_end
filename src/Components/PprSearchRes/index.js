@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { sortRes } from '../SearchBar/action';
 import { List, Icon, Button, Layout, Menu} from 'antd';
 import PaperType from '../PaperSimpleInfo/paperSimpleInfo.js';
+import AuthorType from '../AuthorSimpleInfo/authorSimpleInfo.js';
+import InstitutionType from '../InsSimpleInfo/insSimpleInfo.js';
 import './pprSearchRes.css';
 
 const fields = ['title', 'year', 'cited'];
@@ -62,15 +64,7 @@ function renderList(item) {
     if(item.doi==undefined){
         /*作者查询信息*/
         return(
-            <List.Item key={item.authorID}>
-                <List.Item.Meta
-                    title={<a>{item.authorName}</a>}
-                    description={item.description}
-                    /*institutionName={<a href="#">{item.institutionName}</a>}*/
-                    /*keywords={item.keywords}*/
-                />
-                {(item.content)}
-            </List.Item>
+            <AuthorType {...item}/>
         )
     }
     else{
