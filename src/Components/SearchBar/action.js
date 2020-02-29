@@ -2,23 +2,32 @@ import * as TYPE from './actionTypes';
 import { postRequest } from '../../utils/ajax.js';
 import { getRequest } from '../../utils/ajax.js';
 
-export const search = function (pattern, keywords) {
-    
+export const search = function (keywords) {
+    const post = ['paper'];
     return async function (dispatch, getState) {
-        let url = '/paper/simple';
-        let response = await postRequest(url, { 'content-type': 'application/json' }, JSON.stringify({
-            pattern,
+        let method = getState().method;
+        let url = `/${method}/simple`;
+        let request = postRequest;
+        if(!post.includes(method)){
+            if(method === 'author') url += `/${keywords}`;
+            else url += `keyword=${keywords}`;
+            request = getRequest;
+        }
+        let response = await request(url, { 'content-type': 'application/json' }, JSON.stringify({
+            pattern: method[0].toUpperCase() + method.substring(1),
             keywords
         }));
         response = JSON.parse(response);
-        if (response.success) dispatch(addResult(response.content));
+        if (response.success){
+            dispatch(changeRes(response.content));
+        }
     }
 }
 
-export const addResult = (res = {}) => {
+export const changeMethod = (method) => {
     return {
-        type: TYPE.ADD_RES,
-        res
+        type: TYPE.CHANGE_MET,
+        method
     };
 }
 
@@ -36,3 +45,4 @@ export const sortRes = (field, order) => {
         dispatch(changeRes(res));
     }
 }
+

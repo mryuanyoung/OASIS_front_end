@@ -1,15 +1,15 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { sortRes } from '../SearchBar/action';
-import { List, Icon, Button, Layout, Menu} from 'antd';
-import PaperType from '../PaperSimpleInfo/paperSimpleInfo.js';
+import { List, Icon, Button, Layout, Menu } from 'antd';
+import PaperType from '../PaperSimpleInfo/index.js';
 import './pprSearchRes.css';
 
 const fields = ['title', 'year', 'cited'];
 
 
 const Header = (props) => {
-    
+
     //管理keyword排序次序：顺序/反序
     const [orders, setOrders] = useState(fields.reduce((prev, curr) => {
         prev[curr] = false;
@@ -24,8 +24,8 @@ const Header = (props) => {
 
                     <Button className='header' type='dashed' key={item} onClick={() => {
                         //点击事件 1. 调用action方法排序 2. 改变该keyword的排序次序
-                        props.sortData(item, orders[item]);            
-                        setOrders({...orders, [item]: !orders[item]});
+                        props.sortData(item, orders[item]);
+                        setOrders({ ...orders, [item]: !orders[item] });
                     }}>
                         <span className='field'>{item}</span>
                         <div className='upDown'>
@@ -52,38 +52,37 @@ const PprSearchRes = (props) => {
                     pageSize: 5,
                 }}
                 dataSource={props.data}
-                renderItem={renderList}/*跟数据类型动态改变list的内容*/
+                renderItem={renderList.bind(null, props.method)}/*跟数据类型动态改变list的内容*/
             />
         </div>
     )
 }
 
-function renderList(item) {
-    if(item.doi==undefined){
-        /*作者查询信息*/
-        return(
-            <List.Item key={item.authorID}>
-                <List.Item.Meta
-                    title={<a>{item.authorName}</a>}
-                    description={item.description}
+function renderList(method, item) {
+    switch (method) {
+        case 'author':
+            return (
+                <List.Item key={item.authorID}>
+                    <List.Item.Meta
+                        title={<a>{item.authorName}</a>}
+                        description={item.description}
                     /*institutionName={<a href="#">{item.institutionName}</a>}*/
                     /*keywords={item.keywords}*/
-                />
-                {(item.content)}
-            </List.Item>
-        )
-    }
-    else{
-        /*论文查询信息*/
-        return(
-            <PaperType {...item}/>
-        )
+                    />
+                    {(item.content)}
+                </List.Item>
+            );
+        case 'paper':
+            return (
+                <PaperType {...item} />
+            );
     }
 }
 
 const mapStateToProps = (state) => {
     return {
-        data: state.res
+        data: state.res,
+        method: state.method
     };
 }
 

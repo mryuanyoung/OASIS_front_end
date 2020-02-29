@@ -1,4 +1,3 @@
-export const SEARCH = 'search';
 export const LOADING = 'loading';
-export const ADD_RES = 'add_res';
-export const CHANGE_RES = 'sort_res'
+export const CHANGE_RES = 'change_res';
+export const CHANGE_MET = 'change_method';

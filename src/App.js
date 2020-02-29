@@ -10,8 +10,7 @@ function App() {
     <Router>
       <Switch>
           <Route exact path='/' component={HomePage}></Route>
-          <Route exact path='/paper' component={PaperSearchPage}></Route>
-          <Route exact path='/author' component={AuthorSearchPage}></Route>
+          <Route exact path='/:method' component={PaperSearchPage}></Route>
       </Switch>
     </Router>
   );

@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Input, Select } from 'antd';
-import { search } from './action';
-import { connect } from 'react-redux';
 import {withRouter} from 'react-router-dom';
+import { search, changeMethod } from './action';
+import {connect} from 'react-redux';
 import './searchBar.css';
 
 const {Search} = Input;
@@ -10,39 +10,47 @@ const {Option} = Select;
 
 const SearchBar = function (props) {
 
-    const [method, setMethod] = useState('Paper');
-
     function toSearch(keyword) {
         if(keyword){
-            props.searchPaper(method, keyword);
+            props.searchPaper(keyword);
 
             /*不同类型的搜索结果跳转同一个展示页面，选择不同的展示组件*/
-            let methodUrl = '/Paper';
+            let methodUrl = `/${props.method}`;
             props.history.push(methodUrl)
         }
     }
 
     return (
         <div className='searCont'>
-            <Select defaultValue='Paper' className='select' size='large' onChange={setMethod}>
-                <Option value='Paper'>Paper</Option>
-                <Option value='Author'>Author</Option>
-                <Option value='Conference'>Conference</Option>
-                <Option value='Interest'>Interest</Option>
-                <Option value='Institution'>Institution</Option>
-                <Option value='Mix'>Mix</Option>
+            <Select defaultValue={props.method} className='select' size='large' onChange={method => props.changeMethod(method)}>
+                <Option value='paper'>Paper</Option>
+                <Option value='author'>Author</Option>
+                <Option value='conference'>Conference</Option>
+                <Option value='interest'>Interest</Option>
+                <Option value='institution'>Institution</Option>
+                <Option value='mix'>Mix</Option>
             </Select>
             <Search enterButton className='search' size='large' onSearch={toSearch}/>
         </div>
     )
 }
 
+const mapStateToProps = (state) => {
+    return {
+        method: state.method
+    };
+}
+
 const mapDispatchToProps = (dispatch) => {
     return {
-        searchPaper: (method, keyword) => {
-            dispatch(search(method, keyword));
+        searchPaper: (keyword) => {
+            dispatch(search(keyword));
+        },
+        changeMethod: (method) => {
+            dispatch(changeMethod(method));
         }
     }
 }
 
-export default withRouter((connect(null, mapDispatchToProps)(SearchBar)));
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(SearchBar));

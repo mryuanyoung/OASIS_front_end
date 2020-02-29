@@ -12,9 +12,7 @@ const Bottom = (props) => {
 }
 
 const clickHandle = (props) => {
-    if(props.pdfLink){
-        props.history.push(`/paper/${props.pdfLink}`)
-    }
+    props.history.push(`/paper/detail`)
 }
 
 export default withRouter((props) => {

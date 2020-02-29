@@ -3,7 +3,8 @@ import SearchBar from '../Components/SearchBar/index.js';
 import Theme from '../Components/Theme/index.js';
 import './homePage.css';
 
-export default (props) => {
+
+const HomePage = (props) => {
 
     return (
         <div className='container'>
@@ -12,3 +13,4 @@ export default (props) => {
         </div>
     )
 }
+export default HomePage;

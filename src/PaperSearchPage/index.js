@@ -1,14 +1,14 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import {Link, Route, Switch} from 'react-router-dom';
 import './paperSearchPage.css';
 import PprSearchRes from '../Components/PprSearchRes/index.js';
-import ReSearchBar from '../Components/ReSearchBar/index.js';
-import {Layout, Menu, SubMenu} from "antd";
+import SearchBar from '../Components/SearchBar/index.js';
+import {Layout, Menu, Button} from "antd";
 const { Header, Content, Footer } = Layout;
 
-export default function (props) {
-    return (
 
+const SearchPage = (props) => {
+    return (
         <Layout>
             <Header>
                 <div className="logo" />
@@ -29,10 +29,15 @@ export default function (props) {
                 
                 <div style={{ background: '#fff', padding: 24, minHeight: 484 }}>
                     <div className="container" id="container">
-                        <ReSearchBar />
-                        <PprSearchRes />
+                        <div>
+                            <SearchBar />
+                            <Button>在结果中检索</Button>
+                        </div>
+                        <Switch>
+                            <Route exact path='/:method' component={PprSearchRes}></Route>
+                            <Route exact path='/:method/detail' component={<div>hello</div>}></Route>
+                        </Switch>
                     </div>
-
                 </div>
 
             </Content>
@@ -40,3 +45,5 @@ export default function (props) {
         </Layout>
     )
 }
+
+export default SearchPage;
