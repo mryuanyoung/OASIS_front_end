@@ -2,7 +2,6 @@ import React from 'react';
 import {Avatar, Descriptions, List} from 'antd';
 import {withRouter} from 'react-router-dom';
 import {connect} from "react-redux";
-import {search} from "../SearchBar/action";
 import PaperType from '../PaperSimpleInfo/index.js';
 
 const authorInfo = (props)=>{

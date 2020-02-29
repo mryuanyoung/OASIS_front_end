@@ -1,6 +1,8 @@
 import React from 'react';
 import { List, Avatar} from 'antd';
 import {withRouter} from 'react-router-dom';
+import {search} from "../PprSearchRes/action";
+import { connect } from 'react-redux';
 
 const Bottom = (props) => {
     return (
@@ -12,11 +14,21 @@ const Bottom = (props) => {
 
 const clickHandle = (props) => {
     if(props.authorID){
+        props.searchDetail(props.authorID);
         props.history.push(`/author/${props.authorID}`)
     }
 }
 
-export default withRouter((props) => {
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        searchDetail: (keyword) => {
+            dispatch(search(keyword));
+        }
+    }
+}
+
+export default withRouter(connect(null,mapDispatchToProps)((props) => {
     console.log(props);
     return (
         <List.Item key={props.authorID} actions={[<Bottom />]} onClick={clickHandle.bind(null, props)}>
@@ -28,4 +40,4 @@ export default withRouter((props) => {
                 description={props.keyword.join(' | ')}/>
         </List.Item>
     )
-});
+}));

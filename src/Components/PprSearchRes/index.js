@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { withRouter, Switch, Route } from 'react-router-dom';
 import { sortRes } from '../SearchBar/action';
-import { List, Icon, Button, Layout, Menu} from 'antd';
+import { List, Icon, Button} from 'antd';
 import PaperType from '../PaperSimpleInfo/index.js';
-import AuthorType from '../AuthorSimpleInfo/authorSimpleInfo.js';
-import InstitutionType from '../InsSimpleInfo/insSimpleInfo.js';
+import AuthorType from '../AuthorSimpleInfo';
+import InstitutionType from '../InsSimpleInfo';
 
 import PaperDetail from '../PaperDetailInfo/index';
-import AuthorDetail from '../AuthorDetailInfo/authorDetailInfo';
+import AuthorDetail from '../AuthorDetailInfo';
 
 import './pprSearchRes.css';
 
@@ -108,15 +108,11 @@ function Detail(props) {
     switch (method) {
         case 'author':
             return (
-                <AuthorDetail></AuthorDetail>
+                <AuthorDetail />
             );
         case 'paper':
             return (
-                <PaperType {...item} />
-            );
-        case 'institution':
-            return (
-                <InstitutionType {...item} />
+                <PaperDetail />
             );
     }
 }
