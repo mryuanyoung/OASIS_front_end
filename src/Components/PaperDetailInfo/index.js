@@ -1,7 +1,9 @@
 import React from 'react';
 
 const PaperDetail = (props) => {
-    // return (
-
-    // )
+    return (
+        <div>detail</div>
+    )
 }
+
+export default PaperDetail;

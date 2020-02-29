@@ -1,10 +1,15 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
+import { withRouter, Switch, Route } from 'react-router-dom';
 import { sortRes } from '../SearchBar/action';
-import { List, Icon, Button, Layout, Menu} from 'antd';
-import PaperType from '../PaperSimpleInfo/paperSimpleInfo.js';
+import { List, Icon, Button, Layout, Menu } from 'antd';
+import PaperType from '../PaperSimpleInfo/index.js';
 import AuthorType from '../AuthorSimpleInfo/authorSimpleInfo.js';
 import InstitutionType from '../InsSimpleInfo/insSimpleInfo.js';
+
+import PaperDetail from '../PaperDetailInfo/index';
+import AuthorDetail from '../AuthorDetailInfo/authorDetailInfo';
+
 import './pprSearchRes.css';
 
 const fields = ['title', 'year', 'cited'];
@@ -43,33 +48,72 @@ const Header = (props) => {
 
 
 const PprSearchRes = (props) => {
-
     return (
-        <div className='dataList'>
-            <List
-                header={<Header sortData={props.sortData}></Header>}
-                itemLayout="vertical"
-                size="middle"
-                pagination={{
-                    pageSize: 5,
-                }}
-                dataSource={props.data}
-                renderItem={renderList.bind(null, props.method)}/*跟数据类型动态改变list的内容*/
-            />
-        </div>
+        <Switch>
+            <Route exact path='/:method'>
+                <DataList {...props}></DataList>
+            </Route>
+            <Route exact path='/:method/detail' component={Detail}></Route>
+        </Switch>
     )
 }
 
-function renderList(method, item) {
+class DataList extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+
+    shouldComponentUpdate(nextProps, nextState) {
+        return nextProps.data[0] !== this.props.data[0];
+    }
+
+    renderList(method, item) {
+        switch (method) {
+            case 'author':
+                return (
+                    <AuthorType {...item} />
+                );
+            case 'paper':
+                return (
+                    <PaperType {...item} />
+                );
+            case 'insititution':
+                return (
+                    <InstitutionType {...item} />
+                )
+        }
+    }
+
+    render() {
+        return (
+            <div className='dataList'>
+                <List
+                    header={<Header sortData={this.props.sortData}></Header>}
+                    itemLayout="vertical"
+                    size="middle"
+                    pagination={{
+                        pageSize: 5,
+                    }}
+                    dataSource={this.props.data}
+                    renderItem={this.renderList.bind(null, this.props.method)}/*跟数据类型动态改变list的内容*/
+                />
+            </div>
+        )
+    }
+}
+
+
+function Detail(props) {
+    const method = props.match.params.method;
     switch (method) {
         case 'author':
             return (
-                <AuthorType {...item}/>
+                <AuthorDetail></AuthorDetail>
             );
         case 'paper':
             return (
-                <PaperType {...item} />
-            );
+                <PaperDetail></PaperDetail>
+            )
     }
 }
 
@@ -88,4 +132,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default (connect(mapStateToProps, mapDispatchToProps)(PprSearchRes));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(PprSearchRes));

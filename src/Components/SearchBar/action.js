@@ -10,7 +10,7 @@ export const search = function (keywords) {
         let request = postRequest;
         if(!post.includes(method)){
             if(method === 'author') url += `/${keywords}`;
-            else url += `keyword=${keywords}`;
+            else url += `?keyword=${keywords}`;
             request = getRequest;
         }
         let response = await request(url, { 'content-type': 'application/json' }, JSON.stringify({

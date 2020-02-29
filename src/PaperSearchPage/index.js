@@ -33,10 +33,7 @@ const SearchPage = (props) => {
                             <SearchBar />
                             <Button>在结果中检索</Button>
                         </div>
-                        <Switch>
-                            <Route exact path='/:method' component={PprSearchRes}></Route>
-                            <Route exact path='/:method/detail' component={<div>hello</div>}></Route>
-                        </Switch>
+                        <PprSearchRes />
                     </div>
                 </div>
 

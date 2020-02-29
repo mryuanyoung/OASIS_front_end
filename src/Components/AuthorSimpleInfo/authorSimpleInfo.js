@@ -1,5 +1,5 @@
 import React from 'react';
-import { List} from 'antd';
+import { List, Avatar} from 'antd';
 import {withRouter} from 'react-router-dom';
 
 const Bottom = (props) => {
@@ -17,6 +17,7 @@ const clickHandle = (props) => {
 }
 
 export default withRouter((props) => {
+    console.log(props);
     return (
         <List.Item key={props.authorID} actions={[<Bottom />]} onClick={clickHandle.bind(null, props)}>
             <List.Item.Meta

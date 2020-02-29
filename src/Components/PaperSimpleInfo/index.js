@@ -1,6 +1,6 @@
 import React from 'react';
 import { List} from 'antd';
-import {withRouter} from 'react-router-dom';
+import {withRouter, Route} from 'react-router-dom';
 
 const Bottom = (props) => {
     return (
