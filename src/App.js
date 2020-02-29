@@ -2,7 +2,7 @@ import React from 'react';
 import {BrowserRouter as Router, Route, NavLink, Switch} from 'react-router-dom';
 import HomePage from './HomePage/index';
 import PaperSearchPage from './PaperSearchPage/index';
-import AuthorSearchPage from './AuthorSearchPage/index';
+
 
 
 function App() {
