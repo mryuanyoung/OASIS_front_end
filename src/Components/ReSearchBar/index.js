@@ -2,7 +2,6 @@ import React, { useContext, useState } from 'react';
 import { Input, Select } from 'antd';
 import { search } from './action';
 import { connect } from 'react-redux';
-import { HistoryContext } from '../../HomePage/index';
 import './reSearchBar.css';
 
 const {Search} = Input;
@@ -10,7 +9,6 @@ const {Option} = Select;
 
 const ReSearchBar = function (props) {
 
-    const directTo = useContext(HistoryContext);
     const [method, setMethod] = useState('Paper');/*创建一个初始值为 Paper 的状态变量 method */
 
     function toSearch(keyword) {

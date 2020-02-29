@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import { connect } from 'react-redux';
 import { sortRes } from '../SearchBar/action';
 import { List, Icon, Button, Layout, Menu} from 'antd';
+import PaperType from '../PaperSimpleInfo/paperSimpleInfo.js';
 import './pprSearchRes.css';
 
 const fields = ['title', 'year', 'cited'];
@@ -41,7 +42,6 @@ const Header = (props) => {
 
 const PprSearchRes = (props) => {
 
-    console.log(props);
     return (
         <div className='dataList'>
             <List
@@ -62,9 +62,7 @@ function renderList(item) {
     if(item.doi==undefined){
         /*作者查询信息*/
         return(
-            <List.Item
-                key={item.authorID}
-            >
+            <List.Item key={item.authorID}>
                 <List.Item.Meta
                     title={<a>{item.authorName}</a>}
                     description={item.description}
@@ -78,15 +76,7 @@ function renderList(item) {
     else{
         /*论文查询信息*/
         return(
-            <List.Item
-                key={item.doi}
-            >
-                <List.Item.Meta
-                    title={<a href={item.href}>{item.title}</a>}
-                    description={item.description}
-                />
-                {(item.content)}
-            </List.Item>
+            <PaperType {...item}/>
         )
     }
 }

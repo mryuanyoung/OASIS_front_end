@@ -1,8 +1,8 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import { Input, Select } from 'antd';
 import { search } from './action';
 import { connect } from 'react-redux';
-import { HistoryContext } from '../../HomePage/index';
+import {withRouter} from 'react-router-dom';
 import './searchBar.css';
 
 const {Search} = Input;
@@ -10,7 +10,6 @@ const {Option} = Select;
 
 const SearchBar = function (props) {
 
-    const directTo = useContext(HistoryContext);
     const [method, setMethod] = useState('Paper');
 
     function toSearch(keyword) {
@@ -19,7 +18,7 @@ const SearchBar = function (props) {
 
             /*不同类型的搜索结果跳转同一个展示页面，选择不同的展示组件*/
             let methodUrl = '/Paper';
-            directTo(methodUrl)
+            props.history.push(methodUrl)
         }
     }
 
@@ -42,9 +41,8 @@ const mapDispatchToProps = (dispatch) => {
     return {
         searchPaper: (method, keyword) => {
             dispatch(search(method, keyword));
-
         }
     }
 }
 
-export default (connect(null, mapDispatchToProps)(SearchBar));
+export default withRouter((connect(null, mapDispatchToProps)(SearchBar)));
