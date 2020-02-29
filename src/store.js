@@ -5,6 +5,7 @@ import reducer from './Components/SearchBar/reducer';
 export default createStore(reducer,
     {
         method: 'paper',
-        res: []
+        res: [],
+        oldKeyword: ''
     },
     compose(applyMiddleware(thunk), window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()));

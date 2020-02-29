@@ -31,6 +31,13 @@ export const changeMethod = (method) => {
     };
 }
 
+export const changeOldKeyword = (oldKeyword) => {
+    return {
+        type: TYPE.CHANGE_KEY,
+        oldKeyword
+    };
+}
+
 export const changeRes = (res) => {
     return {
         type: TYPE.CHANGE_RES,
