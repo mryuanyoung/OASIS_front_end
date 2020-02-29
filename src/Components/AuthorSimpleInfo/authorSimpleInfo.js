@@ -1,5 +1,5 @@
 import React from 'react';
-import { List} from 'antd';
+import { List, Avatar} from 'antd';
 import {withRouter} from 'react-router-dom';
 
 const Bottom = (props) => {

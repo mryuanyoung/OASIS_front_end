@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { sortRes } from '../SearchBar/action';
 import { List, Icon, Button, Layout, Menu} from 'antd';
-import PaperType from '../PaperSimpleInfo/paperSimpleInfo.js';
+import PaperType from '../PaperSimpleInfo/index.js';
 import AuthorType from '../AuthorSimpleInfo/authorSimpleInfo.js';
 import InstitutionType from '../InsSimpleInfo/insSimpleInfo.js';
 import './pprSearchRes.css';
@@ -69,6 +69,10 @@ function renderList(method, item) {
         case 'paper':
             return (
                 <PaperType {...item} />
+            );
+        case 'institution':
+            return (
+                <InstitutionType {...item} />
             );
     }
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Input, Select } from 'antd';
 import {withRouter} from 'react-router-dom';
-import { search, changeMethod } from './action';
+import { search, changeMethod, changeOldKeyword } from './action';
 import {connect} from 'react-redux';
 import './searchBar.css';
 
@@ -13,6 +13,7 @@ const SearchBar = function (props) {
     function toSearch(keyword) {
         if(keyword){
             props.searchPaper(keyword);
+            props.changeOldKeyword(keyword);
 
             /*不同类型的搜索结果跳转同一个展示页面，选择不同的展示组件*/
             let methodUrl = `/${props.method}`;
@@ -30,14 +31,15 @@ const SearchBar = function (props) {
                 <Option value='institution'>Institution</Option>
                 <Option value='mix'>Mix</Option>
             </Select>
-            <Search enterButton className='search' size='large' onSearch={toSearch}/>
+            <Search enterButton defaultValue={props.oldKeyword} className='search' size='large' onSearch={toSearch}/>
         </div>
     )
 }
 
 const mapStateToProps = (state) => {
     return {
-        method: state.method
+        method: state.method,
+        oldKeyword: state.oldKeyword
     };
 }
 
@@ -48,6 +50,9 @@ const mapDispatchToProps = (dispatch) => {
         },
         changeMethod: (method) => {
             dispatch(changeMethod(method));
+        },
+        changeOldKeyword: (oldKeyword) => {
+            dispatch(changeOldKeyword(oldKeyword));
         }
     }
 }

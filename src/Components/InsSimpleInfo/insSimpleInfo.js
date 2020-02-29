@@ -19,7 +19,7 @@ const clickHandle = (props) => {
 export default withRouter((props) => {
     return (
         <List.Item key={props.institutionName} actions={[<Bottom />]} onClick={clickHandle.bind(null, props)}>
-            <List.Item.Meta title={props.institutionName} description={props.institutionName.join(' | ')}/>
+            <List.Item.Meta title={props.institutionName} description={props.authors}/>
         </List.Item>
     )
 });
