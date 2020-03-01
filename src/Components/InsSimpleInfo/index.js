@@ -17,7 +17,6 @@ const clickHandle = (props) => {
 }
 
 export default withRouter((props) => {
-    console.log(props);
     return (
         <List.Item key={props.institutionName} actions={[<Bottom />]} onClick={clickHandle.bind(null, props)}>
             <List.Item.Meta title={props.institutionName} description={props.authors}/>

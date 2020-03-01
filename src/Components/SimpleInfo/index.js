@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import PaperType from '../PaperSimpleInfo/index.js';
 import AuthorType from '../AuthorSimpleInfo';
 import InstitutionType from '../InsSimpleInfo';
 import { sortRes } from '../SearchBar/action';
-import { List, Icon, Button} from 'antd';
+import { List, Icon, Button, Spin } from 'antd';
 
 const fields = ['title', 'year', 'cited'];
 
@@ -45,7 +45,7 @@ class DataList extends React.Component {
     }
 
     shouldComponentUpdate(nextProps, nextState) {
-        return nextProps.data[0] !== this.props.data[0];
+        return nextProps.data[0] !== this.props.data[0] || nextProps.loading !== this.props.loading;
     }
 
     renderList(method, item) {
@@ -66,27 +66,33 @@ class DataList extends React.Component {
     }
 
     render() {
-       return (
-            <div className='dataList'>
-                <List
-                    header={<Header sortData={this.props.sortData}></Header>}
-                    itemLayout="vertical"
-                    size="middle"
-                    pagination={{
-                        pageSize: 5,
-                    }}
-                    dataSource={this.props.data}
-                    renderItem={this.renderList.bind(null, this.props.method)}/*跟数据类型动态改变list的内容*/
-                />
-            </div>
-        )
+        if (!this.props.loading) {
+            return (
+                <div className='dataList'>
+                    <List
+                        header={<Header sortData={this.props.sortData}></Header>}
+                        itemLayout="vertical"
+                        size="middle"
+                        pagination={{
+                            pageSize: 5,
+                        }}
+                        dataSource={this.props.data}
+                        renderItem={this.renderList.bind(null, this.props.method)}/*跟数据类型动态改变list的内容*/
+                    />
+                </div>
+            );
+        }
+        else{
+            return <Spin></Spin>;
+        }
     }
 }
 
-const mapStateToProps = ({search}) => {
+const mapStateToProps = ({ search }) => {
     return {
         data: search.res,
-        method: search.method
+        method: search.method[0],
+        loading: search.loading
     };
 }
 

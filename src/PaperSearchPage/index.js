@@ -31,7 +31,7 @@ const SearchPage = (props) => {
             <Content style={{ padding: '0 50px' }}>
 
                 <div style={{ background: '#fff', padding: 24, minHeight: 484 }}>
-                    <div className="container" id="container">
+                    <div className="searchRes">
                         <div>
                             <SearchBar />
                             <Button>在结果中检索</Button>

@@ -9,12 +9,14 @@ const PaperDetail = (props) => {
         <Typography className='article'>
             <Title level={1} style={{'textAlign': 'center'}}>{props.title}</Title>
             <Divider />
-            <Text strong>Author: {props.authors.join(' | ')}</Text>
-            <Paragraph>Keywords: {props.auKywds.join(' / ')}</Paragraph>
+            <Text strong>Author: </Text><Text>{props.authors.join(' | ')}</Text>
+            <br /><br />
+            <Paragraph><Text strong>Keywords: </Text>{props.auKywds.join(' / ')}</Paragraph>
             <Divider />
-            <Paragraph>Abstract: {props.abstraction}</Paragraph>
+            <Paragraph><Text strong>Abstract: </Text>{props.abstraction}</Paragraph>
             <Divider />
             <Text>articleCitationCount: {props.articleCitationCount}</Text>
+            <br />
             <Text>referenceCount: {props.referenceCount}</Text>
             <Divider />
             <Title level={3}>{props.pubTitle}</Title>

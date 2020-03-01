@@ -1,5 +1,10 @@
-.container {
+.searchRes {
     width: 90%;
+    display: flex;
+    margin: 0 auto;
+    flex-direction: column;
+    justify-items: center;
+    align-items: center;
 }
 
 .logo {

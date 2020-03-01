@@ -8,6 +8,8 @@ export default function(state = {}, action){
             return {...state, method: action.method};
         case TYPE.CHANGE_KEY:
             return {...state, oldKeyword: action.oldKeyword};
+        case TYPE.LOADING:
+            return {...state, loading: !state.loading};
         default:
             return state;
     }

@@ -10,18 +10,23 @@ class Detail extends React.Component {
     }
 
     shouldComponentUpdate(nextProps, nextState) {
-        return nextProps.detail !== this.props.detail;
+        return nextProps.res !== this.props.res || nextProps.loading !== this.props.loading;
     }
 
     render() {
-        if (Object.keys(this.props.detail).length !== 0) {
-            switch (this.props.method) {
-                case 'paper':
-                    return <PaperDetail {...this.props.detail}></PaperDetail>;
-                case 'author':
-                    return <AuthorDetail {...this.props.detail}></AuthorDetail>;
-                default:
-                    return <div>no data</div>;
+        if (!this.props.loading) {
+            if (Object.keys(this.props.res).length !== 0) {
+                switch (this.props.method[0]) {
+                    case 'paper':
+                        return <PaperDetail {...this.props.res}></PaperDetail>;
+                    case 'author':
+                        return <AuthorDetail {...this.props.res}></AuthorDetail>;
+                    default:
+                        return <div>no data</div>;
+                }
+            }
+            else{
+                return <div>no data!</div>
             }
         }
         else {
@@ -32,8 +37,9 @@ class Detail extends React.Component {
 
 const mapStateToProps = ({ search, detail }) => {
     return {
-        detail: detail,
-        method: search.method
+        res: detail.res,
+        method: search.method,
+        loading: detail.loading
     };
 }
 

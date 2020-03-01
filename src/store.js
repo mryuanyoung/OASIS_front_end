@@ -10,10 +10,14 @@ export default createStore(
     }),
     {   
         search: {
-            method: 'paper',
+            method: ['paper', 'paper'],
             res: [],
-            oldKeyword: ''
+            oldKeyword: '',
+            loading: false
         },
-        detail: {}
+        detail: {
+            res: {},
+            loading: false
+        }
     }
     , compose(applyMiddleware(thunk), window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()));

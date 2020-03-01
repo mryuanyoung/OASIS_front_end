@@ -1,9 +1,10 @@
-const Request = (method, url, headers={}, data={},timeout=2000) => {
+const Request = (method, url, timeoutHandle, headers={}, data={}) => {
     return new Promise((resolve, reject) => {
         const xhr = new XMLHttpRequest();
         xhr.open(method, url);
         Object.keys(headers).forEach((key) => xhr.setRequestHeader(key, headers[key]));
-        xhr.timeout = timeout;
+        xhr.timeout = 2000;
+        xhr.ontimeout = timeoutHandle;
         xhr.onload = (e) => {
             if(e.target.status < 400) resolve(e.target.response);
             else reject(e.target.status);
