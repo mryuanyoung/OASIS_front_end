@@ -3,7 +3,6 @@ import {Avatar, Descriptions, List} from 'antd';
 import PaperType from '../PaperSimpleInfo/index.js';
 
 const AuthorInfo = (props)=>{
-    console.log(props);
     return (
         <>
             <div>

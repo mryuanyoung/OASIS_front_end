@@ -1,29 +1,31 @@
 import * as TYPE from './actionType';
-import { postRequest } from '../../utils/ajax.js';
 import { getRequest } from '../../utils/ajax.js';
 
 /*搜索详情*/
 export const search = function (keywords) {
-    const post = ['author'];
     return async function (dispatch, getState) {
+        //每次请求时，将上一次的请求结果清空，不然会因类型不匹配渲染出错
+        //暂时先这样，之后再做缓存，将每一次请求结果缓存下来
+        dispatch(changeDetail({}));
+
         let method = getState().search.method;
-        let url = `/${method}`;
-        let request = getRequest;
+        let url = `/${method}/`;
 
         /*根据查询类型动态调整url*/
-        if(!post.includes(method)){
-            if(method === 'paper') url += `/detail?id=${keywords}`;
+        switch(method){
+            case 'paper':
+                url += `detail?id=${keywords}`;
+                break;
+            case 'author':
+                url += keywords;
+                break;
+            case 'institution':
+                url += `detail?name=${keywords}`;
+                break;
         }
-        else{
-            url += `/${keywords}`;
-        }
-
-        let response = await request(url, { 'content-type': 'application/json' }, JSON.stringify({
-            pattern: method[0].toUpperCase() + method.substring(1),
-            keywords
-        }));
+        let response = await getRequest(url);
         response = JSON.parse(response);
-        if (response.success){
+        if (response.success && response.content){
             dispatch(changeDetail(response.content));
         }
     }
