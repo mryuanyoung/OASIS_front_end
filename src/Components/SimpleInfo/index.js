@@ -45,6 +45,7 @@ class DataList extends React.Component {
     }
 
     shouldComponentUpdate(nextProps, nextState) {
+        console.log(nextProps, this.props);
         return nextProps.data[0] !== this.props.data[0];
     }
 
@@ -66,6 +67,7 @@ class DataList extends React.Component {
     }
 
     render() {
+        console.log(this.props.data);
        return (
             <div className='dataList'>
                 <List

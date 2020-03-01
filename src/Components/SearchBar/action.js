@@ -18,6 +18,8 @@ export const search = function (keywords) {
             else url += `?keyword=${keywords}`;
             request = getRequest;
         }
+
+        console.log(url);
         let response = await request(url, { 'content-type': 'application/json' }, JSON.stringify({
             pattern: method[0].toUpperCase() + method.substring(1),
             keywords
