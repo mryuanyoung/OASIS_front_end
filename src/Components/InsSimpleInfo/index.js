@@ -12,7 +12,7 @@ const Bottom = (props) => {
 
 const clickHandle = (props) => {
     if(props.institutionName){
-        props.history.push(`/institution/${props.institutionName}`)
+        props.history.push(`/institution/detail`)
     }
 }
 
