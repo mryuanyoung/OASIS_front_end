@@ -1,4 +1,4 @@
-import * as TYPE from './actionTypes';
+import * as TYPE from './actionType';
 import { postRequest } from '../../utils/ajax.js';
 import { getRequest } from '../../utils/ajax.js';
 
@@ -6,7 +6,7 @@ import { getRequest } from '../../utils/ajax.js';
 export const search = function (keywords) {
     const post = ['author'];
     return async function (dispatch, getState) {
-        let method = getState().method;
+        let method = getState().search.method;
         let url = `/${method}`;
         let request = getRequest;
 
@@ -24,15 +24,14 @@ export const search = function (keywords) {
         }));
         response = JSON.parse(response);
         if (response.success){
-            dispatch(changeRes(response.content));
+            dispatch(changeDetail(response.content));
         }
     }
 }
 
-export const changeRes = (res) => {
+export const changeDetail = (detail) => {
     return {
-        type: TYPE.CHANGE_RES,
-        res
-    }
+        type: TYPE.CHANGE_DETAIL,
+        detail
+    };
 }
-

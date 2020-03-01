@@ -5,7 +5,7 @@ import { getRequest } from '../../utils/ajax.js';
 export const search = function (keywords) {
     const post = ['paper'];
     return async function (dispatch, getState) {
-        let method = getState().method;
+        let method = getState().search.method;
         let url = `/${method}/simple`;
         let request = postRequest;
         if(!post.includes(method)){

@@ -1,19 +1,12 @@
 import React, { useState } from 'react';
-import { connect } from 'react-redux';
-import { withRouter, Switch, Route } from 'react-router-dom';
-import { sortRes } from '../SearchBar/action';
-import { List, Icon, Button} from 'antd';
+import {connect} from 'react-redux';
 import PaperType from '../PaperSimpleInfo/index.js';
 import AuthorType from '../AuthorSimpleInfo';
 import InstitutionType from '../InsSimpleInfo';
-
-import PaperDetail from '../PaperDetailInfo/index';
-import AuthorDetail from '../AuthorDetailInfo';
-
-import './pprSearchRes.css';
+import { sortRes } from '../SearchBar/action';
+import { List, Icon, Button} from 'antd';
 
 const fields = ['title', 'year', 'cited'];
-
 
 const Header = (props) => {
 
@@ -46,18 +39,6 @@ const Header = (props) => {
     )
 }
 
-
-const PprSearchRes = (props) => {
-    return (
-        <Switch>
-            <Route exact path='/:method'>
-                <DataList {...props}></DataList>
-            </Route>
-            <Route exact path='/:method/detail' component={Detail}></Route>
-        </Switch>
-    )
-}
-
 class DataList extends React.Component {
     constructor(props) {
         super(props);
@@ -85,7 +66,7 @@ class DataList extends React.Component {
     }
 
     render() {
-        return (
+       return (
             <div className='dataList'>
                 <List
                     header={<Header sortData={this.props.sortData}></Header>}
@@ -102,25 +83,10 @@ class DataList extends React.Component {
     }
 }
 
-
-function Detail(props) {
-    const method = props.match.params.method;
-    switch (method) {
-        case 'author':
-            return (
-                <AuthorDetail />
-            );
-        case 'paper':
-            return (
-                <PaperDetail />
-            );
-    }
-}
-
-const mapStateToProps = (state) => {
+const mapStateToProps = ({search}) => {
     return {
-        data: state.res,
-        method: state.method
+        data: search.res,
+        method: search.method
     };
 }
 
@@ -132,4 +98,5 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(PprSearchRes));
+export default connect(mapStateToProps, mapDispatchToProps)(DataList);
+

@@ -1,10 +1,13 @@
 import React from 'react';
-import {Link, Route, Switch} from 'react-router-dom';
+import { Link, Route, Switch } from 'react-router-dom';
 import './paperSearchPage.css';
-import PprSearchRes from '../Components/PprSearchRes/index.js';
 import SearchBar from '../Components/SearchBar/index.js';
-import {Layout, Menu, Button} from "antd";
+import { Layout, Menu, Button } from "antd";
+import SimpleInfo from '../Components/SimpleInfo/index';
+import DetailInfo from '../Components/DetailInfo/index';
+
 const { Header, Content, Footer } = Layout;
+
 
 
 const SearchPage = (props) => {
@@ -26,14 +29,17 @@ const SearchPage = (props) => {
                 </Menu>
             </Header>
             <Content style={{ padding: '0 50px' }}>
-                
+
                 <div style={{ background: '#fff', padding: 24, minHeight: 484 }}>
                     <div className="container" id="container">
                         <div>
                             <SearchBar />
                             <Button>在结果中检索</Button>
                         </div>
-                        <PprSearchRes />
+                        <Switch>
+                            <Route exact path='/:method' component={SimpleInfo}></Route>
+                            <Route exact path='/:method/detail' component={DetailInfo}></Route>
+                        </Switch>
                     </div>
                 </div>
 

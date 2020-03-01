@@ -36,10 +36,10 @@ const SearchBar = function (props) {
     )
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = ({search}) => {
     return {
-        method: state.method,
-        oldKeyword: state.oldKeyword
+        method: search.method,
+        oldKeyword: search.oldKeyword
     };
 }
 

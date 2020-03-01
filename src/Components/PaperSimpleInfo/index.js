@@ -2,7 +2,7 @@ import React from 'react';
 import { List} from 'antd';
 import {withRouter} from 'react-router-dom';
 import {connect} from "react-redux";
-import Highlight from 'react-highlight'
+// import Highlight from 'react-highlight'
 
 const Bottom = (props) => {
     return (
@@ -32,9 +32,9 @@ function warpTag(content, keyword, tagName) {
     return content.replace(regS, val);
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = ({search}) => {
     return {
-        oldKeyword: state.oldKeyword
+        oldKeyword: search.oldKeyword
     };
 }
 
