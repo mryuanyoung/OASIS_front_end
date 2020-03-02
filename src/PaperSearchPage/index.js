@@ -5,6 +5,7 @@ import SearchBar from '../Components/SearchBar/index.js';
 import { Layout, Menu, Button } from "antd";
 import SimpleInfo from '../Components/SimpleInfo/index';
 import DetailInfo from '../Components/DetailInfo/index';
+import TeamInfo from '../Components/TeamInfo';
 
 const { Header, Content, Footer } = Layout;
 
@@ -24,7 +25,7 @@ const SearchPage = (props) => {
                 >
                     <Menu.Item key="1"><Link to='/'>首页</Link></Menu.Item>
                     <Menu.Item key="2">搜索</Menu.Item>
-                    <Menu.Item key="3">关于我们</Menu.Item>
+                    <Menu.Item key="3"><Link to='/team'>关于我们</Link></Menu.Item>
 
                 </Menu>
             </Header>
@@ -39,6 +40,7 @@ const SearchPage = (props) => {
                         <Switch>
                             <Route exact path='/:method' component={SimpleInfo}></Route>
                             <Route exact path='/:method/detail' component={DetailInfo}></Route>
+                            <Route exact path='/team' component={TeamInfo}></Route>
                         </Switch>
                     </div>
                 </div>
