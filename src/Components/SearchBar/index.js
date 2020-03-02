@@ -9,10 +9,11 @@ const {Search} = Input;
 const {Option} = Select;
 
 const options = [
+    {label:'搜索目标', disabled:true},
     {
         value: 'paper',
         label: 'Paper',
-        children: [{value:'paper',label: 'Paper'}, {value: 'author',label: 'Author'},{value: 'conference',label: 'Conference'},{value: 'interest',label: 'Interest'},{value: 'mix',label: 'Mix'},{value: 'year',label: 'Year'}]
+        children: [{label:'搜索方式', disabled:true},{value:'paper',label: 'Paper'}, {value: 'author',label: 'Author'},{value: 'conference',label: 'Conference'},{value: 'interest',label: 'Interest'},{value: 'mix',label: 'Mix'},{value: 'year',label: 'Year'}]
     },
     {value: 'author', label: 'Author'},
     {value: 'conference', label: 'Conference'},
@@ -34,7 +35,7 @@ const SearchBar = function (props) {
 
     return (
         <div className='searCont'>
-            <Cascader className='cascader' options={options} size='large' defaultValue={props.method} onChange={method => props.changeMethod(method)}></Cascader>
+            <Cascader className='cascader' options={options} size='large' placeholder='' defaultValue={props.method} onChange={method => props.changeMethod(method)}></Cascader>
             <Search enterButton defaultValue={props.oldKeyword} className='search' size='large' onSearch={toSearch}/>
         </div>
     );

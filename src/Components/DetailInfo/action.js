@@ -14,6 +14,7 @@ export const search = function (keywords) {
         let url = `/${method}/`;
 
         /*根据查询类型动态调整url*/
+        // eslint-disable-next-line default-case
         switch(method){
             case 'paper':
                 url += `detail?id=${keywords}`;
