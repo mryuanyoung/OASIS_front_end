@@ -1,4 +1,5 @@
 import React from 'react';
+import {connect} from 'react-redux';
 import { Link, Route, Switch } from 'react-router-dom';
 import './paperSearchPage.css';
 import SearchBar from '../Components/SearchBar/index.js';
@@ -25,7 +26,7 @@ const SearchPage = (props) => {
                     style={{ lineHeight: '64px' }}
                 >
                     <Menu.Item key="1"><Link to='/'>首页</Link></Menu.Item>
-                    <Menu.Item key="2">搜索</Menu.Item>
+                    <Menu.Item key="2"><Link to={`/${props.method}`}>搜索</Link></Menu.Item>
                     <Menu.Item key="3"><Link to='/team'>关于我们</Link></Menu.Item>
 
                 </Menu>
@@ -40,7 +41,7 @@ const SearchPage = (props) => {
                         </div>
                         <Switch>
                             <Route exact path='/team' component={TeamInfo}></Route>
-                            <Route exact path='/:method' component={SimpleInfo}></Route>
+                            <Route exact path={['/paper', '/author', '/conference', '/institution']} component={SimpleInfo}></Route>
                             <Route exact path='/:method/detail' component={DetailInfo}></Route>
                         </Switch>
                     </div>
@@ -52,4 +53,10 @@ const SearchPage = (props) => {
     )
 }
 
-export default SearchPage;
+const mapStateToProps = ({search}) => {
+    return {
+        method: search.method[0]
+    };
+}
+
+export default connect(mapStateToProps)(SearchPage);

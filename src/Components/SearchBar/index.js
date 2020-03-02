@@ -9,11 +9,11 @@ const {Search} = Input;
 const {Option} = Select;
 
 const options = [
-    {label:'搜索目标', disabled:true},
+    {value: '', label:'搜索目标', disabled:true},
     {
         value: 'paper',
         label: 'Paper',
-        children: [{label:'搜索方式', disabled:true},{value:'paper',label: 'Paper'}, {value: 'author',label: 'Author'},{value: 'conference',label: 'Conference'},{value: 'interest',label: 'Interest'},{value: 'mix',label: 'Mix'},{value: 'year',label: 'Year'}]
+        children: [{value: '', label:'搜索方式', disabled:true},{value:'paper',label: 'Paper'}, {value: 'author',label: 'Author'},{value: 'conference',label: 'Conference'},{value: 'interest',label: 'Interest'},{value: 'mix',label: 'Mix'},{value: 'year',label: 'Year'}]
     },
     {value: 'author', label: 'Author'},
     {value: 'conference', label: 'Conference'},

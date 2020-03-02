@@ -10,7 +10,7 @@ export default createStore(
     }),
     {   
         search: {
-            method: ['paper', 'paper'],
+            method: ['paper', 'title'],
             res: [],
             oldKeyword: '',
             loading: false
@@ -20,4 +20,4 @@ export default createStore(
             loading: false
         }
     }
-    , compose(applyMiddleware(thunk)));
+    , compose(applyMiddleware(thunk), window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()));
