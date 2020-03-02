@@ -1,5 +1,6 @@
 import React from 'react';
 import { Card, Col, Row } from 'antd';
+import  './teamInfo.css'
 
 const { Meta } = Card;
 
