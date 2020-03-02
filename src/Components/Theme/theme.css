@@ -1,7 +1,9 @@
 .theme {
-    width: 50vw;
-    height: 20vh;
-    font-size: 2rem;
+    height: 10vh;
+    font-size: 2em;
     text-align: center;
-    margin-top: 25vh;
+}
+
+.OASIS_logo{
+    margin-top: 20vh;
 }

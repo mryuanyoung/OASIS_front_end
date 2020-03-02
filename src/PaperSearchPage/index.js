@@ -16,7 +16,8 @@ const SearchPage = (props) => {
     return (
         <Layout>
             <Header>
-                <div className="logo" />
+                <div className="logo" >
+                </div>
 
                 <Menu
                     theme="dark"
