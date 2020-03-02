@@ -5,9 +5,6 @@ import PaperDetail from '../PaperDetailInfo/index';
 import AuthorDetail from '../AuthorDetailInfo';
 
 class Detail extends React.Component {
-    constructor(props) {
-        super(props);
-    }
 
     shouldComponentUpdate(nextProps, nextState) {
         return nextProps.res !== this.props.res || nextProps.loading !== this.props.loading;
