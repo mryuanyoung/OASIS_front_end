@@ -10,7 +10,7 @@ export default createStore(
     }),
     {   
         search: {
-            method: ['paper', 'paper'],
+            method: ['paper', 'title'],
             res: [],
             oldKeyword: '',
             loading: false

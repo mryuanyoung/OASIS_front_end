@@ -12,7 +12,7 @@ const options = [
     {
         value: 'paper',
         label: 'Paper',
-        children: [{value:'paper',label: 'Paper'}, {value: 'author',label: 'Author'},{value: 'conference',label: 'Conference'},{value: 'interest',label: 'Interest'},{value: 'mix',label: 'Mix'},{value: 'year',label: 'Year'}]
+        children: [{value:'title',label: 'Title'}, {value: 'author',label: 'Author'},{value: 'conference',label: 'Conference'},{value: 'interest',label: 'Interest'},{value: 'mix',label: 'Mix'},{value: 'year',label: 'Year'}]
     },
     {value: 'author', label: 'Author'},
     {value: 'conference', label: 'Conference'},
