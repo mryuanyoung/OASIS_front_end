@@ -1,10 +1,14 @@
 .site-card-wrapper {
-    background: #ececec;
     padding: 30px;
   }
 
   .teamName{
     text-align: center;
-    margin-top: 128px;
-    margin-bottom: 64px;
+    margin-top: 64px;
+    margin-bottom: 128x;
   }
+
+  /* .slogen{
+    margin-top: 32px;
+    margin-bottom: 128x;
+  } */

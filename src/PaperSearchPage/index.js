@@ -35,12 +35,12 @@ const SearchPage = (props) => {
                     <div className="searchRes">
                         <div>
                             <SearchBar />
-                            <Button>在结果中检索</Button>
+                            {/* <Button>在结果中检索</Button> */}
                         </div>
                         <Switch>
+                            <Route exact path='/team' component={TeamInfo}></Route>
                             <Route exact path='/:method' component={SimpleInfo}></Route>
                             <Route exact path='/:method/detail' component={DetailInfo}></Route>
-                            <Route exact path='/team' component={TeamInfo}></Route>
                         </Switch>
                     </div>
                 </div>
