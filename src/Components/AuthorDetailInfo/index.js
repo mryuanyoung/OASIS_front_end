@@ -14,10 +14,10 @@ const AuthorInfo = (props)=>{
                         title={props.authorName}
                         description={props.institutionName}
                     />
-                    <Descriptions title="学者信息" column={2}>
+                    <Descriptions title="学者信息">
                         {/* <Descriptions.Item label="姓名">{props.authorName}</Descriptions.Item>
                         <Descriptions.Item label="所属机构">{props.institutionName}</Descriptions.Item> */}
-                        <Descriptions.Item label="研究方向" span={2}>{props.keyword.join(" | ")}</Descriptions.Item>
+                        <Descriptions.Item label="研究方向" span={3}>{props.keyword.join(" | ")}</Descriptions.Item>
                     </Descriptions>
                 </Card>
             </div>

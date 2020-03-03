@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Spin } from 'antd';
 import PaperDetail from '../PaperDetailInfo/index';
 import AuthorDetail from '../AuthorDetailInfo';
+import InsDetail from '../InsDetailInfo'
 
 class Detail extends React.Component {
 
@@ -18,6 +19,8 @@ class Detail extends React.Component {
                         return <PaperDetail {...this.props.res}></PaperDetail>;
                     case 'author':
                         return <AuthorDetail {...this.props.res}></AuthorDetail>;
+                    case 'institution':
+                        return <InsDetail {...this.props.res}></InsDetail>;
                     default:
                         return <div>no data</div>;
                 }
