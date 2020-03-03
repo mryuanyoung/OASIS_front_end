@@ -13,6 +13,7 @@ export default createStore(
     {   
         search: {
             method: ['paper', 'title'],
+            offset: 0,
             res: [],
             oldKeyword: '',
             loading: false

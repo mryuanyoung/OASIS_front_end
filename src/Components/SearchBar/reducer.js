@@ -10,6 +10,8 @@ export default function(state = {}, action){
             return {...state, oldKeyword: action.oldKeyword};
         case TYPE.LOADING:
             return {...state, loading: !state.loading};
+        case TYPE.CHANGE_OFFSET:
+            return {...state, offset: action.offset};
         default:
             return state;
     }
