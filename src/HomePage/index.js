@@ -11,7 +11,7 @@ const HomePage = (props) => {
         <div className='container'>
             <Theme></Theme>
             <SearchBar></SearchBar>
-            {/* <HotResearch></HotResearch> */}
+            <HotResearch></HotResearch>
         </div>
     )
 }
