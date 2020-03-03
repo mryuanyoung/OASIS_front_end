@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Spin } from 'antd';
 import { Chart, Geom, Axis, Tooltip, Legend, Coord } from 'bizcharts';
 import { search} from './action';
-
+import './hotSearch.css'
 
 
 class HotResearch extends React.Component {
@@ -44,26 +44,41 @@ class HotResearch extends React.Component {
     }
 
     render() {
-        // const data = [
-        //     { term: '巴西', count: 18203 },
-        //     { term: '印尼', count: 23489 },
-        //     { term: '美国', count: 29034 },
-        //     { term: '印度', count: 104970 },
-        //     { term: '中国', count: 131744 }
-        //   ];
 
           const cols = {
             term: { alias: '研究方向' },
             count: { alias: '词频数' }
           };
 
+          const termTitle = {
+            autoRotate: false, // 是否需要自动旋转，默认为 true
+            offset: 25, // 设置标题 title 距离坐标轴线的距离
+            textStyle: {
+              fontSize: '12'
+            }, // 坐标轴文本属性配置
+            position: 'end'
+          }
+
+          const termLabel = {
+            offset: 50, // 数值，设置坐标轴文本 label 距离坐标轴线的距离
+            rotate: 0, // 文本旋转角度
+            // 设置文本的显示样式，还可以是个回调函数，回调函数的参数为该坐标轴对应字段的数值
+            textStyle: {
+              textAlign: 'start', // 文本对齐方向，可取值为： start center end
+              fontSize: '12', // 文本大小
+              fontWeight: 'bold', // 文本粗细
+              textBaseline: 'middle' // 文本基准线，可取 top middle bottom，默认为middle
+            },
+            autoRotate: false, // 文本是否需要自动旋转，默认为 true
+          }          
+
         if (!this.props.loading) {
             
             return (
                 <div className='HotChart' id='chart_container'>
-                    <Chart width={600} height={500} data={this.props.data} scale={cols}>
+                    <Chart width={700} height={400} data={this.props.data.slice(0,6)} scale={cols}>
                         <Axis name="count" title/>
-                        <Axis name="term" title/>
+                        <Axis name="term" title={termTitle} label={termLabel}/>
                         <Coord transpose={true}></Coord>
                         <Legend position="top" dy={-20} />
                         <Tooltip />
