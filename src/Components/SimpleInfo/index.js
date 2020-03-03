@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import PaperType from '../PaperSimpleInfo/index.js';
 import AuthorType from '../AuthorSimpleInfo';
 import InstitutionType from '../InsSimpleInfo';
+import SearchBar from '../SearchBar/index';
 import { sortRes } from '../SearchBar/action';
 import { List, Icon, Button, Spin } from 'antd';
 
@@ -41,7 +42,7 @@ const Header = (props) => {
 
 class DataList extends React.Component {
 
-    constructor(props){
+    constructor(props) {
         super(props);
     }
 
@@ -71,24 +72,34 @@ class DataList extends React.Component {
     render() {
         if (!this.props.loading) {
             return (
-                <div className='dataList'>
-                    <List
-                        header={<Header sortData={this.props.sortData}></Header>}
-                        itemLayout="vertical"
-                        size="middle"
-                        pagination={{
-                            pageSize: 5,
-                            hideOnSinglePage: true,
-                            onChange: () => document.documentElement.scrollTop = 0
-                        }}
-                        dataSource={this.props.data}
-                        renderItem={this.renderList.bind(null, this.props.method)}/*跟数据类型动态改变list的内容*/
-                    />
+                <div>
+                    <SearchBar />
+                    {/* <Button>在结果中检索</Button> */}
+                    <div className='dataList'>
+                        <List
+                            header={<Header sortData={this.props.sortData}></Header>}
+                            itemLayout="vertical"
+                            size="middle"
+                            pagination={{
+                                pageSize: 10,
+                                hideOnSinglePage: true,
+                                onChange: () => document.documentElement.scrollTop = 0
+                            }}
+                            dataSource={this.props.data}
+                            renderItem={this.renderList.bind(null, this.props.method)}/*跟数据类型动态改变list的内容*/
+                        />
+                    </div>
                 </div>
             );
         }
-        else{
-            return <Spin></Spin>;
+        else {
+            return (
+                <div>
+                    <SearchBar />
+                    <Spin></Spin>
+                    {/* <Button>在结果中检索</Button> */}
+                </div>
+            );
         }
     }
 }

@@ -11,6 +11,9 @@ const PaperDetail = (props) => {
             <Title level={1} style={{ 'textAlign': 'center' }}>{props.title}</Title>
             <a href={props.pdfLink} target='_blank'>pdf link</a>
             <Divider />
+            <div class='authors'>
+                
+            </div>
             <Text strong>Author: </Text><Text>{props.authors.join(' | ')}</Text>
             <br /><br />
             <Paragraph><Text strong>Keywords: </Text>{props.auKywds.join(' / ')}</Paragraph>

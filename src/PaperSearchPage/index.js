@@ -2,7 +2,6 @@ import React from 'react';
 import {connect} from 'react-redux';
 import { Link, Route, Switch } from 'react-router-dom';
 import './paperSearchPage.css';
-import SearchBar from '../Components/SearchBar/index.js';
 import { Layout, Menu, Button } from "antd";
 import SimpleInfo from '../Components/SimpleInfo/index';
 import DetailInfo from '../Components/DetailInfo/index';
@@ -35,10 +34,6 @@ const SearchPage = (props) => {
 
                 <div style={{ background: '#fff', padding: 24, minHeight: 484 }}>
                     <div className="searchRes">
-                        <div>
-                            <SearchBar />
-                            {/* <Button>在结果中检索</Button> */}
-                        </div>
                         <Switch>
                             <Route exact path='/team' component={TeamInfo}></Route>
                             <Route exact path={['/paper', '/author', '/conference', '/institution']} component={SimpleInfo}></Route>
