@@ -13,7 +13,7 @@ const options = [
     {
         value: 'paper',
         label: 'Paper',
-        children: [{value: '', label:'搜索方式', disabled:true},{value:'paper',label: 'Paper'}, {value: 'author',label: 'Author'},{value: 'conference',label: 'Conference'},{value: 'interest',label: 'Interest'},{value: 'mix',label: 'Mix'},{value: 'year',label: 'Year'}]
+        children: [{value: '', label:'搜索方式', disabled:true},{value:'title',label: 'Title'}, {value: 'author',label: 'Author'},{value: 'conference',label: 'Conference'},{value: 'interest',label: 'Interest'},{value: 'mix',label: 'Mix'},{value: 'year',label: 'Year'}]
     },
     {value: 'author', label: 'Author'},
     {value: 'conference', label: 'Conference'},

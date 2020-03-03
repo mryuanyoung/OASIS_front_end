@@ -1,6 +1,5 @@
 import * as TYPE from './actionType';
 import { getRequest } from '../../utils/ajax.js';
-import { TimePicker } from 'antd';
 
 /*搜索详情*/
 export const search = function (keywords) {
@@ -11,19 +10,19 @@ export const search = function (keywords) {
         dispatch(Loading());
 
         let method = getState().search.method[0];
-        let url = `/${method}/`;
+        let url = `/${method}/detail`;
 
         /*根据查询类型动态调整url*/
         // eslint-disable-next-line default-case
         switch(method){
             case 'paper':
-                url += `detail?id=${keywords}`;
+                url += `?id=${keywords}`;
                 break;
             case 'author':
-                url += keywords;
+                url += `/${keywords}`;
                 break;
             case 'institution':
-                url += `detail?name=${keywords}`;
+                url += `?name=${keywords}`;
                 break;
         }
         let response = await getRequest(url, () => dispatch(Loading()));
@@ -45,5 +44,12 @@ export const changeDetail = (res) => {
 export const Loading = () => {
     return {
         type: TYPE.LOADING
+    };
+}
+
+export const changeLink = (link) => {
+    return {
+        type: TYPE.CHANGE_LINK,
+        link
     };
 }

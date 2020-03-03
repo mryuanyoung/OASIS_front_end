@@ -28,6 +28,8 @@ const AuthorInfo = (props)=>{
                     size="middle"
                     pagination={{
                         pageSize: 5,
+                        hideOnSinglePage: true,
+                        onChange: () => document.documentElement.scrollTop = 0
                     }}
                     dataSource={props.papers}
                     renderItem={item => <PaperType {...item} />}

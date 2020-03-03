@@ -11,7 +11,7 @@ export const search = function () {
             dispatch(changeHot(response.content));
             
         }
-        dispatch(Loading());
+        
     }
 }
 

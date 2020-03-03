@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Typography, Divider } from 'antd';
 import './index.css';
 
@@ -7,7 +8,8 @@ const { Title, Paragraph, Text } = Typography;
 const PaperDetail = (props) => {
     return (
         <Typography className='article'>
-            <Title level={1} style={{'textAlign': 'center'}}>{props.title}</Title>
+            <Title level={1} style={{ 'textAlign': 'center' }}>{props.title}</Title>
+            <a href={props.pdfLink} target='_blank'>pdf link</a>
             <Divider />
             <Text strong>Author: </Text><Text>{props.authors.join(' | ')}</Text>
             <br /><br />
@@ -21,9 +23,15 @@ const PaperDetail = (props) => {
             <Divider />
             <Title level={3}>{props.pubTitle}</Title>
             <Title level={4}>{props.doi}</Title>
-            <Text>Start: {props.sPage}</Text><Text> End: {props.ePage}</Text>
+            <span>Start: {props.sPage}</span><span>End: {props.ePage}</span>
         </Typography>
     )
 }
 
-export default PaperDetail;
+const mapStateToProps = ({ detail }) => {
+    return {
+        pdfLink: detail.link
+    }
+}
+
+export default connect(mapStateToProps)(PaperDetail);

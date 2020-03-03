@@ -20,15 +20,16 @@ export default createStore(
         },
         detail: {
             res: {},
+            idx: 0,
             loading: false
         },
         hot:{
             res: [
-                { term: '巴西', count: 18203 },
-                { term: '印尼', count: 23489 },
-                { term: '美国', count: 29034 },
-                { term: '印度', count: 104970 },
-                { term: '中国', count: 131744 }
+                { term: 'Java', count: 0 },
+                { term: 'Software', count: 0 },
+                { term: 'Testing', count: 0 },
+                { term: 'Programing tesing', count: 0 },
+                { term: 'Software engineering', count: 0 }
             ],
             loading: false
         }

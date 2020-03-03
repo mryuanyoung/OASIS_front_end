@@ -41,6 +41,10 @@ const Header = (props) => {
 
 class DataList extends React.Component {
 
+    constructor(props){
+        super(props);
+    }
+
     shouldComponentUpdate(nextProps, nextState) {
         return nextProps.data[0] !== this.props.data[0] || nextProps.loading !== this.props.loading;
     }
@@ -74,6 +78,8 @@ class DataList extends React.Component {
                         size="middle"
                         pagination={{
                             pageSize: 5,
+                            hideOnSinglePage: true,
+                            onChange: () => document.documentElement.scrollTop = 0
                         }}
                         dataSource={this.props.data}
                         renderItem={this.renderList.bind(null, this.props.method)}/*跟数据类型动态改变list的内容*/
