@@ -15,7 +15,7 @@ const Bottom = (props) => {
 }
 
 const clickHandle = (props) => {
-    props.searchDetail(props.doi);
+    props.searchDetail(props.doi, 'paper');
     props.changeLink(props.pdfLink);
     props.history.push(`/paper/detail`)
 }
@@ -63,8 +63,8 @@ const mapStateToProps = ({ search }) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        searchDetail: (keyword) => {
-            dispatch(search(keyword));
+        searchDetail: (keyword, method) => {
+            dispatch(search(keyword, method));
         },
         changeLink: (link) =>{
             dispatch(changeLink(link));

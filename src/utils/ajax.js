@@ -11,7 +11,7 @@ const Request = (method, url, timeoutHandle, headers={}, data={}) => {
         }
         xhr.onerror = (err) => reject(err);
         method === 'POST'? xhr.send(data) : xhr.send();
-    }).then(res => res);
+    }).then(res => res, timeoutHandle);
 }
 
 export const getRequest = Request.bind(Object.create(null), 'GET');
