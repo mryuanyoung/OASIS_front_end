@@ -12,7 +12,9 @@ const Bottom = (props) => {
 
 const clickHandle = (props) => {
     if(props.institutionName){
-        props.history.push(`/institution/detail`)
+        const url = `/institution/detail?name=${props.institutionName}`;
+        
+        props.history.push(url);
     }
 }
 

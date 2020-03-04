@@ -1,25 +1,42 @@
 import React from 'react';
-import {withRouter} from 'react-router-dom';
-import {connect} from 'react-redux';
+import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { search } from '../DetailInfo/action';
 
-class Listener extends React.Component{
-    constructor(props){
-        super(props);
-    }
+class Listener extends React.Component {
 
-    shouldComponentUpdate(){
+    shouldComponentUpdate() {
         return false;
     }
 
-    componentDidMount(){
-        console.log(this.props);
-        //todo
-        //监听url变化，只要是跳转到detail界面的，都将url存入redux
+    componentDidMount() {
+        this.props.history.listen(({pathname, search}) => {
+            const reg = /\/[^\/]+\/detail/;
+            if(reg.test(pathname)){
+                const method = pathname.match(/[^/]+/)[0];
+                this.props.matchUrl(pathname+search, method);
+            }
+        })
     }
 
-    render(){
+    render() {
         return null;
     }
 }
 
-export default withRouter(connect()(Listener)) ;
+const mapStateToProps = ({ detail }) => {
+    return {
+        url: detail.url,
+    };
+}
+
+const mapDispatchToProps = (dispatch) =>{
+    return {
+        matchUrl: (url, method) => {
+            dispatch(search(url, method));
+        }
+    }
+}
+
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Listener));

@@ -14,16 +14,16 @@ const Bottom = (props) => {
 
 const clickHandle = (props) => {
     if(props.authorID){
-        props.searchDetail(props.authorID);
-        props.history.push(`/author/detail`)
+        const url = `/author/detail/${props.authorID}`;
+        props.history.push(url);
     }
 }
 
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        searchDetail: (keyword) => {
-            dispatch(search(keyword));
+        searchDetail: (keyword, method) => {
+            dispatch(search(keyword, method));
         }
     }
 }

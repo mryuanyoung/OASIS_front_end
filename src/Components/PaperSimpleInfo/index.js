@@ -2,7 +2,7 @@ import React from 'react';
 import { List } from 'antd';
 import { withRouter } from 'react-router-dom';
 import { connect } from "react-redux";
-import { search, changeLink } from '../DetailInfo/action';
+import { search, changeLink} from '../DetailInfo/action';
 // import Highlight from 'react-highlight'
 
 const Bottom = (props) => {
@@ -15,9 +15,9 @@ const Bottom = (props) => {
 }
 
 const clickHandle = (props) => {
-    props.searchDetail(props.doi, 'paper');
+    const url = `/paper/detail?id=${props.doi}`;
     props.changeLink(props.pdfLink);
-    props.history.push(`/paper/detail`)
+    props.history.push(url);
 }
 
 const SimplePaper = (props) => {
@@ -26,15 +26,15 @@ const SimplePaper = (props) => {
     let newTitle = warpTag(title, keyword, "Highlight");
     return (
         <List.Item
-            style={{minHeight: '25vh'}}
+            style={{ minHeight: '25vh' }}
             key={props.doi}
             actions={[<Bottom pyear={props.publicationYear} rcount={props.referenceCount} />]}
             onClick={clickHandle.bind(null, props)}
-            >
-            <List.Item.Meta 
-            title={newTitle}
-            description={props.author.join(' | ')}
-            style={{cursor: 'pointer'}}
+        >
+            <List.Item.Meta
+                title={newTitle}
+                description={props.author.join(' | ')}
+                style={{ cursor: 'pointer' }}
             />
         </List.Item>
     )
@@ -66,7 +66,7 @@ const mapDispatchToProps = (dispatch) => {
         searchDetail: (keyword, method) => {
             dispatch(search(keyword, method));
         },
-        changeLink: (link) =>{
+        changeLink: (link) => {
             dispatch(changeLink(link));
         }
     }

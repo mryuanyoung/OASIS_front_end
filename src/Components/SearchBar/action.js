@@ -82,4 +82,3 @@ export const sortRes = (field, order) => {
         dispatch(changeRes(res));
     }
 }
-
