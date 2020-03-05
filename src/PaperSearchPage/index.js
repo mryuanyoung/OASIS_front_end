@@ -1,11 +1,12 @@
-import React from 'react';
-import {connect} from 'react-redux';
+import React, { Suspense, lazy } from 'react';
+import { connect } from 'react-redux';
 import { Link, Route, Switch } from 'react-router-dom';
 import './paperSearchPage.css';
-import { Layout, Menu, Button } from "antd";
-import SimpleInfo from '../Components/SimpleInfo/index';
-import DetailInfo from '../Components/DetailInfo/index';
-import TeamInfo from '../Components/TeamInfo';
+import { Layout, Menu, Button, Spin } from "antd";
+
+const SimpleInfo = lazy(() => import('../Components/SimpleInfo/index'));
+const DetailInfo = lazy(() => import('../Components/DetailInfo/index'));
+const TeamInfo = lazy(() => import('../Components/TeamInfo'));
 
 const { Header, Content, Footer } = Layout;
 
@@ -34,11 +35,13 @@ const SearchPage = (props) => {
 
                 <div style={{ background: '#fff', padding: 24, minHeight: 484 }}>
                     <div className="searchRes">
-                        <Switch>
-                            <Route exact path='/team' component={TeamInfo}></Route>
-                            <Route exact path={['/paper', '/author', '/conference', '/institution']} component={SimpleInfo}></Route>
-                            <Route path='/:method/detail' component={DetailInfo}></Route>
-                        </Switch>
+                        <Suspense fallback={<Spin></Spin>}>
+                            <Switch>
+                                <Route exact path='/team' component={TeamInfo}></Route>
+                                <Route exact path={['/paper', '/author', '/conference', '/institution']} component={SimpleInfo}></Route>
+                                <Route path='/:method/detail' component={DetailInfo}></Route>
+                            </Switch>
+                        </Suspense>
                     </div>
                 </div>
 
@@ -48,7 +51,7 @@ const SearchPage = (props) => {
     )
 }
 
-const mapStateToProps = ({search}) => {
+const mapStateToProps = ({ search }) => {
     return {
         method: search.method[0]
     };
