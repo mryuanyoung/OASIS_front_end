@@ -1,4 +1,6 @@
-const { override, fixBabelImports, addLessLoader,addBabelPlugin } = require('customize-cra');
+const { override, fixBabelImports, addLessLoader,addBabelPlugin,addWebpackPlugin } = require('customize-cra');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
+
 module.exports = override(
     fixBabelImports('import', {
         libraryName: 'antd',
@@ -13,4 +15,11 @@ module.exports = override(
         javascriptEnabled: true,
         modifyVars: { '@primary-color': '#1DA57A' },
     }),
+
+    //分析打包
+    addWebpackPlugin(new BundleAnalyzerPlugin({
+        analyzerMode: 'server',
+        generateStatsFile: true,
+        statsOptions: { source: false }
+    }))
 );

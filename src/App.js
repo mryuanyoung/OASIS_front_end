@@ -1,18 +1,22 @@
-import React from 'react';
-import {BrowserRouter as Router, Route, NavLink, Switch} from 'react-router-dom';
-import HomePage from './HomePage/index';
-import Listen from './Components/ListenUrlChange/index';
-import PaperSearchPage from './PaperSearchPage/index';
+import React, { Suspense, lazy } from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import {Spin} from 'antd';
 
+import Listen from './Components/ListenUrlChange/index';
+const HomePage = lazy(() => import('./HomePage/index'));
+const PaperSearchPage = lazy(() => import('./PaperSearchPage/index'));
 
 function App() {
   return (
     <Router>
       <Listen></Listen>
-      <Switch>
+      <Suspense fallback={<Spin></Spin>}>
+        <Switch>
           <Route exact path='/' component={HomePage}></Route>
           <Route path='/:method' component={PaperSearchPage}></Route>
-      </Switch>
+        </Switch>
+      </Suspense>
+
     </Router>
   );
 }

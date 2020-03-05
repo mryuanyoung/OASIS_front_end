@@ -42,10 +42,6 @@ const Header = (props) => {
 
 class DataList extends React.Component {
 
-    constructor(props) {
-        super(props);
-    }
-
     shouldComponentUpdate(nextProps, nextState) {
         return nextProps.data[0] !== this.props.data[0] || nextProps.loading !== this.props.loading;
     }

@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import {withRouter} from 'react-router-dom';
 import { Spin } from 'antd';
 import PaperDetail from '../PaperDetailInfo/index';
 import AuthorDetail from '../AuthorDetailInfo';
@@ -8,13 +9,16 @@ import InsDetail from '../InsDetailInfo'
 class Detail extends React.Component {
 
     shouldComponentUpdate(nextProps, nextState) {
-        return nextProps.res !== this.props.res || nextProps.loading !== this.props.loading;
+        // return nextProps.res !== this.props.res ||
+        //     nextProps.loading !== this.props.loading ||
+        //     this.props.history.location.pathname !== this.props.url;
+        return true;
     }
 
     render() {
         if (!this.props.loading) {
             if (Object.keys(this.props.res).length !== 0) {
-                switch (this.props.method[0]) {
+                switch (this.props.method) {
                     case 'paper':
                         return <PaperDetail {...this.props.res}></PaperDetail>;
                     case 'author':
@@ -25,7 +29,7 @@ class Detail extends React.Component {
                         return <div>no data</div>;
                 }
             }
-            else{
+            else {
                 return <div>no data!</div>
             }
         }
@@ -35,12 +39,13 @@ class Detail extends React.Component {
     }
 }
 
-const mapStateToProps = ({ search, detail }) => {
+const mapStateToProps = ({ detail }) => {
     return {
         res: detail.res,
-        method: search.method,
-        loading: detail.loading
+        method: detail.resType,
+        loading: detail.loading,
+        url: detail.url
     };
 }
 
-export default connect(mapStateToProps)(Detail);
+export default withRouter(connect(mapStateToProps)(Detail));

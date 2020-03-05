@@ -8,7 +8,7 @@ export default createStore(
     combineReducers({
         search: barReducer,
         detail: detailReducer,
-        hot:hotReducer
+        hot:hotReducer,
     }),
     {   
         search: {
@@ -20,8 +20,9 @@ export default createStore(
         },
         detail: {
             res: {},
-            idx: 0,
-            loading: false
+            resType: 'paper',
+            loading: false,
+            ids: []
         },
         hot:{
             res: [],

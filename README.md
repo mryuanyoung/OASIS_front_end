@@ -26,15 +26,7 @@
 
 
 ## problems
-1. 搜作者，search结果为author
-2. 点击作者详情，detail结果为author
-3. 在作者详情页点击论文详情，detail结果为paper
-4. 回退作者详情页，detail类型不匹配
-
-解决方案：
-1. 每一次到详情页面的跳转都记录下请求的url，回退/前进时（监听浏览器的前进/回退事件），都再次发起请求（有http缓存），同时改变method
-2. 每次详情数据返回时，都将method改为请求url中的method
-
+- 服务端tomact配置gzip压缩
 
 - 刷新后页面数据全消失，且会跳转到首页
 - 打包体积太大，懒加载，tree shaking
