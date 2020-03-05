@@ -14,43 +14,14 @@ class HotResearch extends React.Component {
         this.state = {isSend:false}
     }
 
-    // shouldComponentUpdate(nextProps, nextState) {
-    //     return nextProps.data[0] !== this.props.data[0] || nextProps.loading !== this.props.loading;
-    // }
-
-    // 监听页面滑动的事件
-    // 当页面下拉时，向后端请求流行词数据
-    // 同时解绑数据
-    // scrollHandler = this.handleScroll.bind(this);
-
     componentDidMount() {
+        const e = document.createEvent('Event');
+        e.initEvent('resize', true, true);
+        window.dispatchEvent(e);
         this.props.searchHot();
+
     //   window.addEventListener('scroll', this.scrollHandler);
     }
-
-    // //在componentWillUnmount，进行scroll事件的注销
-    // componentWillUnmount(){
-    //     window.removeEventListener('scroll', this.bindHandleScroll);
-    //   }
-
-    // _handleScroll(scrollTop) {
-    //      console.log(scrollTop)
-    //      //滚动条距离页面的高度
-         
-    //      if(!this.state.isSend){
-    //         this.props.searchHot();
-    //      }
-    //      else{
-    //         this.setState({isSend:true});  
-    //      }       
-         
-    // }
-
-    // handleScroll(event) {
-    //     let scrollTop = event.srcElement.body.scrollTop;
-    //     this._handleScroll(scrollTop);
-    //     window.removeEventListener('scroll', this.bindHandleScroll);
-    // }
 
     render() {
 
@@ -96,11 +67,10 @@ class HotResearch extends React.Component {
           }          
 
         if (!this.props.loading) {
-            
             return (
                 <div className='HotChart' id='chart_container'>
                     <div className="chartTitle">热门关键词</div>
-                    <Chart width={750} height={450} data={this.props.data.slice(0,6)} scale={cols}>
+                    <Chart width={750} height={400} data={this.props.data.slice(0,6)} scale={cols}>
                         <Axis name="count" title/>
                         <Axis name="term" title={termTitle} label={termLabel}/>
                         <Coord transpose={true}></Coord>
@@ -109,10 +79,14 @@ class HotResearch extends React.Component {
                         <Geom type="interval" active={true} position="term*count" color="term" />
                     </Chart>
                 </div>
-            );
+            )
         }
         else{
-            return <Spin></Spin>;
+            return (
+                <>
+                    <Spin></Spin>
+                </>)
+
         }
     }
 }

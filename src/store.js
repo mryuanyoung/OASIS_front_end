@@ -24,14 +24,8 @@ export default createStore(
             loading: false
         },
         hot:{
-            res: [
-                { term: 'Java', count: 0 },
-                { term: 'Software', count: 0 },
-                { term: 'Testing', count: 0 },
-                { term: 'Programing tesing', count: 0 },
-                { term: 'Software engineering', count: 0 }
-            ],
+            res: [],
             loading: false
         }
     }
-    , compose(applyMiddleware(thunk), window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()));
+    , compose(applyMiddleware(thunk)));
