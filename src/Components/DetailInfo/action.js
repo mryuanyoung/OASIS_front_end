@@ -65,8 +65,8 @@ export const searchAuthors = (authors) => {
             const links = res.map(response => {
                 try {
                     let json = JSON.parse(response);
-                    if (json.success && json.content) {
-                        return json.content[0].authorID;
+                    if (json.success && json.content.volist) {
+                        return json.content.volist[0].authorID;
                     }
                 }
                 catch(err){

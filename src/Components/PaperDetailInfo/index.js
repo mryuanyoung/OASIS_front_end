@@ -10,6 +10,7 @@ const { Title, Paragraph, Text } = Typography;
 const Author = (props) => {
     const authors = props.authors;
     const ids = props.ids;
+    console.log(props);
 
     const handleClick = (id) => {
         const url = `/author/detail/${id}`;
@@ -28,35 +29,45 @@ const Author = (props) => {
     }
 }
 
-const PaperDetail = (props) => {
-    props.searchAuthors(props.authors);
-    return (
-        <div className='page'>
-            <Paragraph className='left' style={{lineHight: '2vh'}}>
-                <Text strong>Author Keywords: </Text>
-                {props.auKywds.join('\n')}
-            </Paragraph>
-            <Typography className='article'>
-                <Title level={1} style={{ 'textAlign': 'center' }}>{props.title}</Title>
-                <a href={props.pdfLink} target='_blank' rel='noopener noreferrer' style={{ color: 'blue', marginLeft: '19vw', fontSize: '1.1rem' }}>PDF link</a>
-                <br /><br />
-                <div className='authors'>
-                    <Text strong>Author: </Text><Text><Author authors={props.authors} ids={props.ids} push={props.history.push} /></Text>
-                </div>
-                <Divider />
-                <Paragraph style={{fontSize: '1rem'}}><Text strong>Abstract: </Text>{props.abstraction}</Paragraph>
-                <br/>
-                <Text><Text strong>Published in:</Text> {props.pubTitle}</Text>
-                <br/><br/>
-                <Text strong>StartPage: <Text>{props.sPage}</Text></Text><Text style={{marginLeft: '5vw'}}><Text strong>EndPage: </Text><Text>{props.ePage}</Text></Text>
-                <Divider />
-                <Text><Text strong>DOI: </Text>{props.doi}</Text>
-                <Divider />
-                <Text strong>Article Citation Count: </Text><Text>{props.articleCitationCount}</Text>
-                <Text style={{marginLeft: '5vw'}} strong>Reference Count: </Text><Text>{props.referenceCount}</Text>
-            </Typography>
-        </div>
-    )
+class PaperDetail extends React.Component{
+
+    componentDidMount(){
+        this.props.searchAuthors(this.props.authors);
+    }
+
+    shouldComponentUpdate(nextProps){
+        return nextProps.ids.length != this.props.ids.length;
+    }
+
+    render(){
+        return (
+            <div className='page'>
+                <Paragraph className='left' style={{lineHight: '2vh'}}>
+                    <Text strong>Author Keywords: </Text>
+                    {this.props.auKywds.join('\n')}
+                </Paragraph>
+                <Typography className='article'>
+                    <Title level={1} style={{ 'textAlign': 'center' }}>{this.props.title}</Title>
+                    <a href={this.props.pdfLink} target='_blank' rel='noopener noreferrer' style={{ color: 'blue', marginLeft: '19vw', fontSize: '1.1rem' }}>PDF link</a>
+                    <br /><br />
+                    <div className='authors'>
+                        <Text strong>Author: </Text><Text><Author authors={this.props.authors} ids={this.props.ids} push={this.props.history.push} /></Text>
+                    </div>
+                    <Divider />
+                    <Paragraph style={{fontSize: '1rem'}}><Text strong>Abstract: </Text>{this.props.abstraction}</Paragraph>
+                    <br/>
+                    <Text><Text strong>Published in:</Text> {this.props.pubTitle}</Text>
+                    <br/><br/>
+                    <Text strong>StartPage: <Text>{this.props.sPage}</Text></Text><Text style={{marginLeft: '5vw'}}><Text strong>EndPage: </Text><Text>{this.props.ePage}</Text></Text>
+                    <Divider />
+                    <Text><Text strong>DOI: </Text>{this.props.doi}</Text>
+                    <Divider />
+                    <Text strong>Article Citation Count: </Text><Text>{this.props.articleCitationCount}</Text>
+                    <Text style={{marginLeft: '5vw'}} strong>Reference Count: </Text><Text>{this.props.referenceCount}</Text>
+                </Typography>
+            </div>
+        )
+    }
 }
 
 const mapStateToProps = ({ detail }) => {

@@ -17,9 +17,9 @@ module.exports = override(
     }),
 
     //分析打包
-    addWebpackPlugin(new BundleAnalyzerPlugin({
-        analyzerMode: 'server',
-        generateStatsFile: true,
-        statsOptions: { source: false }
-    }))
+    // addWebpackPlugin(new BundleAnalyzerPlugin({
+    //     analyzerMode: 'server',
+    //     generateStatsFile: true,
+    //     statsOptions: { source: false }
+    // }))
 );

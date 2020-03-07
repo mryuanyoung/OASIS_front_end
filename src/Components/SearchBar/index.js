@@ -1,7 +1,7 @@
 import React from 'react';
 import { Input, Select, Cascader } from 'antd';
 import {withRouter} from 'react-router-dom';
-import { search, changeMethod, changeOldKeyword } from './action';
+import { search, changeMethod, changeOldKeyword, changeOldMethod } from './action';
 import {connect} from 'react-redux';
 import './searchBar.css';
 
@@ -24,8 +24,9 @@ const SearchBar = function (props) {
 
     function toSearch(keyword) {
         if(keyword){
+            // props.changeOldMethod(props.method.join(''));
+            // props.changeOldKeyword(keyword);
             props.searchPaper(keyword);
-            props.changeOldKeyword(keyword);
 
             /*不同类型的搜索结果跳转同一个展示页面，选择不同的展示组件*/
             let methodUrl = `/${props.method[0]}`;
@@ -71,6 +72,9 @@ const mapDispatchToProps = (dispatch) => {
         },
         changeOldKeyword: (oldKeyword) => {
             dispatch(changeOldKeyword(oldKeyword));
+        },
+        changeOldMethod: (oldMethod) =>{
+            dispatch(changeOldMethod(oldMethod));
         }
     }
 }

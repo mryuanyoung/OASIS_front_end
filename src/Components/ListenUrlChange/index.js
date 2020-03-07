@@ -11,6 +11,7 @@ class Listener extends React.Component {
 
     componentDidMount() {
         this.props.history.listen(({pathname, search}) => {
+            document.documentElement.scrollTop = 0
             const reg = /\/[^\/]+\/detail/;
             if(reg.test(pathname)){
                 const method = pathname.match(/[^/]+/)[0];

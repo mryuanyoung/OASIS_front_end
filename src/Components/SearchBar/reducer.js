@@ -12,6 +12,12 @@ export default function(state = {}, action){
             return {...state, loading: !state.loading};
         case TYPE.CHANGE_OFFSET:
             return {...state, offset: action.offset};
+        case TYPE.TOTAL:
+            return {...state, total: action.total};
+        case TYPE.OLD_METHOD:
+            return {...state, oldMethod: action.oldMethod};
+        case TYPE.CURR_PAGE:
+            return {...state, page: action.page};
         default:
             return state;
     }

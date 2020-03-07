@@ -16,7 +16,10 @@ export default createStore(
             offset: 0,
             res: [],
             oldKeyword: '',
-            loading: false
+            loading: false,
+            total: 0,
+            oldMethod: '',
+            page: 1
         },
         detail: {
             res: {},
@@ -29,4 +32,4 @@ export default createStore(
             loading: false
         }
     }
-    , compose(applyMiddleware(thunk)));
+    , compose(applyMiddleware(thunk), window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()));

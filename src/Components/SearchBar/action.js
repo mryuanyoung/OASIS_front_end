@@ -1,21 +1,25 @@
 import * as TYPE from './actionTypes';
 import { getRequest } from '../../utils/ajax.js';
+import {PAGE_SIZE, RES_COUNT} from '../../const';
 
-
-//请求有待改进，太混乱了
 export const search = function (keywords) {
     return async function (dispatch, getState) {
-        //每次发出不同的请求时，将上一次的请求结果清空，不然会因类型不匹配渲染出错
-        //暂时先这样，之后再做缓存，将每一次请求结果缓存下来
-        dispatch(changeRes([]));
-
         dispatch(Loading());
 
         const state = getState();
 
-        //keyword不同时，将offset请零
-        let offset = 0;
-        if (state.search.oldKeyword !== keywords) dispatch(changeOffset(0));
+        //请求不同时(method/keyword不同)，将offset请零，total清零，res清零,page清零
+        let offset = state.search.offset;
+        let reset = false;
+        if (state.search.oldKeyword !== keywords || 
+            state.search.oldMethod !== state.search.method.join('')) {
+            reset = true;
+            offset = 0;
+            dispatch(changePage(0));
+            dispatch(changeRes([]));
+            dispatch(changeTotal(0));
+            dispatch(changeOffset(0));
+        }
 
         let method = state.search.method;
         let url = `/${method[0]}/simple?`;
@@ -29,13 +33,20 @@ export const search = function (keywords) {
             let response = await getRequest(url, () => dispatch(Loading()));
             response = JSON.parse(response);
             if (response.success && response.content) {
-                dispatch(changeRes(response.content));
+                if(reset) dispatch(changeRes(response.content.volist));
+                else dispatch(changeRes([...state.search.res,...response.content.volist]));
                 //修改请求数据的偏移量
-                dispatch(changeOffset(response.content.length));
+                dispatch(changeOffset(offset + 1));
+                //改变数据总量
+                dispatch(changeTotal(response.content.total))
             }
+            //设置oldkeywords
+            dispatch(changeOldKeyword(keywords));
+            //设置oldmethod
+            dispatch(changeOldMethod(method.join('')));
             dispatch(Loading());
         }
-        catch(err){
+        catch (err) {
             console.error(err);
         }
     }
@@ -62,6 +73,13 @@ export const changeOldKeyword = (oldKeyword) => {
     };
 }
 
+export const changeOldMethod = (oldMethod) =>{
+    return {
+        type: TYPE.OLD_METHOD,
+        oldMethod
+    };
+}
+
 export const changeRes = (res) => {
     return {
         type: TYPE.CHANGE_RES,
@@ -81,4 +99,18 @@ export const sortRes = (field, order) => {
         res = [...res].sort(order ? (a, b) => a[field] - b[field] : (a, b) => b[field] - a[field]);
         dispatch(changeRes(res));
     }
+}
+
+export const changeTotal = (total) => {
+    return {
+        type: TYPE.TOTAL,
+        total
+    };
+}
+
+export const changePage = (page) =>{
+    return {
+        type: TYPE.CURR_PAGE,
+        page
+    };
 }

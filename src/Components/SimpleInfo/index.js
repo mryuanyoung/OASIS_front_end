@@ -4,8 +4,9 @@ import PaperType from '../PaperSimpleInfo/index.js';
 import AuthorType from '../AuthorSimpleInfo';
 import InstitutionType from '../InsSimpleInfo';
 import SearchBar from '../SearchBar/index';
-import { sortRes } from '../SearchBar/action';
+import { sortRes, search, changePage } from '../SearchBar/action';
 import { List, Icon, Button, Spin } from 'antd';
+import {PAGE_SIZE, RES_COUNT} from '../../const';
 
 const fields = ['title', 'year', 'cited'];
 
@@ -73,13 +74,21 @@ class DataList extends React.Component {
                     {/* <Button>在结果中检索</Button> */}
                     <div className='dataList'>
                         <List
-                            header={<Header sortData={this.props.sortData}></Header>}
                             itemLayout="vertical"
                             size="middle"
                             pagination={{
-                                pageSize: 10,
+                                defaultCurrent: this.props.page,
+                                total: this.props.total,
+                                pageSize: PAGE_SIZE,
                                 hideOnSinglePage: true,
-                                onChange: () => document.documentElement.scrollTop = 0
+                                onChange: (page, pageSize) => {
+                                    this.props.changePage(page);
+                                    document.documentElement.scrollTop = 0
+                                    if(this.props.total > RES_COUNT * this.props.offset && 
+                                        page > RES_COUNT * this.props.offset / PAGE_SIZE){
+                                            this.props.addRes(this.props.oldKeyword);
+                                        }
+                                }
                             }}
                             dataSource={this.props.data}
                             renderItem={this.renderList.bind(null, this.props.method)}/*跟数据类型动态改变list的内容*/
@@ -102,9 +111,13 @@ class DataList extends React.Component {
 
 const mapStateToProps = ({ search }) => {
     return {
+        total: search.total,
+        offset: search.offset,
         data: search.res,
         method: search.method[0],
-        loading: search.loading
+        loading: search.loading,
+        oldKeyword: search.oldKeyword,
+        page: search.page
     };
 }
 
@@ -112,6 +125,12 @@ const mapDispatchToProps = (dispatch) => {
     return {
         sortData: (field, order) => {
             dispatch(sortRes(field, order));
+        },
+        addRes: (keyword) =>{
+            dispatch(search(keyword));
+        },
+        changePage: (page) =>{
+            dispatch(changePage(page));
         }
     }
 }
