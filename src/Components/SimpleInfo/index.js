@@ -9,6 +9,9 @@ import { List, Icon, Button, Spin } from 'antd';
 import {PAGE_SIZE, RES_COUNT} from '../../const';
 
 const fields = ['title', 'year', 'cited'];
+// const PaperType=React.lazy(()=>import('../PaperSimpleInfo/index.js'));
+// const AuthorType=React.lazy(()=>import('../AuthorSimpleInfo'));
+// const InstitutionType=React.lazy(()=>import('../InsSimpleInfo'));
 
 const Header = (props) => {
 

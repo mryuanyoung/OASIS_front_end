@@ -10,7 +10,6 @@ class HotResearch extends React.Component {
 
     constructor(props) {
         super(props);
-        // this.handleScroll = this.handleScroll.bind(this);
         this.state = {isSend:false}
     }
 
@@ -20,7 +19,6 @@ class HotResearch extends React.Component {
         window.dispatchEvent(e);
         this.props.searchHot();
 
-    //   window.addEventListener('scroll', this.scrollHandler);
     }
 
     render() {
