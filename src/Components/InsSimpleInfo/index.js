@@ -1,6 +1,8 @@
 import React from 'react';
 import { List} from 'antd';
 import {withRouter} from 'react-router-dom';
+import { connect } from "react-redux";
+import {search} from "../DetailInfo/action";
 
 const Bottom = (props) => {
     return (
@@ -10,18 +12,30 @@ const Bottom = (props) => {
     )
 }
 
+const simpleIns = (props) => {
+    // console.log(props.institutionName);
+    return (
+        <List.Item key={props.institutionName} onClick={clickHandle.bind(null, props)}>
+            <List.Item.Meta title={props.institutionName} description={props.authorNameList.join(" | ")}/>
+        </List.Item>
+    )
+}
+
 const clickHandle = (props) => {
     if(props.institutionName){
         const url = `/institution/detail?name=${props.institutionName}`;
         
         props.history.push(url);
+
     }
 }
 
-export default withRouter((props) => {
-    return (
-        <List.Item key={props.institutionName} onClick={clickHandle.bind(null, props)}>
-            <List.Item.Meta title={props.institutionName} description={props.authors}/>
-        </List.Item>
-    )
-});
+const mapDispatchToProps = (dispatch) => {
+    return {
+        searchDetail: (keyword, method) => {
+            dispatch(search(keyword, method));
+        }
+    }
+}
+
+export default withRouter(connect(null, mapDispatchToProps)(simpleIns));

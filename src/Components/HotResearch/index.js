@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { Spin } from 'antd';
 // import { Chart, Geom, Axis, Tooltip, Legend, Coord } from 'bizcharts';

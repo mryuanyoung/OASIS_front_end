@@ -1,7 +1,7 @@
 import React from 'react';
 import { List, Avatar} from 'antd';
 import {withRouter} from 'react-router-dom';
-import {search} from "../DetailInfo/action";
+import {searchAuthors,  authorLinks} from "../DetailInfo/action";
 import { connect } from 'react-redux';
 
 const Bottom = (props) => {
@@ -15,6 +15,7 @@ const Bottom = (props) => {
 const clickHandle = (props) => {
     if(props.authorID){
         const url = `/author/detail/${props.authorID}`;
+        props.changeLink(props.authorID);
         props.history.push(url);
     }
 }
@@ -22,15 +23,19 @@ const clickHandle = (props) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        searchDetail: (keyword, method) => {
-            dispatch(search(keyword, method));
+        searchDetail: (authorId) => {
+            dispatch(searchAuthors(authorId));
+        },
+        changeLink: (link) => {
+            dispatch(authorLinks(link));
         }
     }
 }
 
 export default withRouter(connect(null,mapDispatchToProps)((props) => {
+    const institutionName = props.institutionName;
     return (
-        <List.Item key={props.authorID} actions={[<Bottom />]} onClick={clickHandle.bind(null, props)}>
+        <List.Item key={props.authorID} actions={[<Bottom institutionName = {institutionName}/>]} onClick={clickHandle.bind(null, props)}>
             <List.Item.Meta
                 avatar={
                     <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />

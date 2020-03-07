@@ -33,12 +33,19 @@ export const search = function (keywords) {
             let response = await getRequest(url, () => dispatch(Loading()));
             response = JSON.parse(response);
             if (response.success && response.content) {
-                if(reset) dispatch(changeRes(response.content.volist));
-                else dispatch(changeRes([...state.search.res,...response.content.volist]));
+                let res = response.content.volist;
+                let total = response.content.total;
+                if(method[0] === 'institution') {
+                    res = response.content;
+                    total = response.content.length;
+                }
+
+                if(reset) dispatch(changeRes(res));
+                else dispatch(changeRes([...state.search.res,...res]));
                 //修改请求数据的偏移量
                 dispatch(changeOffset(offset + 1));
                 //改变数据总量
-                dispatch(changeTotal(response.content.total))
+                dispatch(changeTotal(total))
             }
             //设置oldkeywords
             dispatch(changeOldKeyword(keywords));

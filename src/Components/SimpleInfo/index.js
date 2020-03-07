@@ -1,17 +1,14 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-// import PaperType from '../PaperSimpleInfo/index.js';
-// import AuthorType from '../AuthorSimpleInfo';
-// import InstitutionType from '../InsSimpleInfo';
+import PaperType from '../PaperSimpleInfo/index.js';
+import AuthorType from '../AuthorSimpleInfo';
+import InstitutionType from '../InsSimpleInfo';
 import SearchBar from '../SearchBar/index';
 import { sortRes, search, changePage } from '../SearchBar/action';
 import { List, Icon, Button, Spin } from 'antd';
 import { PAGE_SIZE, RES_COUNT } from '../../const';
 
 const fields = ['title', 'year', 'cited'];
-const PaperType = React.lazy(() => import('../PaperSimpleInfo/index.js'));
-const AuthorType = React.lazy(() => import('../AuthorSimpleInfo'));
-const InstitutionType = React.lazy(() => import('../InsSimpleInfo'));
 
 const Header = (props) => {
 

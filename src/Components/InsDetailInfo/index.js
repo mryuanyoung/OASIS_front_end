@@ -1,16 +1,15 @@
 import React from 'react';
-import {Card, Avatar, Descriptions, List} from 'antd';
+import {Descriptions, List} from 'antd';
 import PaperType from '../PaperSimpleInfo/index.js';
 
-const { Meta } = Card;
 
 const InsInfo = (props)=>{
     return (
         <>
             <div>
                 <Descriptions title={props.institutionName}>
-                    <Descriptions.Item label="机构中学者" span={3}>{props.authorName.join(" | ")}</Descriptions.Item>
-                    <Descriptions.Item label="研究方向" span={3}>{props.keywords.join(" | ")}</Descriptions.Item>
+                    <Descriptions.Item label="机构中学者" span={2}>{props.authorNameList.join(" | ")}</Descriptions.Item>
+                    <Descriptions.Item label="研究方向" span={2}>{props.keywords.join(" | ")}</Descriptions.Item>
                 </Descriptions>
             </div>
             <div className='paperList'>

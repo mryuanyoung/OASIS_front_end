@@ -2,9 +2,9 @@ import React, { Suspense, lazy } from 'react';
 import { connect } from 'react-redux';
 import { Link, Route, Switch } from 'react-router-dom';
 import './paperSearchPage.css';
-import { Layout, Menu, Button, Spin } from "antd";
+import { Layout, Menu, Spin } from "antd";
+import SimpleInfo from '../Components/SimpleInfo/index'
 
-const SimpleInfo = lazy(() => import('../Components/SimpleInfo/index'));
 const DetailInfo = lazy(() => import('../Components/DetailInfo/index'));
 const TeamInfo = lazy(() => import('../Components/TeamInfo'));
 const DataSupport  = lazy(() => import('../Components/DataSupport/index'));

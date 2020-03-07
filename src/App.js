@@ -1,9 +1,9 @@
 import React, { Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import {Spin} from 'antd';
+import HomePage from './HomePage/index';
 
 import Listen from './Components/ListenUrlChange/index';
-const HomePage = lazy(() => import('./HomePage/index'));
 const PaperSearchPage = lazy(() => import('./PaperSearchPage/index'));
 
 function App() {
