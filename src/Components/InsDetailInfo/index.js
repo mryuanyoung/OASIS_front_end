@@ -9,8 +9,8 @@ const InsInfo = (props)=>{
         <>
             <div>
                 <Descriptions title={props.institutionName}>
-                    <Descriptions.Item label="机构中学者" span={3}>{props.authorName.join(" | ")}</Descriptions.Item>
-                    <Descriptions.Item label="研究方向" span={3}>{props.keywords.join(" | ")}</Descriptions.Item>
+                    <Descriptions.Item label="机构中学者" span={2}>{props.authorName.join(" | ")}</Descriptions.Item>
+                    <Descriptions.Item label="研究方向" span={2}>{props.keywords.join(" | ")}</Descriptions.Item>
                 </Descriptions>
             </div>
             <div className='paperList'>

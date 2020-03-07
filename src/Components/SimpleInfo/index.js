@@ -86,7 +86,7 @@ class DataList extends React.Component {
                                 hideOnSinglePage: true,
                                 onChange: (page, pageSize) => {
                                     this.props.changePage(page);
-                                    document.documentElement.scrollTop = 0
+                                    document.documentElement.scrollTop = 0;
                                     if(this.props.total > RES_COUNT * this.props.offset && 
                                         page > RES_COUNT * this.props.offset / PAGE_SIZE){
                                             this.props.addRes(this.props.oldKeyword);
