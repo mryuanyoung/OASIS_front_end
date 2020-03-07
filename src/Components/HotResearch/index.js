@@ -1,7 +1,13 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { Spin } from 'antd';
-import { Chart, Geom, Axis, Tooltip, Legend, Coord } from 'bizcharts';
+// import { Chart, Geom, Axis, Tooltip, Legend, Coord } from 'bizcharts';
+import Chart from 'bizcharts/lib/components/Chart';
+import Geom from 'bizcharts/lib/components/Geom';
+import Axis from 'bizcharts/lib/components/Axis';
+import Tooltip from 'bizcharts/lib/components/Tooltip';
+import Legend from 'bizcharts/lib/components/Legend';
+import Coord from 'bizcharts/lib/components/Coord';
 import { search} from './action';
 import './hotSearch.css'
 
