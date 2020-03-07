@@ -14,12 +14,12 @@ module.exports = override(
     addLessLoader({
         javascriptEnabled: true,
         modifyVars: { '@primary-color': '#1DA57A' },
-    }),
+    })/*,
 
     //分析打包
     addWebpackPlugin(new BundleAnalyzerPlugin({
         analyzerMode: 'server',
         generateStatsFile: true,
         statsOptions: { source: false }
-    }))
+    }))*/
 );
