@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import PaperType from '../PaperSimpleInfo/index.js';
-import AuthorType from '../AuthorSimpleInfo';
-import InstitutionType from '../InsSimpleInfo';
+// import PaperType from '../PaperSimpleInfo/index.js';
+// import AuthorType from '../AuthorSimpleInfo';
+// import InstitutionType from '../InsSimpleInfo';
 import SearchBar from '../SearchBar/index';
 import { sortRes, search, changePage } from '../SearchBar/action';
 import { List, Icon, Button, Spin } from 'antd';
-import {PAGE_SIZE, RES_COUNT} from '../../const';
+import { PAGE_SIZE, RES_COUNT } from '../../const';
 
 const fields = ['title', 'year', 'cited'];
-// const PaperType=React.lazy(()=>import('../PaperSimpleInfo/index.js'));
-// const AuthorType=React.lazy(()=>import('../AuthorSimpleInfo'));
-// const InstitutionType=React.lazy(()=>import('../InsSimpleInfo'));
+const PaperType = React.lazy(() => import('../PaperSimpleInfo/index.js'));
+const AuthorType = React.lazy(() => import('../AuthorSimpleInfo'));
+const InstitutionType = React.lazy(() => import('../InsSimpleInfo'));
 
 const Header = (props) => {
 
@@ -87,10 +87,10 @@ class DataList extends React.Component {
                                 onChange: (page, pageSize) => {
                                     this.props.changePage(page);
                                     document.documentElement.scrollTop = 0
-                                    if(this.props.total > RES_COUNT * this.props.offset && 
-                                        page > RES_COUNT * this.props.offset / PAGE_SIZE){
-                                            this.props.addRes(this.props.oldKeyword);
-                                        }
+                                    if (this.props.total > RES_COUNT * this.props.offset &&
+                                        page > RES_COUNT * this.props.offset / PAGE_SIZE) {
+                                        this.props.addRes(this.props.oldKeyword);
+                                    }
                                 }
                             }}
                             dataSource={this.props.data}
@@ -129,10 +129,10 @@ const mapDispatchToProps = (dispatch) => {
         sortData: (field, order) => {
             dispatch(sortRes(field, order));
         },
-        addRes: (keyword) =>{
+        addRes: (keyword) => {
             dispatch(search(keyword));
         },
-        changePage: (page) =>{
+        changePage: (page) => {
             dispatch(changePage(page));
         }
     }

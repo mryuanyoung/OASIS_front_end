@@ -23,7 +23,8 @@ const clickHandle = (props) => {
 const SimplePaper = (props) => {
     let { title } = props;
     let keyword = props.oldKeyword;
-    let newTitle = warpTag(title, keyword, "Highlight");
+    // let newTitle = warpTag(title, keyword, "Highlight");
+    let newTitle = title;
     return (
         <List.Item
             style={{ minHeight: '25vh' }}
