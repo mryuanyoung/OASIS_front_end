@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import { connect } from 'react-redux';
 import {withRouter} from 'react-router-dom';
 import { Spin } from 'antd';
-import PaperDetail from '../PaperDetailInfo/index';
-import AuthorDetail from '../AuthorDetailInfo';
-import InsDetail from '../InsDetailInfo'
+// import PaperDetail from '../PaperDetailInfo/index';
+// import AuthorDetail from '../AuthorDetailInfo';
+// import InsDetail from '../InsDetailInfo';
+
+const PaperDetail =  lazy(() => import('../PaperDetailInfo/index'));
+const AuthorDetail = lazy(() => import('../AuthorDetailInfo'));
+const InsDetail = lazy(() => import('../InsDetailInfo'));
 
 class Detail extends React.Component {
 

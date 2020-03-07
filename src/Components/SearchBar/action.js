@@ -33,7 +33,6 @@ export const search = function (keywords) {
             let response = await getRequest(url, () => dispatch(Loading()));
             response = JSON.parse(response);
             if (response.success && response.content) {
-                console.log(response.content);
                 if(reset) dispatch(changeRes(response.content.volist));
                 else dispatch(changeRes([...state.search.res,...response.content.volist]));
                 //修改请求数据的偏移量

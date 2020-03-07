@@ -10,7 +10,6 @@ const { Title, Paragraph, Text } = Typography;
 const Author = (props) => {
     const authors = props.authors;
     const ids = props.ids;
-    console.log(props);
 
     const handleClick = (id) => {
         const url = `/author/detail/${id}`;
