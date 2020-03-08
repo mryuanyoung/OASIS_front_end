@@ -26,6 +26,13 @@
 
 
 ## problems
-- 缓存没起作用？
 - 刷新加载原来的/服务端渲染
 - 分页请求
+
+
+- 首次发起的请请求：清空res，page，total，oldmethod，oldkeyword
+
+  - 如果total超过50，res.length = total,前50个用res替代，page和offset改变
+
+  - 不超过50则直接返回结果，改变res、total     offset不改变
+- offset={page}，替换掉res中相应的条目

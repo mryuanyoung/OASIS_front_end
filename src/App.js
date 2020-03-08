@@ -16,7 +16,6 @@ function App() {
           <Route path='/:method' component={PaperSearchPage}></Route>
         </Switch>
       </Suspense>
-
     </Router>
   );
 }

@@ -4,7 +4,7 @@ import PaperType from '../PaperSimpleInfo/index.js';
 import AuthorType from '../AuthorSimpleInfo';
 import InstitutionType from '../InsSimpleInfo';
 import SearchBar from '../SearchBar/index';
-import { sortRes, search, changePage } from '../SearchBar/action';
+import { sortRes, searchMore, changePage } from '../SearchBar/action';
 import { List, Icon, Button, Spin } from 'antd';
 import { PAGE_SIZE, RES_COUNT } from '../../const';
 
@@ -44,7 +44,7 @@ const Header = (props) => {
 class DataList extends React.Component {
 
     shouldComponentUpdate(nextProps, nextState) {
-        return nextProps.data[0] !== this.props.data[0] || nextProps.loading !== this.props.loading;
+        return nextProps.loading !== this.props.loading;
     }
 
     renderList(method, item) {
@@ -81,12 +81,13 @@ class DataList extends React.Component {
                                 total: this.props.total,
                                 pageSize: PAGE_SIZE,
                                 hideOnSinglePage: true,
+                                showQuickJumper: true,
                                 onChange: (page, pageSize) => {
                                     this.props.changePage(page);
                                     document.documentElement.scrollTop = 0
                                     if (this.props.total > RES_COUNT * this.props.offset &&
                                         page > RES_COUNT * this.props.offset / PAGE_SIZE) {
-                                        this.props.addRes(this.props.oldKeyword);
+                                        this.props.searchMore(page);
                                     }
                                 }
                             }}
@@ -126,8 +127,8 @@ const mapDispatchToProps = (dispatch) => {
         sortData: (field, order) => {
             dispatch(sortRes(field, order));
         },
-        addRes: (keyword) => {
-            dispatch(search(keyword));
+        searchMore: (page) => {
+            dispatch(searchMore(page));
         },
         changePage: (page) => {
             dispatch(changePage(page));

@@ -1,12 +1,11 @@
 import React from 'react';
-import { Input, Select, Cascader } from 'antd';
+import { Input, Cascader } from 'antd';
 import {withRouter} from 'react-router-dom';
 import { search, changeMethod, changeOldKeyword, changeOldMethod } from './action';
 import {connect} from 'react-redux';
 import './searchBar.css';
 
 const {Search} = Input;
-const {Option} = Select;
 
 const options = [
     {value: '', label:'搜索目标', disabled:true},
@@ -21,11 +20,11 @@ const options = [
 ];
 
 const SearchBar = function (props) {
-
     function toSearch(keyword) {
-        if(keyword){
-            // props.changeOldMethod(props.method.join(''));
-            // props.changeOldKeyword(keyword);
+        if(keyword && 
+            (props.location.pathname === '/' || 
+            props.oldKeyword !== keyword || props.oldMethod !== props.method.join(''))){
+            props.changeOldKeyword(keyword);
             props.searchPaper(keyword);
 
             /*不同类型的搜索结果跳转同一个展示页面，选择不同的展示组件*/
@@ -40,24 +39,12 @@ const SearchBar = function (props) {
             <Search enterButton defaultValue={props.oldKeyword} className='search' size='large' onSearch={toSearch}/>
         </div>
     );
-    // return (
-    //     <div className='searCont'>
-    //         <Select defaultValue={props.method} className='select' size='large' onChange={method => props.changeMethod(method)}>
-    //             <Option value='paper'>Paper</Option>
-    //             <Option value='author'>Author</Option>
-    //             <Option value='conference'>Conference</Option>
-    //             <Option value='interest'>Interest</Option>
-    //             <Option value='institution'>Institution</Option>
-    //             <Option value='mix'>Mix</Option>
-    //         </Select>
-    //         <Search enterButton defaultValue={props.oldKeyword} className='search' size='large' onSearch={toSearch}/>
-    //     </div>
-    // )
 }
 
 const mapStateToProps = ({search}) => {
     return {
         method: search.method,
+        oldMethod: search.oldMethod,
         oldKeyword: search.oldKeyword
     };
 }
