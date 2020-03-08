@@ -84,11 +84,8 @@ class DataList extends React.Component {
                                 showQuickJumper: true,
                                 onChange: (page, pageSize) => {
                                     this.props.changePage(page);
-                                    document.documentElement.scrollTop = 0
-                                    if (this.props.total > RES_COUNT * this.props.offset &&
-                                        page > RES_COUNT * this.props.offset / PAGE_SIZE) {
-                                        this.props.searchMore(page);
-                                    }
+                                    document.documentElement.scrollTop = 0;
+                                    this.props.searchMore(page);
                                 }
                             }}
                             dataSource={this.props.data}
