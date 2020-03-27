@@ -32,6 +32,6 @@ export default createStore(
         }
     }
     //打包的时候去掉tool    
-    ,compose(applyMiddleware(thunk)))
-    // , compose(applyMiddleware(thunk), window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()));
+    // ,compose(applyMiddleware(thunk)))
+    , compose(applyMiddleware(thunk), window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()));
     //别删这个    注释掉就好

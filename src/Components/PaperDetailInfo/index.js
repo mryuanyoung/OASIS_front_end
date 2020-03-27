@@ -41,10 +41,10 @@ class PaperDetail extends React.Component{
     render(){
         return (
             <div className='page'>
-                <Paragraph className='left' style={{lineHight: '2vh'}}>
+                {/* <Paragraph className='left' style={{lineHight: '2vh'}}>
                     <Text strong>Author Keywords: </Text>
                     {this.props.auKywds.join('\n')}
-                </Paragraph>
+                </Paragraph> */}
                 <Typography className='article'>
                     <Title level={1} style={{ 'textAlign': 'center' }}>{this.props.title}</Title>
                     <a href={this.props.pdfLink} target='_blank' rel='noopener noreferrer' style={{ color: 'blue', marginLeft: '19vw', fontSize: '1.1rem' }}>PDF link</a>

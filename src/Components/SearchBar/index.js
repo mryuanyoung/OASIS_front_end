@@ -25,6 +25,7 @@ const SearchBar = function (props) {
             (props.location.pathname === '/' || 
             props.oldKeyword !== keyword || props.oldMethod !== props.method.join(''))){
             props.changeOldKeyword(keyword);
+            props.changeOldMethod(props.method.join(''));
             props.searchPaper(keyword);
 
             /*不同类型的搜索结果跳转同一个展示页面，选择不同的展示组件*/

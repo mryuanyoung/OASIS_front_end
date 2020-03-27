@@ -48,5 +48,5 @@
         "react-app-rewired": "^2.1.5",
         "webpack-bundle-analyzer": "^3.6.0"
     },
-    "proxy": "http://139.196.79.125:8080"
+    "proxy": "http://139.196.79.125:80"
 }
