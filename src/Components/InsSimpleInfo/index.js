@@ -15,7 +15,10 @@ const Bottom = (props) => {
 const simpleIns = (props) => {
     // console.log(props.institutionName);
     return (
-        <List.Item key={props.institutionName} onClick={clickHandle.bind(null, props)}>
+        <List.Item 
+            className='hoverBox'
+            key={props.institutionName}
+            onClick={clickHandle.bind(null, props)}>
             <List.Item.Meta title={props.institutionName} description={props.authorNameList.join(" | ")}/>
         </List.Item>
     )
@@ -23,7 +26,7 @@ const simpleIns = (props) => {
 
 const clickHandle = (props) => {
     if(props.institutionName){
-        const url = `/institution/detail?name=${props.institutionName}`;
+        const url = `/institution/detail/${props.institutionId}`;
         
         props.history.push(url);
 

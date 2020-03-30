@@ -1,0 +1,8 @@
+.hoverBox {
+    box-shadow: 10px 10px 4px #eee;
+    border-radius: 20px;
+    background-color: #fff;
+    margin-top: 5vh;
+    padding: 10px;
+    border: 1px dashed #c8e2dc !important;
+}

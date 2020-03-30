@@ -3,7 +3,8 @@ import { List } from 'antd';
 import { withRouter } from 'react-router-dom';
 import { connect } from "react-redux";
 import { search, changeLink} from '../DetailInfo/action';
-// import Highlight from 'react-highlight'
+import './index.css';
+// import Highlight from 'react-highlight';
 
 const Bottom = (props) => {
     return (
@@ -15,7 +16,7 @@ const Bottom = (props) => {
 }
 
 const clickHandle = (props) => {
-    const url = `/paper/detail?id=${props.paperId}`;
+    const url = `/paper/detail/${props.paperId}`;
     props.changeLink(props.pdfLink);
     props.history.push(url);
 }
@@ -27,6 +28,7 @@ const SimplePaper = (props) => {
     let newTitle = title;
     return (
         <List.Item
+            className='hoverBox'
             style={{ minHeight: '25vh' }}
             key={props.doi}
             actions={[<Bottom pyear={props.publicationYear} rcount={props.referenceCount} />]}

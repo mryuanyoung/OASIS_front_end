@@ -17,7 +17,18 @@ class Listener extends React.Component {
                 const method = pathname.match(/[^/]+/)[0];
                 this.props.matchUrl(pathname+search, method);
             }
-        })
+        });
+
+        const loca = JSON.parse(window.sessionStorage.getItem('location'));
+        if(loca && (loca.pathname !== '/' || loca.search || loca.hash)){
+            this.props.history.push(`${loca.pathname}?${loca.search}#${loca.hash}`);
+        }
+
+        window.addEventListener('beforeunload', (e) => {
+            window.sessionStorage.setItem('location', JSON.stringify(this.props.history.location));
+            this.props.history.push('/');
+            // e.returnValue = "确定吗？";
+        });
     }
 
     render() {

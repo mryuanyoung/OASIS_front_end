@@ -35,7 +35,11 @@ const mapDispatchToProps = (dispatch) => {
 export default withRouter(connect(null,mapDispatchToProps)((props) => {
     const institutionName = props.institutionName;
     return (
-        <List.Item key={props.authorID} actions={[<Bottom institutionName = {institutionName}/>]} onClick={clickHandle.bind(null, props)}>
+        <List.Item 
+            className='hoverBox'
+            key={props.authorID}
+            actions={[<Bottom institutionName = {institutionName}/>]}
+            onClick={clickHandle.bind(null, props)}>
             <List.Item.Meta
                 avatar={
                     <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
