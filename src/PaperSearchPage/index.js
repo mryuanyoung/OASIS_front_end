@@ -35,7 +35,7 @@ const SearchPage = (props) => {
             </Header>
             <Content style={{ padding: '0 50px' }}>
 
-                <div style={{ background: '#fff', padding: 24, minHeight: 484 }}>
+                <div className='back'>
                     <div className="searchRes">
                         <Suspense fallback={<Spin></Spin>}>
                             <Switch>

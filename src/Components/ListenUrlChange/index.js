@@ -43,7 +43,8 @@ class Listener extends React.Component {
         window.addEventListener('beforeunload', (e) => {
             window.sessionStorage.setItem('location', JSON.stringify(this.props.history.location));
             window.sessionStorage.setItem('search', JSON.stringify(this.props.searchInfo))
-            this.props.history.push('/');
+            window.history.pushState({}, 'refresh', '/');
+            // this.props.history.push('/');
         });
     }
 

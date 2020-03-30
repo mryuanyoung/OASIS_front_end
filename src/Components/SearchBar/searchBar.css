@@ -9,3 +9,8 @@
 .cascader {
     width: 13vw;
 }
+
+.searCont {
+    display: flex;
+    justify-content: center;
+}
