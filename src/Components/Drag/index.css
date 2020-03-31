@@ -1,0 +1,39 @@
+.drag {
+    width: 17vw;
+    height: 5vw;
+    position: fixed;
+    z-index: 1;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+}
+
+.drag input {
+    display: none;
+}
+
+#slide {
+    width: 12vw;
+    height: 3vw;
+    display: inline-block;
+    position: relative;
+    left: 12vw;
+    background-color: red;
+    transition: transform 0.5s;
+}
+
+#visi {
+    width: 4vw;
+    height: 4vw;
+    border: 1px solid black;
+    border-radius: 50%;
+    background-color: cyan;
+    display: inline-block;
+    z-index: 1;
+    position: relative;
+}
+
+#visi:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+}

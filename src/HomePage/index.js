@@ -13,7 +13,7 @@ const HomePage = (props) => {
                 <SearchBar></SearchBar>
                 <HotResearch></HotResearch>
                 <div className='gov'>
-                    <span>@2019-2020 esruoc.top 版权所有 ICP证： </span><a href="http://www.beian.miit.gov.cn/" target='_blank'>蜀ICP备19023801号</a>
+                    <span>@2019-2020 esruoc.top 版权所有 ICP证： </span><a href="http://www.beian.miit.gov.cn/" target='_blank' rel="noopener noreferrer">蜀ICP备19023801号</a>
                 </div>
             </div>
         </>

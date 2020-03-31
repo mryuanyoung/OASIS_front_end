@@ -4,12 +4,14 @@ import {Spin} from 'antd';
 import HomePage from './HomePage/index';
 
 import Listen from './Components/ListenUrlChange/index';
+import Drag from './Components/Drag/index';
 const PaperSearchPage = lazy(() => import('./PaperSearchPage/index'));
 
 function App() {
   return (
     <Router>
       <Listen></Listen>
+      <Drag></Drag>
       <Suspense fallback={<Spin></Spin>}>
         <Switch>
           <Route exact path='/' component={HomePage}></Route>
