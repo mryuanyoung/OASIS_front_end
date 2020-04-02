@@ -1,5 +1,5 @@
 import React from 'react';
-import throttle from '../../utils/throttle';
+import { LeftCircleTwoTone } from '@ant-design/icons';
 
 import './index.css';
 
@@ -14,7 +14,7 @@ class Drag extends React.Component {
             y_off: 0,
             hidden: true,
             dragStyle: {
-                'transform': 'translate(10px, 20px)'
+                'transform': 'translate(70vw, 1vh)'
             },
             outStyle: {
                 'visibility': 'hidden'
@@ -48,7 +48,6 @@ class Drag extends React.Component {
         return (
             <div
                 className='drag'
-                draggable='true'
                 style={this.state.dragStyle}
                 onDragStart={e => {
                     console.log('drag start');
@@ -56,9 +55,9 @@ class Drag extends React.Component {
                 }}
             >
                 <div id='slide' style={this.state.outStyle}></div>
-                <div id='visi' onClick={e => {
+                <LeftCircleTwoTone draggable='true' id='visi'  onClick={e => {
                     this.setState((state) => {
-                        if(state.hidden){
+                        if (state.hidden) {
                             return {
                                 outStyle: {
                                     visibility: '',
@@ -67,7 +66,7 @@ class Drag extends React.Component {
                                 hidden: !state.hidden
                             }
                         }
-                        else{
+                        else {
                             return {
                                 outStyle: {
                                     visibility: 'hidden',
@@ -76,8 +75,7 @@ class Drag extends React.Component {
                             }
                         }
                     })
-                }}>
-                </div>
+                }} />
             </div>
         )
     }

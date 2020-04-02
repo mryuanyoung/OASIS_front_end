@@ -1,0 +1,22 @@
+.backBone {
+    background-color: #eee;
+    border: 1px solid cyan;
+    width: 70vw;
+    height: 80vh;
+    margin: 15vh auto 0 auto;
+    display: flex;
+    flex-direction: column;
+    border-radius: 20px;
+    padding: 10px;
+    transition: transform 0.5s;
+}
+
+.backBone>header {
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.chart {
+    width: inherit;
+    height: 50vh;
+}

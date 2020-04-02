@@ -1,7 +1,7 @@
 import React from 'react';
 import { List, Avatar} from 'antd';
 import {withRouter} from 'react-router-dom';
-import {searchAuthors,  authorLinks} from "../DetailInfo/action";
+import {searchAuthors,  authorLinks, getAuthorMap} from "../DetailInfo/action";
 import { connect } from 'react-redux';
 
 const Bottom = (props) => {
@@ -16,6 +16,7 @@ const clickHandle = (props) => {
     if(props.authorID){
         const url = `/author/detail/${props.authorID}`;
         props.changeLink(props.authorID);
+        props.getAuthorMap(props.authorID);
         props.history.push(url);
     }
 }
@@ -28,6 +29,9 @@ const mapDispatchToProps = (dispatch) => {
         },
         changeLink: (link) => {
             dispatch(authorLinks(link));
+        },
+        getAuthorMap: (id) => {
+            dispatch(getAuthorMap(id));
         }
     }
 }

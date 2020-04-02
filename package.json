@@ -3,6 +3,7 @@
     "version": "0.1.0",
     "private": true,
     "dependencies": {
+        "@ant-design/icons": "^4.0.5",
         "@antv/g2": "^4.0.0",
         "@testing-library/jest-dom": "^4.2.4",
         "@testing-library/react": "^9.3.2",
@@ -10,6 +11,7 @@
         "antd": "^3.26.11",
         "bizcharts": "^3.5.7",
         "core-js": "^3.6.4",
+        "echarts": "^4.7.0",
         "react": "^16.12.0",
         "react-dom": "^16.12.0",
         "react-highlight": "^0.12.0",

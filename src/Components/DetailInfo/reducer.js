@@ -12,6 +12,8 @@ export default (state = {}, action) => {
             return { ...state, resType: action.resType };
         case TYPE.AUTHOR_LINKS:
             return {...state, ids: action.ids};
+        case TYPE.AUTHOR_MAP:
+            return {...state, image: action.image};
         default:
             return state;
     }

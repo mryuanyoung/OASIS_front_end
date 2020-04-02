@@ -1,0 +1,22 @@
+.auMap {
+    width: 20vw;
+    height: 20vw;
+    cursor: pointer;
+    transition: transform 1s;
+}
+
+.auMap:hover {
+    transform: scale(1.1);
+}
+
+.auMap img {
+    width: inherit;
+    height: inherit;
+}
+
+.cover {
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    top: 0;
+}

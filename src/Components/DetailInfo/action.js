@@ -28,6 +28,30 @@ export const search = function (url, method) {
     }
 }
 
+export const getAuthorMap = function (id) {
+    return async function (dispatch, getState) {
+        const url = `/author/image/${id}`;
+        try {
+            let response = await getRequest(url);
+            response = JSON.parse(response);
+            //需要判断和当前的authorId是否相同，暂时没解决
+            if (response.success && response.content) {
+                dispatch(changeAuthorMap(response.content));
+            }
+        }
+        catch (err) {
+            console.error(err);
+        }
+    }
+}
+
+export const changeAuthorMap = function (image) {
+    return {
+        type: TYPE.AUTHOR_MAP,
+        image
+    }
+}
+
 export const changeDetail = (res) => {
     return {
         type: TYPE.CHANGE_DETAIL,
@@ -69,7 +93,7 @@ export const searchAuthors = (authors) => {
                         return json.content.volist[0].authorID;
                     }
                 }
-                catch(err){
+                catch (err) {
                     console.error(err);
                 }
             });

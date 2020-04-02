@@ -44,7 +44,7 @@ class Listener extends React.Component {
             window.sessionStorage.setItem('location', JSON.stringify(this.props.history.location));
             window.sessionStorage.setItem('search', JSON.stringify(this.props.searchInfo))
             window.history.pushState({}, 'refresh', '/');
-            // this.props.history.push('/');
+            this.props.history.push('/');
         });
     }
 
