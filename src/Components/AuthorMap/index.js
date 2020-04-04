@@ -40,11 +40,12 @@ class AuthorMap extends React.Component {
                         return {
                             id: node.id,
                             name: node.name,
-                            symbolSize: node.degree,
+                            symbolSize: (node.degree / 30) >= 1 ? 30 : node.degree,
+                            degree: node.degree,
                             tooltip: {
                                 formatter: ({ data, dataType }) => {
                                     if (dataType === 'node') {
-                                        return `${data.name}: ${data.symbolSize}`;
+                                        return `${data.name}: ${data.degree}`;
                                     }
                                     else if (dataType === 'edge') {
                                         return `link count: ${data.value}`

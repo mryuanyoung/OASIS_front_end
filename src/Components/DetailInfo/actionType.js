@@ -5,3 +5,4 @@ export const CHANGE_OFFSET = 'change_offset';
 export const CHANGE_RES_TYPE = 'change_detail_res_type';
 export const AUTHOR_LINKS = 'author_links';
 export const AUTHOR_MAP = 'author_map';
+export const PAPER_HEAT = 'paper_heat';

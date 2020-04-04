@@ -9,11 +9,11 @@ export const SIMPLE_PAPER = {
     referenceCount: 0,
     pdfLink: '',
     doi: ''
-}
+};
 
 export const SIMPLE_AUTHOR = {
     authorID: 0,
     authorName: '',
     institutionName: '',
     keyword: []
-}
+};

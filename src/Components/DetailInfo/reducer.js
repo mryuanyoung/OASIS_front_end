@@ -14,6 +14,8 @@ export default (state = {}, action) => {
             return {...state, ids: action.ids};
         case TYPE.AUTHOR_MAP:
             return {...state, image: action.image};
+        case TYPE.PAPER_HEAT:
+            return {...state, heat: action.heat};
         default:
             return state;
     }

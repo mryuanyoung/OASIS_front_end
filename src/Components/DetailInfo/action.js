@@ -52,6 +52,30 @@ export const changeAuthorMap = function (image) {
     }
 }
 
+export const getPaperHeat = function(id){
+    return async (dispatch, getState) => {
+        const url = `/author/paperHeat/${id}`;
+        try{
+            let response = await getRequest(url);
+            //需要判断和当前的authorId是否相同，暂时没解决
+            response = JSON.parse(response);
+            if(response.success && response.content){
+                dispatch(changePaperHeat(response.content));
+            }
+        }
+        catch(err){
+            console.error(err);
+        }
+    }
+}
+
+export const changePaperHeat = function(heat){
+    return{
+        type: TYPE.PAPER_HEAT,
+        heat
+    };
+}
+
 export const changeDetail = (res) => {
     return {
         type: TYPE.CHANGE_DETAIL,

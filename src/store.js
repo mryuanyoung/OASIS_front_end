@@ -25,7 +25,8 @@ export default createStore(
             resType: 'paper',
             loading: false,
             ids: [],
-            image: {}
+            image: {},
+            heat: null
         },
         hot:{
             res: [],
