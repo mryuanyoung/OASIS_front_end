@@ -1,15 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Card, Avatar, Descriptions, List } from 'antd';
 import PaperType from '../PaperSimpleInfo/index.js';
+import {withRouter} from 'react-router-dom';
+import {connect} from 'react-redux';
+import {getAuthorMap} from '../DetailInfo/action';
 import './index.css';
 import AuthorMap from '../AuthorMap';
 
 const { Meta } = Card;
 
+
 const AuthorInfo = (props) => {
 
     const [cover, setCover] = useState({ visibility: 'hidden' });
     const [scale, setScale] = useState({ transform: 'scale(0)' });
+
+    const url = props.history.location.pathname.split('/');
+    const [id, setId] = useState(url[url.length-1]);
+
+    useEffect(() => props.getAuthorMap(id), [id]);
 
     return (
         <>
@@ -64,4 +73,12 @@ const AuthorInfo = (props) => {
     )
 }
 
-export default AuthorInfo;
+const mapDispatchToProps = (dispatch) => {
+    return {
+        getAuthorMap: (id) => {
+            dispatch(getAuthorMap(id));
+        }
+    }
+}
+
+export default withRouter(connect(null, mapDispatchToProps)(AuthorInfo));

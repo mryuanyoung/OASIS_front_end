@@ -55,7 +55,7 @@ class Drag extends React.Component {
                 }}
             >
                 <div id='slide' style={this.state.outStyle}></div>
-                <LeftCircleTwoTone draggable='true' id='visi'  onClick={e => {
+                <LeftCircleTwoTone twoToneColor='#1da57a' draggable='true' id='visi'  onClick={e => {
                     this.setState((state) => {
                         if (state.hidden) {
                             return {

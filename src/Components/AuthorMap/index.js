@@ -5,8 +5,6 @@ import echarts from 'echarts/lib/echarts';
 import graph from 'echarts/lib/chart/graph';
 import { CloseCircleTwoTone } from '@ant-design/icons';
 
-// 引入柱状图
-require('echarts/lib/chart/bar');
 // 引入提示框和标题组件
 require('echarts/lib/component/tooltip');
 require('echarts/lib/component/title');
@@ -23,22 +21,24 @@ class AuthorMap extends React.Component {
     }
 
     componentDidUpdate() {
-        this.props.nodes && this.chart.setOption({
+        this.chart.hideLoading();
+        this.props.nodes && this.props.edges && this.chart.setOption({
             title: {
                 text: 'Author Map'
             },
-            animationDurationUpdate: 1500,
-            animationEasingUpdate: 'quinticInOut',
             series: [
                 {
                     type: 'graph',
                     layout: 'force',
-                    // progressiveThreshold: 700,
-                    data: this.props.nodes.map(function (node) {
+                    force: {
+                        repulsion: 100,
+                        // edgeLength: 50
+                    },
+                    nodes: this.props.nodes.map(function (node) {
                         return {
                             id: node.id,
                             name: node.name,
-                            symbolSize: node.degree,
+                            symbolSize: 30,
                             // itemStyle: {
                             //     color: node.color
                             // }
@@ -46,8 +46,9 @@ class AuthorMap extends React.Component {
                     }),
                     edges: this.props.edges.map(function (edge) {
                         return {
-                            source: edge.source,
-                            target: edge.target
+                            source: edge.source+'',
+                            target: edge.target+'',
+                            value: edge.value * 100
                         };
                     }),
                     emphasis: {
@@ -58,10 +59,24 @@ class AuthorMap extends React.Component {
                     },
                     roam: true,
                     focusNodeAdjacency: true,
+                    itemStyle: {
+                        normal: {
+                            borderColor: '#fff',
+                            borderWidth: 1,
+                            shadowBlur: 10,
+                            shadowColor: 'rgba(0, 0, 0, 0.3)'
+                        }
+                    },
                     lineStyle: {
-                        width: 0.5,
-                        curveness: 0.3,
-                        opacity: 0.7
+                        width: 4,
+                        type: 'solid',
+                        color: 'source',
+                        curveness: 0.7
+                    },
+                    emphasis: {
+                        lineStyle: {
+                            width: 2
+                        }
                     }
                 }
             ]
@@ -73,6 +88,7 @@ class AuthorMap extends React.Component {
             <div className='backBone' style={this.props.scale}>
                 <header>
                     <CloseCircleTwoTone
+                        twoToneColor='#1da57a'
                         style={{ fontSize: '20px' }}
                         onClick={e => {
                             this.props.setCover({ visibility: 'hidden' })

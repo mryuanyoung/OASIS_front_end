@@ -18,7 +18,7 @@
     display: inline-block;
     position: relative;
     left: 12vw;
-    border: 1px solid cyan;
+    border: 1px solid #1da57a;
     border-radius: 20px;
     transition: transform 0.5s;
 }
