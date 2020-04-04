@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import PaperType from '../PaperSimpleInfo/index.js';
 import AuthorType from '../AuthorSimpleInfo';
 import InstitutionType from '../InsSimpleInfo';
+import ConferenceType from '../ConfSimpleInfo';
 import SearchBar from '../SearchBar/index';
 import { sortRes, searchMore, changePage } from '../SearchBar/action';
 import { List, Icon, Button, Spin } from 'antd';
@@ -60,9 +61,13 @@ class DataList extends React.Component {
             case 'institution':
                 return (
                     <InstitutionType {...item} />
-                )
+                );
+            case 'conference':
+                return (
+                    <ConferenceType {...item} />
+                );
             default:
-
+                return <div>no type match</div>
         }
     }
 

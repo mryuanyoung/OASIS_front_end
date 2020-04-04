@@ -5,17 +5,12 @@ import { Spin } from 'antd';
 import PaperDetail from '../PaperDetailInfo/index';
 import AuthorDetail from '../AuthorDetailInfo';
 import InsDetail from '../InsDetailInfo';
+import ConfDetail from '../ConfDetailInfo';
 
-// const PaperDetail =  lazy(() => import('../PaperDetailInfo/index'));
-// const AuthorDetail = lazy(() => import('../AuthorDetailInfo'));
-// const InsDetail = lazy(() => import('../InsDetailInfo'));
 
 class Detail extends React.Component {
 
     shouldComponentUpdate(nextProps, nextState) {
-        // return nextProps.res !== this.props.res ||
-        //     nextProps.loading !== this.props.loading ||
-        //     this.props.history.location.pathname !== this.props.url;
         return true;
     }
 
@@ -29,6 +24,8 @@ class Detail extends React.Component {
                         return <AuthorDetail {...this.props.res}></AuthorDetail>;
                     case 'institution':
                         return <InsDetail {...this.props.res}></InsDetail>;
+                    case 'conference':
+                        return <ConfDetail {...this.props.res} />
                     default:
                         return <div>no data</div>;
                 }

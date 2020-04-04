@@ -17,7 +17,7 @@ export const search = function (keywords) {
         let url = `/${method[0]}/simple?`;
 
         if (method[0] === 'paper') url += `pattern=${method[1][0].toUpperCase() + method[1].substring(1)}&keywords=${keywords}&offset=0`;
-        else if (method[0] === 'conference') url = `/conference/keywords=${keywords}`;
+        else if (method[0] === 'conference') url += `keyword=${keywords}&offset=0`;
         else if (method[0] === 'author') url += `keyword=${keywords}&offset=0`;
         else url += `keyword=${keywords}&offset=0`;
 
@@ -28,7 +28,7 @@ export const search = function (keywords) {
                 let res = response.content.volist;
                 let total = response.content.total;
 
-                if (method[0] === 'institution') {
+                if (method[0] === 'institution' || method[0] === 'conference') {
                     res = response.content;
                     total = response.content.length;
                     dispatch(changeRes(res));
@@ -46,8 +46,6 @@ export const search = function (keywords) {
                 dispatch(changePage(1));
                 //改变数据总量
                 dispatch(changeTotal(total))
-                //设置oldkeywords
-                // dispatch(changeOldKeyword(keywords));
                 //设置oldmethod
                 dispatch(changeOldMethod(method.join('')));
             }
