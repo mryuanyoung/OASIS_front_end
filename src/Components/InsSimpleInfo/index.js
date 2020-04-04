@@ -13,7 +13,6 @@ const Bottom = (props) => {
 }
 
 const simpleIns = (props) => {
-    // console.log(props.institutionName);
     return (
         <List.Item 
             className='hoverBox'

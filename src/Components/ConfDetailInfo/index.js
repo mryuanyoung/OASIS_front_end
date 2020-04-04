@@ -4,6 +4,7 @@ import Paper from '../PaperSimpleInfo';
 import echarts from 'echarts/lib/echarts';
 import bar from 'echarts/lib/chart/bar';
 import { getRequest } from '../../utils/ajax';
+import './index.css';
 
 import { List } from 'antd';
 
@@ -69,14 +70,57 @@ class ConfDetail extends React.Component {
         })();
 
         (async () => {
-            const url = `/conference/paperHeat/${this.props.id}`;
+            const url = `/conference/topField/${this.props.id}`;
             try{
-
+                let response = await getRequest(url);
+                response = JSON.parse(response);
+                if(response.success && response.content){
+                    console.log(response.content);
+                    this.fieldChart.setOption({
+                        tooltip: {
+                            trigger: 'item',
+                            formatter: '{a} <br/>{b} : {c} ({d}%)'
+                        },
+                        radius: [0, '100%'],
+                        visualMap: {
+                            show: false,
+                            min: 80,
+                            max: 600,
+                            inRange: {
+                                colorLightness: [0, 1]
+                            }
+                        },
+                        series: [
+                            {
+                                name: '研究方向',
+                                type: 'pie',
+                                radius: '55%',
+                                center: ['50%', '50%'],
+                                data: response.content.termCountVOS.map(item => ({
+                                    value: item.count,
+                                    name: item.term
+                                })),
+                                roseType: 'radius',
+                                minShowLabelAngle: 7,
+                                itemStyle: {
+                                    color: '#1da57a',
+                                    shadowBlur: 200,
+                                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                                },
+                                animationType: 'scale',
+                                animationEasing: 'elasticOut',
+                                animationDelay: function (idx) {
+                                    return Math.random() * 200;
+                                }
+                            }
+                        ]
+                    })
+                }
             }
             catch(err){
                 console.error(err);
             }
-        })()
+        })();
     }
 
     componentDidUpdate() {
