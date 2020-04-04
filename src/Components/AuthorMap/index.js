@@ -16,7 +16,7 @@ class AuthorMap extends React.Component {
         this.chart = null;
     }
 
-    componentDidMount(){
+    componentDidMount() {
         this.chart = echarts.init(this.ref.current);
     }
 
@@ -24,31 +24,43 @@ class AuthorMap extends React.Component {
         this.chart.hideLoading();
         this.props.nodes && this.props.edges && this.chart.setOption({
             title: {
-                text: 'Author Map'
+                text: 'Author Map',
+                fontWeight: 100
             },
+            tooltip: {},
             series: [
                 {
                     type: 'graph',
                     layout: 'force',
                     force: {
-                        repulsion: 100,
-                        // edgeLength: 50
+                        repulsion: 200,
+                        edgeLength: 200
                     },
                     nodes: this.props.nodes.map(function (node) {
                         return {
                             id: node.id,
                             name: node.name,
-                            symbolSize: 30,
-                            // itemStyle: {
-                            //     color: node.color
-                            // }
+                            symbolSize: node.degree,
+                            tooltip: {
+                                formatter: ({ data, dataType }) => {
+                                    if (dataType === 'node') {
+                                        return `${data.name}: ${data.symbolSize}`;
+                                    }
+                                    else if (dataType === 'edge') {
+                                        return `link count: ${data.value}`
+                                    }
+                                }
+                            },
+                            itemStyle: {
+                                color: `rgba(${Math.random() * 256}, ${Math.random() * 256}, ${Math.random() * 256}, 0.5)`
+                            }
                         };
                     }),
                     edges: this.props.edges.map(function (edge) {
                         return {
-                            source: edge.source+'',
-                            target: edge.target+'',
-                            value: edge.value * 100
+                            source: edge.source + '',
+                            target: edge.target + '',
+                            value: edge.value
                         };
                     }),
                     emphasis: {
@@ -57,7 +69,7 @@ class AuthorMap extends React.Component {
                             show: true
                         }
                     },
-                    roam: true,
+                    roam: false,
                     focusNodeAdjacency: true,
                     itemStyle: {
                         normal: {
@@ -68,16 +80,16 @@ class AuthorMap extends React.Component {
                         }
                     },
                     lineStyle: {
-                        width: 4,
+                        width: 2,
                         type: 'solid',
                         color: 'source',
                         curveness: 0.7
                     },
                     emphasis: {
                         lineStyle: {
-                            width: 2
+                            width: 4
                         }
-                    }
+                    },
                 }
             ]
         }, true);
