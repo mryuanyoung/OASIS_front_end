@@ -24,6 +24,7 @@
 .paperHeat {
     width: 100%;
     height: 20vh;
+    overflow: hidden;
 }
 
 .heatBar {

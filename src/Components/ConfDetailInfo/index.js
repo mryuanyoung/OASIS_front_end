@@ -75,7 +75,6 @@ class ConfDetail extends React.Component {
                 let response = await getRequest(url);
                 response = JSON.parse(response);
                 if(response.success && response.content){
-                    console.log(response.content);
                     this.fieldChart.setOption({
                         tooltip: {
                             trigger: 'item',

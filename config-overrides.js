@@ -16,7 +16,7 @@ module.exports = override(
         modifyVars: { '@primary-color': '#1DA57A' },
     }),
 
-    //分析打包
+    // 分析打包
     // addWebpackPlugin(new BundleAnalyzerPlugin({
     //     analyzerMode: 'server',
     //     generateStatsFile: true,

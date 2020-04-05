@@ -9,8 +9,7 @@ export const search = function () {
             let response = await getRequest(url, () => dispatch(Loading()));
             response = JSON.parse(response);
             if (response.success && response.content) {
-                dispatch(changeHot(response.content));
-
+                dispatch(changeHot(response.content.slice(0, 10).sort((a,b)=>a.count-b.count)));
             }
         }
         catch(err){

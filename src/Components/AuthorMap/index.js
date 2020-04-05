@@ -3,11 +3,10 @@ import { connect } from 'react-redux';
 import './index.css'
 import echarts from 'echarts/lib/echarts';
 import graph from 'echarts/lib/chart/graph';
+import tooltip from 'echarts/lib/component/tooltip';
 import { CloseCircleTwoTone } from '@ant-design/icons';
 
-// 引入提示框和标题组件
-require('echarts/lib/component/tooltip');
-require('echarts/lib/component/title');
+// require('echarts/lib/component/title');
 
 class AuthorMap extends React.Component {
     constructor(props) {

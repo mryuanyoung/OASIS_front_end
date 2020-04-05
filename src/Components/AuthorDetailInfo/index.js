@@ -123,7 +123,7 @@ class AuthorInfo extends React.Component {
                     </div>
                 </div>
                 <div style={this.state.cover} className='cover'>
-                    <AuthorMap setCover={(cover) => this.setState({cover})} scale={this.state.scale} setScale={(scale) => this.setState(scale)}></AuthorMap>
+                    <AuthorMap setCover={(cover) => this.setState({ cover })} scale={this.state.scale} setScale={(scale) => this.setState(scale)}></AuthorMap>
                 </div>
             </>
         )

@@ -3,12 +3,14 @@ import thunk from 'redux-thunk';
 import detailReducer from './Components/DetailInfo/reducer';
 import barReducer from './Components/SearchBar/reducer';
 import hotReducer from './Components/HotResearch/reducer';
+import rankReducer from './Components/Rank/reducer';
 
 export default createStore(
     combineReducers({
         search: barReducer,
         detail: detailReducer,
         hot:hotReducer,
+        rank: rankReducer
     }),
     {   
         search: {
@@ -28,12 +30,19 @@ export default createStore(
             image: {},
             heat: null
         },
+        rank: {
+            ins:null,
+            author: null,
+            heat: null,
+            loading: false,
+            oldKeyword: ''
+        },
         hot:{
             res: [],
             loading: false
         }
     }
-    //打包的时候去掉tool    
+    // 打包的时候去掉tool    
     // ,compose(applyMiddleware(thunk)))
     , compose(applyMiddleware(thunk), window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()));
     //别删这个    注释掉就好

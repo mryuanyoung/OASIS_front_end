@@ -1,10 +1,16 @@
-.HotChart{
+.HotChart {
     margin-top: 6vh;
     height: 60vh;
 }
 
-.chartTitle{
+.chartTitle {
     font-size: 1.5em;
     text-align: center;
     height: 5vh;
+}
+
+.chart {
+    width: 70vw;
+    height: 60vh;
+    overflow: hidden;
 }
