@@ -10,19 +10,116 @@ import './index.css';
 class InsInfo extends React.Component {
     constructor(props) {
         super(props);
-        this.ref = React.createRef();
-        this.chart = null;
+        this.termRef = React.createRef();
+        this.heatRef = React.createRef();
+        this.wordImgRef = React.createRef();
+        this.termChart = null;
+        this.heatChart = null;
+        this.wordImgChart = null;
+    }
+
+    async getwordImg(keyword) {
+        const wordImgUrl = `/institution/HeatWordImageByYear?institutionId=${this.props.id}&keyword=${keyword}`;
+        let wordImg = await getRequest(wordImgUrl);
+        wordImg = JSON.parse(wordImg);
+        if (wordImg.success && wordImg.content) {
+            this.wordImgChart.setOption({
+                color: ['#1da57a'],
+                title: {text: keyword, bottom: 0, left: '45%', textStyle:{fontWeight: 100 }},
+                tooltip: {
+                    trigger: 'axis',
+                    axisPointer: {
+                        type: 'shadow'
+                    }
+                },
+                grid: {
+                    top: 0,
+                },
+                xAxis: [
+                    {
+                        type: 'category',
+                        data: wordImg.content.map(item => item.year),
+                    }
+                ],
+                yAxis: { show: false },
+                barGap: '0',
+                barCategoryGap: '0',
+                barMaxWidth: 20,
+                series: [
+                    {
+                        name: `${keyword}年热度变化: `,
+                        type: 'bar',
+                        barWidth: 20,
+                        barCategoryGap: '0',
+                        data: wordImg.content.map(item => item.paperCount),
+                        itemStyle: {
+                            barBorderRadius: 5
+                        }
+                    }
+                ]
+            })
+        }
     }
 
     componentDidMount() {
-        this.chart = echarts.init(this.ref.current);
+        this.termChart = echarts.init(this.termRef.current);
+        this.heatChart = echarts.init(this.heatRef.current);
+        this.wordImgChart = echarts.init(this.wordImgRef.current);
+
         (async () => {
-            const url = `/institution/keywordImage/${this.props.id}`
+            const url = `/institution/HeatByYear/${this.props.id}`;
             try {
                 let response = await getRequest(url);
                 response = JSON.parse(response);
                 if (response.success && response.content) {
-                    this.chart.setOption({
+                    this.heatChart.setOption({
+                        color: ['#1da57a'],
+                        tooltip: {
+                            trigger: 'axis',
+                            axisPointer: {
+                                type: 'shadow'
+                            }
+                        },
+                        grid: {
+                            top: 0,
+                        },
+                        xAxis: [
+                            {
+                                type: 'category',
+                                data: response.content.map(item => item.year),
+                            }
+                        ],
+                        yAxis: { show: false },
+                        barGap: '0',
+                        barCategoryGap: '0',
+                        barMaxWidth: 20,
+                        series: [
+                            {
+                                name: '年热度变化: ',
+                                type: 'bar',
+                                barWidth: 20,
+                                barCategoryGap: '0',
+                                data: response.content.map(item => item.paperCount),
+                                itemStyle: {
+                                    barBorderRadius: 5
+                                }
+                            }
+                        ]
+                    });
+                }
+            }
+            catch (err) {
+                console.error(err);
+            }
+        })();
+
+        (async () => {
+            const url = `/institution/keywordImage/${this.props.id}`;
+            try {
+                let response = await getRequest(url);
+                response = JSON.parse(response);
+                if (response.success && response.content) {
+                    this.termChart.setOption({
                         tooltip: {
                             trigger: 'item',
                             formatter: '{a} <br/>{b} : {c} ({d}%)'
@@ -61,7 +158,15 @@ class InsInfo extends React.Component {
                                 }
                             }
                         ]
-                    })
+                    });
+
+                    //获取最大的keyword的wordImg
+                    await this.getwordImg(response.content[0].keyword);
+
+                    //监听点击扇形区
+                    this.termChart.on('click', (e) => {
+                        this.getwordImg(e.data.name);
+                    });
                 }
             }
             catch (err) {
@@ -78,8 +183,13 @@ class InsInfo extends React.Component {
                         <Descriptions.Item label="机构中学者" span={2}>{this.props.authorNameList.join(" | ")}</Descriptions.Item>
                         <Descriptions.Item label="研究方向" span={2}>{this.props.keywords.join(" | ")}</Descriptions.Item>
                     </Descriptions>
-                    <div className='keywordImage' ref={this.ref}>
-
+                    年热度变化: 
+                    <div className='heatByYear' ref={this.heatRef}></div>
+                    <div>
+                        研究方向: 
+                        <div className='keywordImage' ref={this.termRef}></div>
+                        方向趋势变化:
+                        <div className='wordImg' ref={this.wordImgRef}></div>
                     </div>
                 </div>
                 <div className='paperList'>

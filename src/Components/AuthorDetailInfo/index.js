@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React from 'react';
 import { Card, Avatar, Descriptions, List } from 'antd';
 import PaperType from '../PaperSimpleInfo/index.js';
 import { connect } from 'react-redux';

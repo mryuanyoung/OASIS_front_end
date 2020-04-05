@@ -132,7 +132,9 @@ class ConfDetail extends React.Component {
             <div>
                 <div className='confInfo'>
                     <h1 style={{ margin: '0 auto', width: 'fit-content' }}>{this.props.conferenceName}</h1>
+                    年发论文: 
                     <div className='paperHeat' ref={this.paperRef}></div>
+                    Top10研究方向: 
                     <div className='topField' ref={this.fieldRef}></div>
                 </div>
                 <div className='papers'>
