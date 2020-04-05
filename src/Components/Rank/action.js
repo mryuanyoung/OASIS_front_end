@@ -52,7 +52,7 @@ export const changeHeatMap = (heat) =>{
 
 export const changeKeyword = (keyword) =>{
     return {
-        type: TYPE.OLD_KEYWORD,
+        type: TYPE.KEYWORD,
         keyword
     };
 }

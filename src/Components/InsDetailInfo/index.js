@@ -16,6 +16,7 @@ class InsInfo extends React.Component {
         this.termChart = null;
         this.heatChart = null;
         this.wordImgChart = null;
+        this.state = { dire: '' };
     }
 
     async getwordImg(keyword) {
@@ -25,7 +26,7 @@ class InsInfo extends React.Component {
         if (wordImg.success && wordImg.content) {
             this.wordImgChart.setOption({
                 color: ['#1da57a'],
-                title: {text: keyword, bottom: 0, left: '45%', textStyle:{fontWeight: 100 }},
+                title: { text: keyword, bottom: 0, left: '45%', textStyle: { fontWeight: 100 } },
                 tooltip: {
                     trigger: 'axis',
                     axisPointer: {
@@ -119,6 +120,7 @@ class InsInfo extends React.Component {
                 let response = await getRequest(url);
                 response = JSON.parse(response);
                 if (response.success && response.content) {
+                    this.setState({ dire: response.content[0].keyword });
                     this.termChart.setOption({
                         tooltip: {
                             trigger: 'item',
@@ -165,6 +167,7 @@ class InsInfo extends React.Component {
 
                     //监听点击扇形区
                     this.termChart.on('click', (e) => {
+                        this.setState({dire: e.data.name})
                         this.getwordImg(e.data.name);
                     });
                 }
@@ -183,12 +186,12 @@ class InsInfo extends React.Component {
                         <Descriptions.Item label="机构中学者" span={2}>{this.props.authorNameList.join(" | ")}</Descriptions.Item>
                         <Descriptions.Item label="研究方向" span={2}>{this.props.keywords.join(" | ")}</Descriptions.Item>
                     </Descriptions>
-                    年热度变化: 
+                    年热度变化:
                     <div className='heatByYear' ref={this.heatRef}></div>
                     <div>
-                        研究方向: 
+                        研究方向:
                         <div className='keywordImage' ref={this.termRef}></div>
-                        方向趋势变化:
+                        <span>{this.state.dire}方向趋势变化:</span>
                         <div className='wordImg' ref={this.wordImgRef}></div>
                     </div>
                 </div>

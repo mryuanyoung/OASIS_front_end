@@ -83,7 +83,7 @@ class AuthorInfo extends React.Component {
                                 <Descriptions title=" ">
                                     {/* <Descriptions.Item label="姓名">{props.authorName}</Descriptions.Item>
                             <Descriptions.Item label="所属机构">{props.institutionName}</Descriptions.Item> */}
-                                    <Descriptions.Item label="研究方向" span={3}>{this.props.keyword.join(" | ")}</Descriptions.Item>
+                                    <Descriptions.Item label="研究方向" colmun={3}>{this.props.keyword.join(" | ")}</Descriptions.Item>
                                 </Descriptions>
                             </Card>
                             <div className='auMap' onClick={e => {

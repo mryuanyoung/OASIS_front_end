@@ -1,8 +1,14 @@
-.heatByYear,
+.heatByYear {
+    height: 20vh;
+    overflow: hidden;
+}
+
 .keywordImage {
-    height: 30vh;
+    height: 60vh;
+    overflow: hidden;
 }
 
 .wordImg {
-    height: 30vh;
+    height: 20vh;
+    overflow: hidden;
 }

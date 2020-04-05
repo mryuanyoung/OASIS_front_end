@@ -8,8 +8,8 @@ export default (state ={}, action) => {
             return {...state, heat: action.heat};
         case TYPE.INS_GRAPH:
             return {...state, ins: action.ins};
-        case TYPE.OLD_KEYWORD:
-            return {...state, oldKeyword: action.keyword};
+        case TYPE.KEYWORD:
+            return {...state, keyword: action.keyword};
         default:
             return state;
     }

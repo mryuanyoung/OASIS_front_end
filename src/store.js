@@ -9,10 +9,10 @@ export default createStore(
     combineReducers({
         search: barReducer,
         detail: detailReducer,
-        hot:hotReducer,
+        hot: hotReducer,
         rank: rankReducer
     }),
-    {   
+    {
         search: {
             method: ['paper', 'title'],
             res: [],
@@ -31,13 +31,13 @@ export default createStore(
             heat: null
         },
         rank: {
-            ins:null,
+            ins: null,
             author: null,
             heat: null,
             loading: false,
-            oldKeyword: ''
+            keyword: ''
         },
-        hot:{
+        hot: {
             res: [],
             loading: false
         }

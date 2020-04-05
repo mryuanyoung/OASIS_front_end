@@ -1,10 +1,12 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 import { Input } from 'antd';
 import { connect } from 'react-redux';
 import echarts from 'echarts/lib/echarts';
 import bar from 'echarts/lib/chart/bar';
 import tooltip from 'echarts/lib/component/tooltip';
 import { getMap, changeKeyword } from './action';
+import { getRequest } from '../../utils/ajax';
 import './index.css';
 
 const { Search } = Input;
@@ -18,20 +20,46 @@ class Rank extends React.Component {
         this.insChart = null;
         this.autChart = null;
         this.heatChart = null;
-        this.state = {
-            keyword: ''
-        };
     }
 
     componentDidMount() {
+        const kwd = this.props.keyword ? this.props.keyword : 'learning (artificial intelligence)';
         this.insChart = echarts.init(this.insRef.current);
-        this.props.getMap('picByIns', 'learning (artificial intelligence)');
+        this.insChart.on('click', async (e) => {
+            const url = `/institution/simple?keyword=${e.name}&offset=0`;
+            try {
+                let response = await getRequest(url);
+                response = JSON.parse(response);
+                if (response.success && response.content) {
+                    const dest = `/institution/detail/${response.content[0].institutionId}`;
+                    this.props.history.push(dest);
+                }
+            }
+            catch (err) {
+                console.error(err);
+            }
+        });
+        this.props.getMap('picByIns', kwd);
 
         this.heatChart = echarts.init(this.heatRef.current);
-        this.props.getMap('picYearly', 'learning (artificial intelligence)');
+        this.props.getMap('picYearly', kwd);
 
         this.autChart = echarts.init(this.autRef.current);
-        this.props.getMap('picByAuth', 'learning (artificial intelligence)');
+        this.autChart.on('click', async (e) => {
+            const url = `/author/simple?keyword=${e.name}&offset=0`;
+            try {
+                let response = await getRequest(url);
+                response = JSON.parse(response);
+                if (response.success && response.content) {
+                    const dest = `/author/detail/${response.content.volist[0].authorID}`;
+                    this.props.history.push(dest);
+                }
+            }
+            catch (err) {
+                console.error(err);
+            }
+        });
+        this.props.getMap('picByAuth', kwd);
     }
 
     componentDidUpdate() {
@@ -134,7 +162,6 @@ class Rank extends React.Component {
     }
 
     Search(keyword) {
-        this.props.changeKeyword(keyword);
         this.props.getMap('picByIns', keyword);
         this.props.getMap('picYearly', keyword);
         this.props.getMap('picByAuth', keyword);
@@ -143,8 +170,15 @@ class Rank extends React.Component {
     render() {
         return (
             <div className='rankCont'>
-                <Search placeholder='请输入研究方向' enterButton size='large' style={{ width: '30vw' }} defaultValue={this.props.oldKeyword} onSearch={this.Search.bind(this)}></Search>
-                <h1 style={{ marginTop: '8vh' }}>{this.props.oldKeyword ? this.props.oldKeyword : 'learning (artificial intelligence)'}</h1>
+                <Search placeholder='请输入研究方向'
+                    enterButton
+                    size='large'
+                    style={{ width: '30vw' }}
+                    value={this.props.keyword}
+                    onChange={(e) => this.props.changeKeyword(e.target.value)}
+                    onSearch={this.Search.bind(this)}>
+                </Search>
+                <h1 style={{ marginTop: '8vh' }}>{this.props.keyword ? this.props.keyword : 'learning (artificial intelligence)'}</h1>
                 <div className='insChart' ref={this.insRef}></div>
                 <span style={{ marginTop: '-8vh' }}>学术机构排名</span>
                 <div className='autChart' ref={this.autRef}></div>
@@ -161,7 +195,7 @@ const mapStateToProps = ({ rank }) => {
         ins: rank.ins,
         author: rank.author,
         heat: rank.heat,
-        oldKeyword: rank.oldKeyword
+        keyword: rank.keyword,
     };
 }
 
