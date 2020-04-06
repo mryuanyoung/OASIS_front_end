@@ -16,7 +16,7 @@ const Bottom = (props) => {
 }
 
 const clickHandle = (props) => {
-    const url = `/paper/detail/${props.paperId}`;
+    const url = `/paper/info/${props.paperId}`;
     props.changeLink(props.pdfLink);
     props.history.push(url);
 }

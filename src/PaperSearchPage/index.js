@@ -62,7 +62,7 @@ const SearchPage = (props) => {
                                 <Route exact path='/team' component={TeamInfo}></Route>
                                 <Route exact path={['/paper', '/author', '/conference', '/institution']} component={SimpleInfo}></Route>
                                 <Route exact path='/rank' component={Rank}></Route>
-                                <Route path='/:method/detail' component={DetailInfo}></Route>
+                                <Route path='/:method/info' component={DetailInfo}></Route>
                                 <Route exact path='/data' component={DataSupport}></Route>
                             </Switch>
                         </Suspense>

@@ -25,7 +25,7 @@ const simpleIns = (props) => {
 
 const clickHandle = (props) => {
     if(props.institutionName){
-        const url = `/institution/detail/${props.institutionId}`;
+        const url = `/institution/info/${props.institutionId}`;
         
         props.history.push(url);
 

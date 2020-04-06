@@ -31,7 +31,7 @@ class Rank extends React.Component {
                 let response = await getRequest(url);
                 response = JSON.parse(response);
                 if (response.success && response.content) {
-                    const dest = `/institution/detail/${response.content[0].institutionId}`;
+                    const dest = `/institution/info/${response.content[0].institutionId}`;
                     this.props.history.push(dest);
                 }
             }
@@ -51,7 +51,7 @@ class Rank extends React.Component {
                 let response = await getRequest(url);
                 response = JSON.parse(response);
                 if (response.success && response.content) {
-                    const dest = `/author/detail/${response.content.volist[0].authorID}`;
+                    const dest = `/author/info/${response.content.volist[0].authorID}`;
                     this.props.history.push(dest);
                 }
             }

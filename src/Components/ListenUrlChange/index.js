@@ -13,10 +13,10 @@ class Listener extends React.Component {
     componentDidMount() {
         this.props.history.listen(({ pathname, search }) => {
             document.documentElement.scrollTop = 0
-            const reg = /\/[^\/]+\/detail/;
+            const reg = /\/[^\/]+\/info/;
             if (reg.test(pathname)) {
-                const method = pathname.match(/[^/]+/)[0];
-                this.props.matchUrl(pathname + search, method);
+                const temp = pathname.split('/');
+                this.props.matchUrl(`/${temp[1]}/detail/${temp[3]}`, temp[1]);
             }
         });
 
@@ -43,8 +43,6 @@ class Listener extends React.Component {
         window.addEventListener('beforeunload', (e) => {
             window.sessionStorage.setItem('location', JSON.stringify(this.props.history.location));
             window.sessionStorage.setItem('search', JSON.stringify(this.props.searchInfo))
-            // window.history.pushState({}, 'refresh', '/');
-            this.props.history.push('/');
         });
     }
 

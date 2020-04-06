@@ -12,7 +12,7 @@ const Author = (props) => {
     const ids = props.ids;
 
     const handleClick = (id) => {
-        const url = `/author/detail/${id}`;
+        const url = `/author/info/${id}`;
         props.push(url);
     }
 

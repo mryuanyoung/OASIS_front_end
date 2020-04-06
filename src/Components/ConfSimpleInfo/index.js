@@ -4,7 +4,7 @@ import {withRouter} from 'react-router-dom';
 import { List } from 'antd';
 
 const clickHandle = (props) => {
-    const url = `/conference/detail/${props.conferenceId}`;
+    const url = `/conference/info/${props.conferenceId}`;
     props.history.push(url);
 }
 

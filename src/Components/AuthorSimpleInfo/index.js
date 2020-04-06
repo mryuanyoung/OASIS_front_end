@@ -14,7 +14,7 @@ const Bottom = (props) => {
 
 const clickHandle = (props) => {
     if(props.authorID){
-        const url = `/author/detail/${props.authorID}`;
+        const url = `/author/info/${props.authorID}`;
         props.changeLink(props.authorID);
         props.history.push(url);
     }
