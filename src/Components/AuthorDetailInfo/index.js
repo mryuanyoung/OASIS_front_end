@@ -2,7 +2,7 @@ import React from 'react';
 import { Card, Avatar, Descriptions, List } from 'antd';
 import PaperType from '../PaperSimpleInfo/index.js';
 import { connect } from 'react-redux';
-import { getAuthorMap, getPaperHeat } from '../DetailInfo/action';
+import { getAuthorMap, getPaperHeat, changeRequestId } from '../DetailInfo/action';
 import './index.css';
 import AuthorMap from '../AuthorMap';
 
@@ -133,7 +133,7 @@ class AuthorInfo extends React.Component {
 const mapStateToProps = ({ detail }) => {
     return {
         heat: detail.heat,
-        id: detail.res.requestId
+        id: detail.requestId
     };
 }
 
@@ -144,6 +144,9 @@ const mapDispatchToProps = (dispatch) => {
         },
         getPaperHeat: (id) => {
             dispatch(getPaperHeat(id));
+        },
+        changeRequestId: (id) => {
+            dispatch(changeRequestId(id));
         }
     }
 }

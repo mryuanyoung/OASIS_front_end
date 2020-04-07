@@ -17,8 +17,6 @@ export const search = function (url, method) {
             response = JSON.parse(response);
             if (response.success && response.content) {
                 //如果请求成功，要将结果的method改为结果类型的method，否则会渲染出错
-                const params = url.split('/');
-                response.content.requestId = params[params.length-1];
                 dispatch(changeResType(method));
                 dispatch(changeDetail(response.content));
             }
@@ -28,6 +26,13 @@ export const search = function (url, method) {
             console.error(err);
         }
     }
+}
+
+export const changeRequestId = (requestId) =>{
+    return {
+        type: TYPE.REQUEST_ID,
+        requestId
+    };
 }
 
 export const getAuthorMap = function (id) {

@@ -6,7 +6,6 @@ import echarts from 'echarts/lib/echarts';
 import bar from 'echarts/lib/chart/bar';
 import tooltip from 'echarts/lib/component/tooltip';
 import { getMap, changeKeyword } from './action';
-import { getRequest } from '../../utils/ajax';
 import './index.css';
 
 const { Search } = Input;
@@ -26,18 +25,9 @@ class Rank extends React.Component {
         const kwd = this.props.keyword ? this.props.keyword : 'learning (artificial intelligence)';
         this.insChart = echarts.init(this.insRef.current);
         this.insChart.on('click', async (e) => {
-            const url = `/institution/simple?keyword=${e.name}&offset=0`;
-            try {
-                let response = await getRequest(url);
-                response = JSON.parse(response);
-                if (response.success && response.content) {
-                    const dest = `/institution/info/${response.content[0].institutionId}`;
-                    this.props.history.push(dest);
-                }
-            }
-            catch (err) {
-                console.error(err);
-            }
+            const id = this.props.ins[e.dataIndex].id;
+            const dest = `/institution/info/${id}`;         
+            this.props.history.push(dest);
         });
         this.props.getMap('picByIns', kwd);
 
@@ -46,18 +36,9 @@ class Rank extends React.Component {
 
         this.autChart = echarts.init(this.autRef.current);
         this.autChart.on('click', async (e) => {
-            const url = `/author/simple?keyword=${e.name}&offset=0`;
-            try {
-                let response = await getRequest(url);
-                response = JSON.parse(response);
-                if (response.success && response.content) {
-                    const dest = `/author/info/${response.content.volist[0].authorID}`;
-                    this.props.history.push(dest);
-                }
-            }
-            catch (err) {
-                console.error(err);
-            }
+            const id = this.props.author[e.dataIndex].id;
+            const dest = `/author/info/${id}`;         
+            this.props.history.push(dest);
         });
         this.props.getMap('picByAuth', kwd);
     }

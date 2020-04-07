@@ -16,6 +16,8 @@ export default (state = {}, action) => {
             return {...state, image: action.image};
         case TYPE.PAPER_HEAT:
             return {...state, heat: action.heat};
+        case TYPE.REQUEST_ID:
+            return {...state, requestId: action.requestId};
         default:
             return state;
     }

@@ -1,7 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { search as searchD } from '../DetailInfo/action';
+import { search as searchD, changeRequestId } from '../DetailInfo/action';
 import {search, changeMethod, changeOldKeyword} from '../SearchBar/action';
 
 class Listener extends React.Component {
@@ -16,6 +16,7 @@ class Listener extends React.Component {
             const reg = /\/[^\/]+\/info/;
             if (reg.test(pathname)) {
                 const temp = pathname.split('/');
+                this.props.changeRequestId(Number(temp[3]));
                 this.props.matchUrl(`/${temp[1]}/detail/${temp[3]}`, temp[1]);
             }
         });
@@ -73,6 +74,9 @@ const mapDispatchToProps = (dispatch) => {
         },
         changeOldKeyword: (keyword) => {
             dispatch(changeOldKeyword(keyword));
+        },
+        changeRequestId: (requestId) => {
+            dispatch(changeRequestId(requestId));
         }
     }
 }

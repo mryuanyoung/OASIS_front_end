@@ -214,7 +214,7 @@ class InsInfo extends React.Component {
 
 const mapStateToProps = ({ detail }) => {
     return {
-        id: detail.res.requestId
+        id: detail.requestId
     }
 }
 
