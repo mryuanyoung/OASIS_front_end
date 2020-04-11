@@ -1,0 +1,4 @@
+`win32-x64-72` exists; testing
+Binary is fine; exiting
+Downloading binary from https://cdn.npm.taobao.org/dist/node-sass/v4.0.0/win32-x64-72_binding.node
+Building: C:\Program Files\nodejs\node.exe D:\大三下\软工三\frontend-oasis\node_modules\_node-gyp@3.8.0@node-gyp\bin\node-gyp.js rebuild --verbose --libsass_ext= --libsass_cflags= --libsass_ldflags= --libsass_library=

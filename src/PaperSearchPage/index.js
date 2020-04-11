@@ -4,6 +4,7 @@ import { Link, Route, Switch } from 'react-router-dom';
 import './paperSearchPage.css';
 import { Layout, Menu, Spin } from "antd";
 import SimpleInfo from '../Components/SimpleInfo/index'
+import UserModal from '../Components/UserModal'
 
 const DetailInfo = lazy(() => import('../Components/DetailInfo/index'));
 const TeamInfo = lazy(() => import('../Components/TeamInfo'));
@@ -52,6 +53,11 @@ const SearchPage = (props) => {
                     <Menu.Item key="5"><Link to='/team'>关于我们</Link></Menu.Item>
 
                 </Menu>
+
+                <div className="userInfo" >
+                    <UserModal />
+                </div>
+
             </Header>
             <Content style={{ padding: '0 50px' }}>
 
