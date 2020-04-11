@@ -10,7 +10,7 @@ const Request = (method, url, timeoutHandle, headers={}, data={}) => {
             else reject(e.target.status);
         }
         xhr.onerror = (err) => reject(err);
-        method === 'POST'? xhr.send(data) : xhr.send();
+        method === 'POST'? xhr.send(JSON.stringify(data)) : xhr.send();
     }).then(res => res, timeoutHandle);
 }
 

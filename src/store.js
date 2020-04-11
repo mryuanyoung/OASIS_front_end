@@ -46,8 +46,11 @@ export default createStore(
         user: {
             res: [],
             userName: '',
+            emailAddress: '',
+            password: '',
             loginState: false,
-            modal: 1
+            modal: 1,
+            errorInfo: ''
         }
     }
     // 打包的时候去掉tool    

@@ -4,12 +4,12 @@ import { Link, Route, Switch } from 'react-router-dom';
 import './paperSearchPage.css';
 import { Layout, Menu, Spin } from "antd";
 import SimpleInfo from '../Components/SimpleInfo/index'
-import UserModal from '../Components/UserModal'
 
 const DetailInfo = lazy(() => import('../Components/DetailInfo/index'));
 const TeamInfo = lazy(() => import('../Components/TeamInfo'));
 const DataSupport  = lazy(() => import('../Components/DataSupport/index'));
 const Rank = lazy(() => import('../Components/Rank'));
+const UserModal = lazy(() => import('../Components/UserModal'))
 
 const { Header, Content, Footer } = Layout;
 
@@ -28,6 +28,9 @@ const SearchPage = (props) => {
                 break;
             case 'team':
                 selected = '5';
+                break;
+            case 'user':
+                selected = '6';
                 break;
             default:
                 break;
@@ -51,12 +54,8 @@ const SearchPage = (props) => {
                     <Menu.Item key="3"><Link to='/rank'>排行榜</Link></Menu.Item>
                     <Menu.Item key="4"><Link to='/data'>数据支持</Link></Menu.Item>
                     <Menu.Item key="5"><Link to='/team'>关于我们</Link></Menu.Item>
-
+                    <Menu.Item key="6" className="userInfo"><Link to='/user'>个人中心</Link></Menu.Item>
                 </Menu>
-
-                <div className="userInfo" >
-                    <UserModal />
-                </div>
 
             </Header>
             <Content style={{ padding: '0 50px' }}>
@@ -70,6 +69,7 @@ const SearchPage = (props) => {
                                 <Route exact path='/rank' component={Rank}></Route>
                                 <Route path='/:method/info' component={DetailInfo}></Route>
                                 <Route exact path='/data' component={DataSupport}></Route>
+                                <Route exact path='/user' component={UserModal}></Route>
                             </Switch>
                         </Suspense>
                     </div>

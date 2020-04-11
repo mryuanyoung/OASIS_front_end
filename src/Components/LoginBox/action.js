@@ -1,16 +1,17 @@
 import * as TYPE from './actionTypes';
-import { postRequest } from '../../utils/ajax.js';
+import { postRequest, getRequest } from '../../utils/ajax.js';
 
 
 export const login = function (values) {
     return async function (dispatch, getState) {
         let url = '/user/logIn';
+        let headers = {'content-type': 'application/json'}
         try {
-            let response = await postRequest(url, () => dispatch(Loading()), values);
+            let response = await postRequest(url, () => dispatch(Loading()), headers, values);
             response = JSON.parse(response);
             if (response.success && response.content) {
-                dispatch(changeUser(values.emailAdderss));
-                dispatch(changeLoginState());
+                dispatch(changeUser(response.content.userName));
+                dispatch(changeModal(3));
             }
         }
         catch(err){
@@ -22,18 +23,35 @@ export const login = function (values) {
 export const register = function (values) {
     return async function (dispatch, getState) {
         let url = '/user/register';
-        let data ={
-            username : values.nickname,
-            password : values.password,
-            emailAddress : values.email
-        }
+        let headers = {'content-type': 'application/json'}
         try {
-            let response = await postRequest(url, () => dispatch(Loading()), data);
+            let response = await postRequest(url, () => dispatch(Loading()), headers, values);
             response = JSON.parse(response);
             if (response.success && response.content) {
-                dispatch(changeUser(values.emailAdderss));
+                console.log(response.content);
+                dispatch(changeUser(values.userName));
                 dispatch(changeLoginState());
                 dispatch(changeModal(3));
+            }
+            else{
+                changeError(response.message);
+            }
+        }
+        catch(err){
+            console.error(err);
+        }
+    }
+}
+
+export const verifyEmail = function (email) {
+    return async function (dispatch, getState) {
+        let url = 'mail/email?';
+        url += `email=${email}`;
+        try {
+            let response = await getRequest(url, () => dispatch(Loading()));
+            response = JSON.parse(response);
+            if (response.success && response.content) {
+
             }
         }
         catch(err){
@@ -48,6 +66,20 @@ export const changeUser = (res) => {
         type: TYPE.CHANGE_USER,
         res
     }
+}
+
+export const changeError = (res) => {
+    return {
+        type: TYPE.CHANGE_ERROR,
+        res
+    }
+}
+
+export const changeEmail = (res) => {
+    return {
+        type: TYPE.CHANGE_EMAIL,
+        res
+    };
 }
 
 export const changeLoginState = () => {

@@ -4,8 +4,12 @@ export default (state={}, action) => {
     switch(action.type){
         case TYPE.CHANGE_USER:
             return {...state, userName: action.res};
+        case TYPE.CHANGE_ERROR:
+            return {...state, errorInfo: action.res};
         case TYPE.CHANGE_MODAL:
             return {...state, modal: action.res};
+        case TYPE.CHANGE_EMAIL:
+            return {...state, email: action.res};
         case TYPE.CHANGE_LOGIN_STATE:
             return {...state, loginState: !state.loginState};
         case TYPE.LOADING:

@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import {withRouter} from 'react-router-dom';
 import { Modal, Button } from 'antd';
 import  LoginBox  from "../LoginBox"
+import { changeLoginState } from '../LoginBox/action';
 
 const UserInfo = function(props){
   if(!props.loginState){
@@ -12,44 +13,24 @@ const UserInfo = function(props){
   }
   else{
     return(
-      <p>{props.userName}</p>
+      <>
+        <p>你好，{props.userName}</p>
+        <Button type="primary" onClick={props.changeLoginState}>注销</Button>
+      </>
+      
+      
     )
   }
 }
 
 class UserModal extends React.Component {
-  state = {
-    visible: false,
-  };
-
-  showModal = () => {
-    this.setState({
-      visible: true,
-    });
-  };
-
-  handleCancel = () => {
-    console.log('Clicked cancel button');
-    this.setState({
-      visible: false,
-    });
-  };
+  
 
   render() {
-    const { visible} = this.state;
     return (
       <div>
-        <Button type="link" onClick={this.showModal}>
-          登录
-        </Button>
-        <Modal
-          title="login"
-          visible={visible}
-          onCancel={this.handleCancel}
-        >
+        <UserInfo {...this.props}/>
         
-          <UserInfo {...this.props}/>
-        </Modal>
       </div>
     );
   }
@@ -63,6 +44,13 @@ const mapStateToProps = ({ user }) => {
   };
 }
 
+const mapDispatchToProps = (dispatch) => {
+  return {
+      changeLoginState: (values) => {
+          dispatch(changeLoginState(values));
+      }
+  }
+}
 
-export default withRouter(connect(mapStateToProps, null)(UserModal));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(UserModal));
 ;

@@ -25,11 +25,7 @@
 }
 
 .userInfo {
-    width: 120px;
-    height: 60px;
-    background: rgba(255, 255, 255, 0.2);
-    margin: 16px 0 16px 24px;
-    float: right;
+    margin: 0px 256px 0px 24px;
 }
 
 .dataList {
