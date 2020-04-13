@@ -151,7 +151,7 @@ class Rank extends React.Component {
     render() {
         return (
             <div className='rankCont'>
-                <Search placeholder='请输入研究方向'
+                <Search placeholder='请输入研究方向，查看更多排行榜信息'
                     enterButton
                     size='large'
                     style={{ width: '30vw' }}
@@ -159,13 +159,14 @@ class Rank extends React.Component {
                     onChange={(e) => this.props.changeKeyword(e.target.value)}
                     onSearch={this.Search.bind(this)}>
                 </Search>
-                <h1 style={{ marginTop: '8vh' }}>{this.props.keyword ? this.props.keyword : 'learning (artificial intelligence)'}</h1>
+                <h1 style={{ marginTop: '8vh' }}>关键词 {this.props.keyword ? this.props.keyword : 'learning (artificial intelligence)'} 的排行榜</h1>
+                <span style={{ marginTop: '8vh', marginBottom: '-8vh'}}>学术机构排名</span>
                 <div className='insChart' ref={this.insRef}></div>
-                <span style={{ marginTop: '-8vh' }}>学术机构排名</span>
+                <span style={{ marginTop: '4vh', marginBottom: '-8vh' }}>作者排名</span>
                 <div className='autChart' ref={this.autRef}></div>
-                <span style={{ marginTop: '-8vh' }}>作者排名</span>
+                <span style={{ marginTop: '4vh', marginBottom: '-8vh' }}>热度变化趋势</span>
                 <div className='heatChart' ref={this.heatRef}></div>
-                <span style={{ marginTop: '-5vh' }}>热度变化趋势</span>
+                
             </div>
         );
     }

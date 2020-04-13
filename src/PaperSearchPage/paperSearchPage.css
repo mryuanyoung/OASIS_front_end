@@ -15,7 +15,7 @@
     justify-items: center;
     align-items: center;
 }
-
+    
 .logo {
     width: 120px;
     height: 31px;
@@ -24,8 +24,12 @@
     float: left;
 }
 
+.menu_item{
+    margin: 0 3vw 0 3vw;
+}
+
 .userInfo {
-    margin: 0px 256px 0px 24px;
+    float: right;
 }
 
 .dataList {

@@ -182,7 +182,7 @@ class InsInfo extends React.Component {
         return (
             <>
                 <div>
-                    <Descriptions title={this.props.institutionName}>
+                    <Descriptions title={'机构详情： '+this.props.institutionName}>
                         <Descriptions.Item label="机构中学者" span={2}>{this.props.authorNameList.join(" | ")}</Descriptions.Item>
                         <Descriptions.Item label="研究方向" span={2}>{this.props.keywords.join(" | ")}</Descriptions.Item>
                     </Descriptions>

@@ -49,11 +49,11 @@ const SearchPage = (props) => {
                     defaultSelectedKeys={[selected]}
                     style={{ lineHeight: '64px' }}
                 >
-                    <Menu.Item key="1"><Link to='/'>首页</Link></Menu.Item>
-                    <Menu.Item key="2"><Link to={`/${props.method}`}>搜索</Link></Menu.Item>
-                    <Menu.Item key="3"><Link to='/rank'>排行榜</Link></Menu.Item>
-                    <Menu.Item key="4"><Link to='/data'>数据支持</Link></Menu.Item>
-                    <Menu.Item key="5"><Link to='/team'>关于我们</Link></Menu.Item>
+                    <Menu.Item key="1" className="menu_item"><Link to='/'>首页</Link></Menu.Item>
+                    <Menu.Item key="2" className="menu_item"><Link to={`/${props.method}`}>搜索</Link></Menu.Item>
+                    <Menu.Item key="3" className="menu_item"><Link to='/rank'>排行榜</Link></Menu.Item>
+                    <Menu.Item key="4" className="menu_item"><Link to='/data'>数据支持</Link></Menu.Item>
+                    <Menu.Item key="5" className="menu_item"><Link to='/team'>关于我们</Link></Menu.Item>
                     <Menu.Item key="6" className="userInfo"><Link to='/user'>个人中心</Link></Menu.Item>
                 </Menu>
 
