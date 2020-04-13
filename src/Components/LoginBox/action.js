@@ -28,14 +28,11 @@ export const register = function (values) {
             let response = await postRequest(url, () => dispatch(Loading()), headers, values);
             response = JSON.parse(response);
             if (response.success) {
-                console.log(response.content);
                 dispatch(changeUser(values.username));
                 dispatch(changeModal(3));
             }
             else{
-                console.log(response.message);
-                
-                changeError();
+                dispatch(changeError(response.message));
             }
         }
         catch(err){
@@ -69,9 +66,10 @@ export const changeUser = (res) => {
     }
 }
 
-export const changeError = () => {
+export const changeError = (res) => {
     return {
-        type: TYPE.CHANGE_ERROR
+        type: TYPE.CHANGE_ERROR,
+        res
     }
 }
 

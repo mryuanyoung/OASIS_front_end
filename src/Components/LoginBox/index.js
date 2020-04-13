@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { Alert, Button } from 'antd';
 import  RegistrationForm  from './RegisterForm'
 import LoginForm from './LoginForm'
-import './loginBox.css'
 import { changeLoginState, changeModal } from './action';
 
 class LoginBox extends React.Component {
