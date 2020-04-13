@@ -76,10 +76,15 @@ class RegistrationForm extends React.Component {
 
   onVerify = (e) => {
     const { getFieldProps } = this.props.form;
-    this.props.verifyCheck(getFieldProps('email').value);
+    if(getFieldProps('email').value){
+      this.props.verifyCheck(getFieldProps('email').value);
     // let btn = e.target;
     // btn.setAttribute("disabled",true);
     message.success('发送成功，请登录邮箱查看验证码！');
+    }
+    else{
+      message.error('发送失败，请输入邮箱！');
+    }
   }
 
   render() {
@@ -115,7 +120,7 @@ class RegistrationForm extends React.Component {
         </div>
         <div>
           验证码: 
-          <Input {...getFieldProps('verifyCode')} placeholder="请输入验证码" required/>
+          <Input {...getFieldProps('verifyCode')} placeholder="verifyCode" required/>
           <Button type="primary" onClick={this.onVerify}>
             获取验证码
          </Button>
