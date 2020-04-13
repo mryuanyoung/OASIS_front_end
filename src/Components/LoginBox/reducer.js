@@ -5,7 +5,7 @@ export default (state={}, action) => {
         case TYPE.CHANGE_USER:
             return {...state, userName: action.res};
         case TYPE.CHANGE_ERROR:
-            return {...state, errorInfo: action.res};
+            return {...state, errorInfo: !state.errorInfo};
         case TYPE.CHANGE_MODAL:
             return {...state, modal: action.res};
         case TYPE.CHANGE_EMAIL:

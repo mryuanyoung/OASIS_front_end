@@ -4,19 +4,26 @@ import {Form, Input, Button, message, Alert } from 'antd';
 import { register, changeModal, verifyEmail,changeError } from '../action';
 
 const ErrorInfo = (props) =>{
-  if(props.errorInfo===''){
-    return(
-      <p></p>
-    )
-  }
-  else{
+  const onClose = e => {
+    props.changeError();
+  };
+
+  if(props.errorInfo){
+    console.log(props.errorInfo);
     return(
       <Alert
       message="注册失败"
-      description={props.errorInfo}
+      description="验证码错误，请重新获得，或确认大小写"
       type="error"
       closable
-    />
+      onClose={onClose}
+      />
+    )
+  }
+  else{
+    console.log(props.errorInfo);
+    return(
+      <p></p>
     )
   }
 }
@@ -24,29 +31,56 @@ const ErrorInfo = (props) =>{
 
 class RegistrationForm extends React.Component {  
   onFinish = () => {
+    var completed = true;
     const { getFieldProps } = this.props.form;
+
+    let email = getFieldProps('email').value;
+    if(!email){
+      message.error('请输入邮箱！');
+      completed = false;
+    }
+
+    let name =  getFieldProps('username').value;
+    if(!name){
+      message.error('请输入用户名！');
+      completed = false;
+    }
+
     let p1 = getFieldProps('password').value;
     let p2 = getFieldProps('repassword').value;
-    if(p1===p2){
-      let values ={
-        username: getFieldProps('username').value,
-        password: getFieldProps('password').value,
-        emailAddress: getFieldProps('email').value,
-        verifyCode: getFieldProps('verifyCode').value
-      }
-      console.log('Received values of form: ', values);
+    if(!p1){
+      message.error('请输入密码！');
+      completed = false;
+    }
+    else if(p1!==p2){
+      message.error('两次密码不一致，请重新填写！');
+      completed = false;
+    }
+
+    let vc = getFieldProps('verifyCode').value;
+    if(!vc){
+      message.error('请输入验证码！');
+      completed = false;
+    }
+
+    let values ={
+      username: name,
+      password: p1,
+      emailAddress: email,
+      verifyCode: vc
+    }
+    console.log('Received values of form: ', values);
+    if(completed){
       this.props.registerCheck(values);
     }
-    else{
-      message.error('两次密码不一致，请重新填写！');
-    }
+
   };
 
   onVerify = (e) => {
     const { getFieldProps } = this.props.form;
     this.props.verifyCheck(getFieldProps('email').value);
-    let btn = e.target;
-    btn.setAttribute("disabled",true);
+    // let btn = e.target;
+    // btn.setAttribute("disabled",true);
     message.success('发送成功，请登录邮箱查看验证码！');
   }
 
@@ -87,6 +121,7 @@ class RegistrationForm extends React.Component {
           <Button type="primary" onClick={this.onVerify}>
             获取验证码
          </Button>
+         <ErrorInfo {...this.props}></ErrorInfo>
         </div>
         
         <Button type="primary" onClick={this.onFinish}>
@@ -96,7 +131,6 @@ class RegistrationForm extends React.Component {
           已有账号，立即登录
          </Button>
 
-        <ErrorInfo {...this.props}></ErrorInfo>
       </div>
     );
   }
@@ -120,8 +154,8 @@ const mapDispatchToProps = (dispatch) => {
       changeModal: () => {
           dispatch(changeModal(1));
       },
-      changeError: (str) => {
-          dispatch(changeError(str));
+      changeError: () => {
+          dispatch(changeError());
       }
   }
 }

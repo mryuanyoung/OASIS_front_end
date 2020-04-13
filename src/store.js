@@ -50,7 +50,7 @@ export default createStore(
             password: '',
             loginState: false,
             modal: 1,
-            errorInfo: ''
+            errorInfo: false
         }
     }
     // 打包的时候去掉tool    

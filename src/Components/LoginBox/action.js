@@ -27,14 +27,15 @@ export const register = function (values) {
         try {
             let response = await postRequest(url, () => dispatch(Loading()), headers, values);
             response = JSON.parse(response);
-            if (response.success && response.content) {
+            if (response.success) {
                 console.log(response.content);
-                dispatch(changeUser(values.userName));
-                dispatch(changeLoginState());
+                dispatch(changeUser(values.username));
                 dispatch(changeModal(3));
             }
             else{
-                changeError(response.message);
+                console.log(response.message);
+                
+                changeError();
             }
         }
         catch(err){
@@ -68,10 +69,9 @@ export const changeUser = (res) => {
     }
 }
 
-export const changeError = (res) => {
+export const changeError = () => {
     return {
-        type: TYPE.CHANGE_ERROR,
-        res
+        type: TYPE.CHANGE_ERROR
     }
 }
 
