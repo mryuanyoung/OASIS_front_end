@@ -13,6 +13,9 @@ export const login = function (values) {
                 dispatch(changeUser(response.content.userName));
                 dispatch(changeModal(3));
             }
+            else{
+                dispatch(changeError(response.message));
+            }
         }
         catch(err){
             console.error(err);

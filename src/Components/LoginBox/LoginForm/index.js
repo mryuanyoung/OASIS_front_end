@@ -1,9 +1,32 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Form, Input, Button } from 'antd';
+import { Form, Input, Button, Alert } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
-import { login, changeModal, changeEmail } from '../action';
+import { login, changeModal, changeEmail, changeError } from '../action';
 import './loginForm.css'
+
+const ErrorInfo = (props) =>{
+  const onClose = e => {
+    props.changeError('');
+  };
+
+  if(props.errorInfo){
+    return(
+      <Alert
+      message={props.errorInfo}
+      type="error"
+      closable
+      showIcon
+      onClose={onClose}
+      />
+    )
+  }
+  else{
+    return(
+      <p></p>
+    )
+  }
+}
 
 class LoginForm extends React.Component {  
   onFinish = () => {
@@ -31,6 +54,7 @@ class LoginForm extends React.Component {
               type="password"
               placeholder="Password"
             />
+            <ErrorInfo {...this.props}></ErrorInfo>
           </div>
           <div className='login_item'>
             <Button className='login_btn' type="primary" onClick={this.onFinish}>
@@ -64,7 +88,10 @@ const mapDispatchToProps = (dispatch) => {
         },
         changeEmail: (email) => {
           dispatch(changeEmail(email));
-      }
+        },
+        changeError: (str) => {
+            dispatch(changeError(str));
+        }
     }
 }
 
